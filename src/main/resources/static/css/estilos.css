@@ -1,0 +1,142 @@
+body a {
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+}
+html, body{
+    font-size: 100%;
+	font-family: 'Roboto', sans-serif;
+}
+body{
+	background:#FFFFFF;
+}
+
+.btn-alta {
+  color: #000000;
+  background-color: #00bd30;
+  border-color: #d07902;
+  padding-left:20px;
+  padding-right:20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size:12px;
+  font-weight:bold;
+  width:100%;
+}
+
+
+.titulo {
+	font-size: 1em;
+}
+
+.titulo-logo{
+	text-align: center;
+    float: left;
+}
+.titulo-logo h1 {
+    margin: 0;
+}
+.titulo-logo h1 a {
+    color: #000;
+    font-size: 1.2em;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.fondo-color {
+	background-color: #ECF657;
+}
+
+.fondo-header {
+	background-color: #CAD24F;
+}
+
+.fondo-oscuro {
+	background-color:rgb(166,166,6,0.76);
+}
+
+.altura-3 {
+	height:3em;
+}
+
+.altura-10 {
+	height:10em;
+}
+
+.altura-15 {
+	height:15em;
+}
+
+.altura-20 {
+	height:20em;
+}
+
+.displaynone {
+    display: none;
+}
+
+.oculto {
+	visibility: hidden;
+	display: none;
+}
+
+.padding20 {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.mimodal {
+    visibility: visible;
+    display: block;
+    width: 100%;  
+    height: 100%;  /* Full height */
+    background-color: #AEC8E1;  /* Fallback color */
+    color: black;
+    border-color: #5540CE;
+    border-style: solid;
+    padding-top: 1vh;
+    padding-left: 1vw;
+}
+
+#map { 
+    box-shadow: 5px 5px 5px #888;
+}
+
+.alturatextbox {
+     height:23px;
+}
+
+.separacion1 {
+    height: 1em;
+}
+
+.separacion2 {
+    height: 2em;
+}
+
+.separacion4 {
+    height: 4em;
+}
+
+.separacion5 {
+    height: 5em;
+}
+
+.size14 {
+	font-size: 14px;
+	color:red;
+}
+
+.barraSuperior {
+	background-color: #D5DE5D;
+	height: 2.3em;
+	width:100%;
+}
+
+.bbody {
+	height:33.3em;
+}

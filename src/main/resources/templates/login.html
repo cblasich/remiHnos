@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layout/layout :: head">
+		<meta charset="UTF-8" />
+	</head>
+	<body class="fondo-color">
+		<header th:replace="layout/layout :: headerCli"></header> 	
+			<div class="container">
+				<form th:action="@{/login}" method="post">
+					<div class="row separacion4">
+						<div class="col-1 col-sm-1 col-form-label">&nbsp; </div>	
+					</div>	
+					<div class="row">
+						<div class="col-1 d-sm-none"></div>
+						<label class="col-4 col-sm-1 col-form-label">E-mail </label>
+						<div class="col-sm-11 d-none"></div>
+					</div>	
+					<div class="form-group row">
+						<div class="col-1 d-sm-none"></div>
+						<div class="col-10 col-sm-4">
+							<input type="text" name="username" id="username" class="form-control" autofocus required/>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-1 d-sm-none"></div>
+						<label class="col-4 col-sm-1 col-form-label">Contraseña </label>
+						<div class="col-sm-11 d-none"></div>
+					</div>
+					
+					<div class="form-group row">
+						<div class="col-1 d-sm-none"></div>
+						<div class="col-10 col-sm-4">
+							<input type="password" name="password" id="password" class="form-control" required/>
+						</div>
+					</div>
+					
+					<div class="row separacion4">
+						<div class="col-1 col-sm-1 col-form-label">&nbsp; </div>	
+					</div>	
+					<div class="form-group row">
+						<div class="col-1 d-sm-none"></div>
+						<div class="col-10 col-sm-4 text-center">
+							<input type="submit" class="btn btn-lg btn-primary btn-block" value="Iniciar sesión"/>
+						</div>
+						<div class="col-1"></div>
+					</div>
+				</form>
+			</div>
+	</body>
+</html>

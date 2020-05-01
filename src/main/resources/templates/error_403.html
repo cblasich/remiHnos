@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8" />
+</head>
+<body class="fondo-color">
+	<header th:replace="layout/layout :: headerCli"></header>
+
+	<div class="container">
+		<div class="card bg-danger text-white">
+		<div class="card-header">Error: Acceso Denegado!</div>
+		<div class="card-body">
+			<h5 class="card-title">Lo sentimos, no tiene permiso para acceder a este recurso.</h5>
+			<a th:href="@{/}" class="btn btn-outline-light" role="button">Ir al inicio</a>
+		</div>
+		</div>
+	</div>
+</body>
+</html>

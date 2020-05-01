@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layout/layout :: head">
+		<meta charset="UTF-8" />
+	</head>
+	<body class="fondo-color">
+		<header th:replace="layout/layout :: headerOpe"></header>
+		<div class="container">
+			<p></p>
+			<p></p>
+			<div class="row">
+				<div class="col-1">
+					<a class="btn btn-alta btn-xs"  th:href="@{/formRemis}" data-toggle="tooltip" title="Agregar Nuevo Remis" data-placement="bottom"><i class="fas fa-plus"></i></a>
+				</div>
+				<div class="col-11"> </div>
+			</div>
+			<div class="separacion1"></div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="columna">Id</th>
+						<th class="columna">Patente</th>
+						<th class="columna">Modelo</th>
+						<th class="columna">Marca</th>
+						<th class="columna">Estado</th>
+						<th class="columna">Nombre Conductor</th>
+						<th class="columna">Apellido</th>
+						<th class="text-center columna">Modificar</th>
+						<th class="text-center columna">Eliminar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="remis: ${remises}">
+						<td th:text="${remis.RemId}"></td> <!-- llama implicitamente a los get. Por eso es necesario tenerlos siempre definidos en la clase -->
+						<td th:text="${remis.RemPatente}"></td>
+						<td th:text="${remis.RemModelo}"></td>
+						<td th:text="${remis.RemMarca}"></td>
+						<td th:text="${remis.RemEstado}"></td>
+						<td th:text="${remis.RemNomConductor}"></td>
+						<td th:text="${remis.RemApeConductor}"></td>
+						<td class="text-center">
+							<a class="btn btn-xs"  th:href="@{/formRemis/} + ${remis.RemId}"  data-toggle="tooltip" title="Modificar Remis" data-placement="bottom" >    
+								<span style="color: blue;"><i class="fas fa-edit"></i></span>
+							</a>
+						</td>
+						<td class="text-center">
+							<a class="btn btn-xs"  th:href="@{/eliminarRemis/} + ${remis.RemId}" onclick="return confirm('Estás seguro de que quieres eliminar el remis?');" data-toggle="tooltip" title="Eliminar Remis" data-placement="bottom" >
+								<span style="color: Tomato;"><i class="fas fa-trash-alt"></i></span>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

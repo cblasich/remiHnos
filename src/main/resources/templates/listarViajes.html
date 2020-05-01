@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layout/layout :: head">
+		<meta charset="UTF-8" />
+	</head>
+	<body class="fondo-color">
+		<header th:replace="layout/layout :: headerOpe"></header>
+		<div class="container">
+			<p></p>
+			<p></p>
+			<div class="row">
+				<div class="col-1">
+					<a class="btn btn-alta btn-xs"  th:href="@{/formViaje}" data-toggle="tooltip" title="Agregar Nuevo Viaje" data-placement="bottom"><i class="fas fa-plus"></i></a>
+				</div>
+				<div class="col-11"> </div>
+			</div>
+			<div class="separacion1"></div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="columna"></th>
+						<th class="columna">Id</th>
+						<th class="columna">Origen: Calle</th>
+						<th class="columna">Altura</th>
+						<th class="columna">Estado</th>
+						<th class="columna">Remisero</th>
+						<th class="text-center columna">Asignar móvil</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="viaje: ${viajes}">
+						<td class="text-center">
+							<a class="btn btn-xs"  th:href="@{/eliminarViaje/} + ${viaje.ViaId}" onclick="return confirm('Estás seguro de que quieres eliminar el pedido?');" data-toggle="tooltip" title="Cancelar Pedido" data-placement="bottom" >
+								<span style="color: Tomato;"><i class="fas fa-trash-alt"></i></span>
+							</a>
+						</td>
+						
+						<td th:text="${viaje.ViaId}"></td>
+						<td th:text="${viaje.ViaCalleOri}"></td>
+						<td th:text="${viaje.ViaNumOri}"></td>						
+						<td th:if="${viaje.ViaEstado == 'P'}">Pendiente</td>
+						<td th:if="${viaje.ViaEstado == 'C'}">Confirmado</td>
+						<td th:if="${viaje.ViaEstado == 'F'}">Finalizado</td>
+						<td th:if="${viaje.Remis != null}" th:text="${viaje.Remis.RemApeConductor} + ' ' + ${viaje.Remis.RemNomConductor}" ></td>
+						<td th:if="${viaje.Remis == null}"></td>
+						<td class="text-center">
+							<a class="btn btn-xs" th:href="@{/formViajeRem/} + ${viaje.ViaId}" data-toggle="tooltip" title="Asignar remisero" data-placement="bottom" >
+								<span>Asignar</span>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

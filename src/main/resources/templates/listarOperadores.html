@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layout/layout :: head">
+		<meta charset="UTF-8" />
+	</head>
+	<body class="fondo-color">
+		<header th:replace="layout/layout :: headerOpe"></header>
+		<div class="container">
+			<p></p>
+			<p></p>
+			<div class="row">
+				<div class="col-1">
+					<a class="btn btn-alta btn-xs"  th:href="@{/formOperador}" data-toggle="tooltip" title="Agregar Nuevo Operador" data-placement="bottom"><i class="fas fa-plus"></i></a>
+				</div>
+				<div class="col-11"> </div>
+			</div>
+			<div class="separacion1"></div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="columna">Id</th>
+						<th class="columna">Nombre</th>
+						<th class="columna">Apellido</th>
+						<th class="columna">Usuario Id</th>
+						<th class="columna">Usuario Mail</th>
+						<th class="text-center columna">Eliminar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="operador: ${operadores}">
+						<td th:text="${operador.OpeId}"></td> <!-- llama implicitamente a los get. Por eso es necesario tenerlos siempre definidos en la clase -->
+						<td th:text="${operador.OpeNombre}"></td>
+						<td th:text="${operador.OpeApellido}"></td>
+						<td th:text="${operador.usuario.UsuId}"></td>
+						<td th:text="${operador.usuario.username}"></td>
+	<!-- 					<td class="text-center"><a class="btn btn-xs"  th:href="@{/formCliente/} + ${cliente.id}" th:id="${cliente.id}"><i class="fas fa-edit"></i></a></td> -->
+						<td class="text-center">
+							<a class="btn btn-xs"  th:href="@{/eliminarOperador/} + ${operador.OpeId}" onclick="return confirm('Estás seguro de que quieres eliminar el operador?');" data-toggle="tooltip" title="Eliminar Operador" data-placement="bottom" >
+								<span style="color: Tomato;"><i class="fas fa-trash-alt"></i></span>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+	</body>
+</html>
