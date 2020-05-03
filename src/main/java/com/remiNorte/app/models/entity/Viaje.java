@@ -34,7 +34,7 @@ public class Viaje implements Serializable {
 	@NotEmpty
 	@Column(name="viacalleori", length=100)
 	private String ViaCalleOri;
-	//comentario
+	
 	@NotNull
 	@Column(name="vianumori")
 	private Integer ViaNumOri;
