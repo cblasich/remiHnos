@@ -106,7 +106,7 @@ public class ViajeController {
 		model.put("viaje", viaje);
 		model.put("titulo", "Editar Viaje");
 		model.put("backPage", "/listarViajes");
-		model.put("remises" , remisDao.findAll());
+		model.put("remises" , remisDao.devRemisesDisponibles());
 		return "formViajeRem";
 	}
 	

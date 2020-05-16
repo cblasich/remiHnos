@@ -114,13 +114,21 @@
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h2 class="modal-title text-warning">Selección de remiseros</h2>
+		        <h2 class="modal-title text-warning">Selección de remiseros disponibles</h2>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
-		      <div class="modal-body">
-		        <table class="table table-hover table-warning">
+		      <p></p>
+		      <p></p>
+		    <form class="form-inline">
+		    	<label for="filRemNombre" class="col-sm-2 col-form-label">Nombre</label>
+      			<div class="form-group mx-sm-3 mb-2">
+				    <input type="text" class="form-control" id="filRemNombre" onkeyup="devRemiserosPorNombre()">
+			  	</div>
+		  	</form>
+		      <div class="modal-body" id="tabSelRem">
+		        <!-- <table class="table table-hover table-warning">
 				<thead>
 					<tr>
 						<th class="text-center columna"></th>
@@ -128,7 +136,6 @@
 						<th class="columna">Patente</th>
 						<th class="columna">Modelo</th>
 						<th class="columna">Marca</th>
-						<th class="columna">Estado</th>
 						<th class="columna">Nombre Conductor</th>
 						<th class="columna">Apellido</th>						
 					</tr>
@@ -144,12 +151,11 @@
 						<td th:text="${remisSel.RemPatente}"></td>
 						<td th:text="${remisSel.RemModelo}"></td>
 						<td th:text="${remisSel.RemMarca}"></td>
-						<td th:text="${remisSel.RemEstado}"></td>
 						<td th:text="${remisSel.RemNomConductor}"></td>
 						<td th:text="${remisSel.RemApeConductor}"></td>						
 					</tr>
 				</tbody>
-			</table>
+			</table> -->
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -158,14 +164,30 @@
 		    </div>
 		  </div>
 		</div>
- 	<script>
+ 	
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script>
  		$(document).ready(function() {
- 		    $('table').on('click','a', function() {
+ 		    $('#tabSelRem').on('click','a', function() {
  		    	document.getElementById("RemId").value = $(this).prop('id');
  		    	$('#seleccionRemis').modal('hide');
  		    });
+ 		    
+ 		   	var url = '/ajax/remiseros';
+ 		  	$("#tabSelRem").load(url);
  		});
+ 		
+ 		 function devRemiserosPorNombre() {
+	 		    var url = '/ajax/remiseros';
+
+	 		    if ($('#filRemNombre').val() != '') {
+	 		        url = url + '/' + $('#filRemNombre').val();
+	 		    }
+
+	 		    $("#tabSelRem").load(url);
+	 		};
+ 		
+ 		
 	</script>
-	<footer th:replace="layout/layout :: footer"></footer>
 	</body>
 </html>

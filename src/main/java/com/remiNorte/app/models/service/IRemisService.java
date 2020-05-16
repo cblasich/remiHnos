@@ -14,4 +14,8 @@ public interface IRemisService {
 
 	public void save(Remis remis);
 
+	public List<Remis> devRemiserosDisponibles();
+
+	public List<Remis> devRemisesPorNombre(String nombre);
+
 }

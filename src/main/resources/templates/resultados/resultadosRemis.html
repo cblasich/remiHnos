@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="resRemiserosDisponibles" class="modal-body" id="tabSelRem">
+        <table class="table table-hover table-warning">
+			<thead>
+				<tr>
+					<th class="text-center columna"></th>
+					<th class="columna">Id</th>
+					<th class="columna">Patente</th>
+					<th class="columna">Modelo</th>
+					<th class="columna">Marca</th>
+					<th class="columna">Nombre Conductor</th>
+					<th class="columna">Apellido</th>						
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="remisSel: ${remises}">
+					<td class="text-center">
+						<a class="btn btn-xs selLinRem" th:id="${remisSel.RemId}" data-toggle="tooltip" data-placement="bottom" >
+							<span class="oi oi-check"></span>
+						</a>
+					</td>
+					<td th:text="${remisSel.RemId}"></td>
+					<td th:text="${remisSel.RemPatente}"></td>
+					<td th:text="${remisSel.RemModelo}"></td>
+					<td th:text="${remisSel.RemMarca}"></td>
+					<td th:text="${remisSel.RemNomConductor}"></td>
+					<td th:text="${remisSel.RemApeConductor}"></td>						
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

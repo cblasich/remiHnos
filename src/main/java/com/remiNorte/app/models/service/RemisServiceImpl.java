@@ -39,4 +39,15 @@ public class RemisServiceImpl implements IRemisService {
 		remisDao.deleteById(id);
 	}
 	
+	@Override
+	@Transactional
+	public List<Remis> devRemiserosDisponibles(){
+		return (List<Remis>) remisDao.devRemisesDisponibles();
+	}
+	
+	@Override
+	@Transactional
+	public List<Remis> devRemisesPorNombre(String nombre){
+		return (List<Remis>) remisDao.devRemisesPorNombre(nombre);
+	}
 }

@@ -80,4 +80,19 @@ public class RemisController {
 		return "redirect:/listarRemises";
 	}
 	
+	@RequestMapping(value = "/ajax/remiseros/{nombre}")
+	public String devRemiserosPorNombre(Model model, @PathVariable("nombre") String nombre) {
+		
+		model.addAttribute("remises", remisService.devRemisesPorNombre(nombre));
+		
+		return "resultados/resultadosRemis :: resRemiserosDisponibles";
+	}
+	
+	@RequestMapping(value = "/ajax/remiseros")
+	public String devRemiserosDisponibles(Model model) {
+		
+		model.addAttribute("remises", remisService.devRemiserosDisponibles());
+		
+		return "resultados/resultadosRemis :: resRemiserosDisponibles";
+	}
 }
