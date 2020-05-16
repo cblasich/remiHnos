@@ -69,13 +69,13 @@ public class UsuarioController {
 			Errors errors) {
 		
 		Usuario registrado = new Usuario();
-		
+		model.addAttribute("titulo", "Nuevo Usuario");
 		//validacion de email
 		
 		registrado = crearCuentaUsuario(cuentaDTO, result);
 		
 		if(registrado == null) {
-			model.addAttribute("danger", "Email ya registrado. Por favor, intente con otro nuevamente.");
+			//model.addAttribute("danger", "Email ya registrado. Por favor, intente con otro nuevamente.");
 			result.rejectValue("username", "message.regError","Ya existe un usuario registrado con ese Email. Por favor, intente con otro nuevamente.");
 			return new ModelAndView("formUsuario");	
 		} else {
