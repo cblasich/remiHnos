@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -30,18 +31,23 @@ public class Remis implements Serializable {
 	private Long RemId;
 	
 	@Column(name="rempatente", length=10, unique=true)
+	@NotEmpty(message = "Debe ingresar una patente.")
 	private String RemPatente;
 	
 	@Column(name="remmodelo", length=30)
+	@NotEmpty(message = "Debe ingresar un modelo.")
 	private String RemModelo;
 	
 	@Column(name="remmarca", length=30)
+	@NotEmpty(message = "Debe ingresar una marca.")
 	private String RemMarca;
 	
 	@Column(name="remnomconductor", length=40)
+	@NotEmpty(message = "Debe ingresar un nombre.")
 	private String RemNomConductor;
 	
 	@Column(name="remapeconductor", length=40)
+	@NotEmpty(message = "Debe ingresar un apellido.")
 	private String RemApeConductor;
 
 	@Column(name="remestado", length=1)

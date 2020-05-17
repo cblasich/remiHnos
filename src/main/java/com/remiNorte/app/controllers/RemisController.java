@@ -35,7 +35,10 @@ public class RemisController {
 	
 	@RequestMapping(value="/formRemis")
 	public String crear(Map<String, Object> model) {   
-		Remis remis = new Remis(); 
+		Remis remis = new Remis();
+		
+		remis.setRemEstado("S"); //estado disponible
+		
 		model.put("titulo", "Nuevo Remis");
 		model.put("remis", remis);
 		return "formRemis";
