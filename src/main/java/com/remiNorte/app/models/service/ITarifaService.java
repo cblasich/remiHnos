@@ -1,5 +1,6 @@
 package com.remiNorte.app.models.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.remiNorte.app.models.entity.Tarifa;
@@ -12,6 +13,8 @@ public interface ITarifaService {
 
 	void delete(Long id);
 
-	public void save(Tarifa tarifa);  
+	public void save(Tarifa tarifa);
+
+	public Tarifa findByTarVigHas(Date fecha);  
 	
 }

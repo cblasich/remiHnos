@@ -43,8 +43,9 @@ public class OperadorController {
 		logger.info("GET operador");
 		Operador operador = new Operador();
 		//Usuario usuario = new Usuario();
-		//logger.info("Passowrd:".concat(usuario.getPassword()));		
-		model.addAttribute("titulo", "Formulario de Operador");
+		//logger.info("Passowrd:".concat(usuario.getPassword()));
+		model.addAttribute("backPage","/listarOperadores");
+		model.addAttribute("titulo", "Nuevo Operador");
 		model.addAttribute("operador", operador);
 		//model.addAttribute("usuario", usuario);
 		

@@ -1,5 +1,6 @@
 package com.remiNorte.app.models.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,11 @@ public class TarifaServiceImpl implements ITarifaService {
 	@Transactional
 	public void delete(Long id) {
 		tarifaDao.deleteById(id);
+	}
+	
+	@Override
+	@Transactional
+	public Tarifa findByTarVigHas(Date fecha) {
+		return tarifaDao.findByTarFecVigHas(fecha);
 	}
 }

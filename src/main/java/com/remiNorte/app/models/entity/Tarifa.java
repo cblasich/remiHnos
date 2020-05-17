@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -36,9 +39,13 @@ public class Tarifa {
 	private Date tarFecVigHas;
 	
 	@Column(name="tarbajban")
+	@NotNull(message = "La bajada de bandera debe ser mayor a cero.")
+	@Positive(message = "El número debe ser positivo.")
 	private Float TarBajBan;
 	
 	@Column(name="tarimp100m")
+	@NotNull(message = "El importe debe ser mayor a cero.")
+	@Positive(message = "El número debe ser positivo.")
 	private Float TarImp100m;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL,mappedBy="Tarifa")

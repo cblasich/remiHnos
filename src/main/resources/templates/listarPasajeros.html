@@ -8,12 +8,12 @@
 		<div class="container">
 			<p></p>
 			<p></p>
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-1">
 					<a class="btn btn-alta btn-xs"  th:href="@{/formUsuario}" data-toggle="tooltip" title="Agregar Nuevo Pasajero" data-placement="bottom"><i class="fas fa-plus"></i></a>
 				</div>
 				<div class="col-11"> </div>
-			</div>
+			</div> -->
 			<div class="separacion1"></div>
 			<table class="table table-striped">
 				<thead>
@@ -25,7 +25,7 @@
 						<th class="columna">Usuario Mail</th>
 						<th class="columna">Celular</th>
 						<th class="columna">Estado</th>
-						<th class="text-center columna">Eliminar</th>
+						<!-- <th class="text-center columna">Eliminar</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -37,11 +37,11 @@
 						<td th:text="${pasajero.usuario.username}"></td>
 						<td th:text="${pasajero.PasTelefono}"></td>
 						<td th:text="${pasajero.PasEstado}"></td>
-						<td class="text-center">
+						<!-- <td class="text-center">
 							<a class="btn btn-xs"  th:href="@{/eliminarPasajero/} + ${pasajero.PasId}" onclick="return confirm('Estás seguro de que quieres eliminar el pasajero?');" data-toggle="tooltip" title="Eliminar Pasajero" data-placement="bottom" >
 								<span style="color: Tomato;"><i class="fas fa-trash-alt"></i></span>
 							</a>
-						</td>
+						</td> -->
 					</tr>
 				</tbody>
 			</table>

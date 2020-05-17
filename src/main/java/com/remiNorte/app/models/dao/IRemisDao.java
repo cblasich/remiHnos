@@ -11,10 +11,10 @@ import com.remiNorte.app.models.entity.Remis;
 @Transactional
 public interface IRemisDao extends CrudRepository<Remis, Long> {
 
-	@Query(value="select * from remises where remestado = 'S'", nativeQuery=true) //S=disponible N=no disponible
+	@Query(value = "select * from remises where remestado = 'S'", nativeQuery = true) //S=disponible N=no disponible
 	public List<Remis> devRemisesDisponibles();
 	
-	@Query(value="select * from remises  where remestado = 'S' and (remnomconductor like concat('%',:nombre,'%') or remapeconductor like  concat('%',:nombre,'%'))", 
-			nativeQuery=true)
+	@Query(value = "select * from remises  where remestado = 'S' and (remnomconductor like concat('%',:nombre,'%') or remapeconductor like  concat('%',:nombre,'%'))", 
+			nativeQuery = true)
 	public List<Remis> devRemisesPorNombre(String nombre);
 }

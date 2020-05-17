@@ -39,6 +39,7 @@ public class RemisController {
 		
 		remis.setRemEstado("S"); //estado disponible
 		
+		model.put("backPage", "/listarRemises");
 		model.put("titulo", "Nuevo Remis");
 		model.put("remis", remis);
 		return "formRemis";

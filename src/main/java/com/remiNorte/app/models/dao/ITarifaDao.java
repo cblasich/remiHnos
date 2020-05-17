@@ -8,6 +8,6 @@ import com.remiNorte.app.models.entity.Tarifa;
 
 public interface ITarifaDao extends CrudRepository<Tarifa, Long>{
 
-	Tarifa findByTarFecVigHas(Date fechaNula);
+	public Tarifa findByTarFecVigHas(Date fecha);
 	
 }

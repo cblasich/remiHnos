@@ -25,8 +25,8 @@
 				<div class="form-group row">
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-4">
-						<input type="date" th:field="*{TarFecVigDes}" pattern="dd-MM-yyyy" class="form-control" id="fecvigdes">
-						<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('PasNombre')}" th:errors="*{PasNombre}"></small> -->
+						<input type="date" th:field="*{TarFecVigDes}" pattern="dd-MM-yyyy" class="form-control" id="fecvigdes" readonly>
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('TarFecVigDes')}" th:errors="*{TarFecVigDes}"></small>
 					</div>
 				</div>
 				
@@ -35,7 +35,7 @@
 					<input type="date" th:field="*{TarFecVigHas}" pattern="dd-MM-yyyy" class="form-control" id="fecvighas">
 				</div>  -->
 				
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-1 d-sm-none"></div>
 					<label class="col-4 col-sm-2 col-form-label">Fecha vigencia hasta </label>
 					<div class="col-sm-11 d-none"></div>
@@ -44,9 +44,9 @@
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-4">
 						<input type="date" th:field="*{TarFecVigHas}" pattern="dd-MM-yyyy" class="form-control" id="fecvighas">
-						<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('PasNombre')}" th:errors="*{PasNombre}"></small> -->
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('PasNombre')}" th:errors="*{PasNombre}"></small>
 					</div>
-				</div>
+				</div> -->
 				
 				<!--  <div class="form-group">
 					<label for="usuario">Bajada de bandera</label>
@@ -62,7 +62,7 @@
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-4">
 						<input type="text" th:field="*{TarBajBan}" class="form-control" id="bajban">
-						<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('PasNombre')}" th:errors="*{PasNombre}"></small> -->
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('TarBajBan')}" th:errors="*{TarBajBan}"></small>
 					</div>
 				</div>
 				
@@ -81,7 +81,7 @@
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-4">
 						<input type="text" th:field="*{TarImp100m}" class="form-control" id="imp100m">
-						<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('PasNombre')}" th:errors="*{PasNombre}"></small> -->
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('TarImp100m')}" th:errors="*{TarImp100m}"></small>
 					</div>
 				</div>
 				
