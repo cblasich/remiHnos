@@ -17,7 +17,7 @@ public class InicioController {
 	
 	private Logger logger = LoggerFactory.getLogger(InicioController.class);
 	
-	@RequestMapping(value= "/inicio", method=RequestMethod.GET)
+	@RequestMapping(value= {"/inicio","/"}, method=RequestMethod.GET)
     public String welcome(Model model) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
