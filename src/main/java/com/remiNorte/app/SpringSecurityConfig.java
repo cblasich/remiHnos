@@ -22,10 +22,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		//"/" -> ruta raiz, /css/** -> todo lo que este dentro de css
-		http.authorizeRequests().antMatchers("/css/**","/js/**","/open-iconic/**","/webfonts/**","/formViaje","/error_403","/inicio").permitAll()
-		.antMatchers("/formOperador","/formPasajero","/formTarifa","/iniOperador", 
+		http.authorizeRequests().antMatchers("/css/**","/js/**","/open-iconic/**","/webfonts/**","/formViaje","/error_403","/inicio","formUsuario").permitAll()
+		.antMatchers("/formOperador","/formTarifa","/iniOperador", 
 				"/listarTarifas","/listarOperadores","/listarPasajeros","/listarRemises",
-				"/listarViajes","/formOperador","/formPasajero","/formRemis","/formTarifa").hasAnyRole("ADMIN","OPERAD")
+				"/listarViajes","/formOperador","/formRemis","/formTarifa").hasAnyRole("ADMIN","OPERAD")
 		.antMatchers("/iniOperador").hasAnyRole("OPERAD")
 		.anyRequest().authenticated()
 		.and()
