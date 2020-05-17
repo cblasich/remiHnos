@@ -1,10 +1,12 @@
 package com.remiNorte.app.models.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.remiNorte.app.models.dao.IViajeDao;
 
+@Service
 public class ViajeServiceImpl implements IViajeService {
 	
 	@Autowired
