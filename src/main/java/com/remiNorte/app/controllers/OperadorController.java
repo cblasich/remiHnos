@@ -33,6 +33,7 @@ public class OperadorController {
 	public String listarOperadores(Model model) {
 		
 		model.addAttribute("titulo", "Listado de Operadores");
+		model.addAttribute("backPage", "/iniOperador");
 		model.addAttribute("operadores" , operadorDao.findAll());
 		return "listarOperadores";		
 	}

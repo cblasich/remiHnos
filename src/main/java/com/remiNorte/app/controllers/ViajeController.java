@@ -135,6 +135,7 @@ public class ViajeController {
 	
 	@RequestMapping(value="/listarViajes", method=RequestMethod.GET)
 	public String listarViajes(Model model) {
+		model.addAttribute("backPage", "/iniOperador");
 		model.addAttribute("titulo", "Listado de Viajes");
 		model.addAttribute("viajes" , viajeDao.findAll());
 		return "listarViajes";		

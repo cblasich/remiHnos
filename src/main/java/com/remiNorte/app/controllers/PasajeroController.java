@@ -49,6 +49,7 @@ public class PasajeroController {
 	public String listarPasajeros(Model model) {
 		
 		model.addAttribute("titulo", "Listado de Pasajeros");
+		model.addAttribute("backPage", "/iniOperador");
 		model.addAttribute("pasajeros" , pasajeroDao.findAll());
 		return "listarPasajeros";		
 	}
