@@ -45,4 +45,10 @@ public class TarifaServiceImpl implements ITarifaService {
 	public Tarifa findByTarVigHas(Date fecha) {
 		return tarifaDao.findByTarFecVigHas(fecha);
 	}
+	
+	@Override
+	@Transactional
+	public Tarifa devTarAnt(Long tarId) {
+		return tarifaDao.devTarAnt(tarId);
+	}
 }

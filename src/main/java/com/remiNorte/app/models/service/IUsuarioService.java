@@ -17,4 +17,6 @@ public interface IUsuarioService {
 	public void save(Usuario usuario);
 
 	Usuario registrarNuevoUsuario(UsuarioDTO cuentaDTO) throws UsuarioExisteException;
+
+	public Usuario findByUsername(String username);
 }

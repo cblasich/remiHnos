@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "usuarios")
@@ -24,6 +25,7 @@ public class Usuario implements Serializable {
 	private Long UsuId;
 	
 	//LOGIN
+	@NotEmpty(message = "Debe ingresar un E-Mail.")
 	@Column(name = "username", length = 100, unique = true)
 	private String username;
 

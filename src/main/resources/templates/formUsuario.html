@@ -19,7 +19,7 @@
 				<div class="form-group row">
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-4">
-						<input type="text" th:field="*{username}" class="form-control"/>
+						<input type="text" th:field="*{username}" class="form-control" autocomplete="off"/>
 						<small class="form-text text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
 					</div>
 				</div>	
@@ -30,7 +30,7 @@
 				<div class="form-group row">
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-4">
-						<input type="password" th:field="*{password}" class="form-control"/>
+						<input type="password" th:field="*{password}" class="form-control" autocomplete="new-password">
 						<small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
 					</div>
 				</div>
@@ -41,7 +41,7 @@
 				<div class="form-group row">
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-4">
-						<input type="text" th:field="*{pasajero.PasNombre}" class="form-control"/>
+						<input type="text" th:field="*{pasajero.PasNombre}" class="form-control" autocomplete="off"/>
 						<small class="form-text text-danger" th:if="${#fields.hasErrors('pasajero.PasNombre')}" th:errors="*{pasajero.PasNombre}"></small>
 					</div>
 				</div>	
@@ -52,7 +52,7 @@
 				<div class="form-group row">
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-4">
-						<input type="text" th:field="*{pasajero.PasApellido}" class="form-control"/>
+						<input type="text" th:field="*{pasajero.PasApellido}" class="form-control" autocomplete="off"/>
 						<small class="form-text text-danger" th:if="${#fields.hasErrors('pasajero.PasApellido')}" th:errors="*{pasajero.PasApellido}"></small>
 					</div>
 				</div>	
@@ -63,7 +63,7 @@
 				<div class="form-group row">
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-4">
-						<input type="text" th:field="*{pasajero.PasTelefono}" class="form-control"/>
+						<input type="text" th:field="*{pasajero.PasTelefono}" class="form-control" autocomplete="off"/>
 						<small class="form-text text-danger" th:if="${#fields.hasErrors('pasajero.PasTelefono')}" th:errors="*{pasajero.PasTelefono}"></small>
 					</div>
 				</div>	

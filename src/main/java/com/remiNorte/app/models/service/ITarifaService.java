@@ -15,6 +15,8 @@ public interface ITarifaService {
 
 	public void save(Tarifa tarifa);
 
-	public Tarifa findByTarVigHas(Date fecha);  
+	public Tarifa findByTarVigHas(Date fecha);
+
+	public Tarifa devTarAnt(Long tarId);  
 	
 }

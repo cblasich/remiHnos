@@ -17,6 +17,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import com.remiNorte.app.validations.EmailDisponible;
+import com.remiNorte.app.validations.EmailNotEmpty;
+
 
 
 @Entity
@@ -30,16 +33,18 @@ public class Operador implements Serializable {
 	@Column(name="opeid")
 	private Long OpeId;
 	
-	@NotEmpty
+	@NotEmpty(message = "Debe ingresar un nombre.")
 	@Column(name="openombre", length=40)
 	private String OpeNombre;
 
-	@NotEmpty
+	@NotEmpty(message = "Debe ingresar un apellido.")
 	@Column(name="opeapellido", length=40)
 	private String OpeApellido;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "opeusuid", referencedColumnName = "usuid")
+	@EmailNotEmpty
+	@EmailDisponible	
 	private Usuario usuario;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL,mappedBy="Operador")

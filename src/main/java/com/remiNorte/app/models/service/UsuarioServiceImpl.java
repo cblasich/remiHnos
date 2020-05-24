@@ -1,7 +1,6 @@
 package com.remiNorte.app.models.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -91,4 +90,9 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		return false;
 	}
 	
+	@Override
+	@Transactional
+	public Usuario findByUsername(String username) {
+		return usuarioDao.findByUsername(username);
+	}
 }

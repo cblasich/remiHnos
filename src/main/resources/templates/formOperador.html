@@ -26,7 +26,7 @@
 				<div class="form-group row">
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-4">
-						<input type="text" th:field="*{OpeNombre}" class="form-control"/>
+						<input type="text" th:field="*{OpeNombre}" class="form-control" autocomplete="off"/>
 						<small class="form-text text-danger" th:if="${#fields.hasErrors('OpeNombre')}" th:errors="*{OpeNombre}"></small>
 					</div>
 				</div>	
@@ -44,7 +44,7 @@
 				<div class="form-group row">
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-4">
-						<input type="text" th:field="*{OpeApellido}" class="form-control"/>
+						<input type="text" th:field="*{OpeApellido}" class="form-control" autocomplete="off"/>
 						<small class="form-text text-danger" th:if="${#fields.hasErrors('OpeApellido')}" th:errors="*{OpeApellido}"></small>
 					</div>
 				</div>	
@@ -61,8 +61,8 @@
 				<div class="form-group row">
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-4">
-						<input type="text" th:field="*{usuario.username}" class="form-control"/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('usuario.username')}" th:errors="*{usuario.username}"></small>
+						<input type="text" th:field="*{usuario.username}" class="form-control" autocomplete="off"/>
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></small>
 					</div>
 				</div>	
 				
@@ -78,7 +78,7 @@
 				<div class="form-group row">
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-4">
-						<input type="password" th:field="*{usuario.password}" class="form-control"/>
+						<input type="password" th:field="*{usuario.password}" class="form-control" autocomplete="new-password" />
 						<small class="form-text text-danger" th:if="${#fields.hasErrors('usuario.password')}" th:errors="*{OpePassword}"></small>
 					</div>
 				</div>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.remiNorte.app.models.entity.Tarifa;
 import com.remiNorte.app.models.service.ITarifaService;
@@ -92,17 +93,29 @@ public class TarifaController {
 	}
 	
 	@RequestMapping(value="/eliminarTarifa/{id}")
-	public String eliminar(@PathVariable(value="id") Long id) {
+	public String eliminar(@PathVariable(value="id") Long id, RedirectAttributes flash) {
 		if (id > 0) {
 			
 			Long cantTarViajes = (long) 0;
 			cantTarViajes = viajeService.devCanTarViajes(id);
 			
 			if (cantTarViajes == 0) {
-				//busco tarifa anterior para dejar como ultima vigente, luego elimino
+				//valido que sea el vigente
+				Tarifa tarifa = tarifaService.findOne(id);
+				if (tarifa.getTarFecVigHas() == null) { //es tarifa vigente
+					
+					//busco tarifa anterior y la dejo vigente
+					Tarifa tarifaAnt = tarifaService.devTarAnt(id);
+					if (tarifaAnt != null) {
+						tarifaAnt.setTarFecVigHas(null);
+						tarifaService.save(tarifaAnt); 
+					}					
+				}
+				
 				tarifaService.delete(id);
 			} else {
-				//muestro mensaje "no se puede eliminar"
+				
+				flash.addFlashAttribute("error", "La tarifa no se puede eliminar porque tiene viajes relacionados.");		
 			}
 				
 		}
