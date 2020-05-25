@@ -31,7 +31,7 @@ public class Viaje implements Serializable {
 	@Column(name="viaid")
 	private Long ViaId; 
 	
-	@NotEmpty
+	@NotEmpty(message = "Debe ingresar calle de origen.")
 	@Column(name="viacalleori", length=100)
 	private String ViaCalleOri;
 	
@@ -39,6 +39,7 @@ public class Viaje implements Serializable {
 	@Column(name="vianumori")
 	private Integer ViaNumOri;
 	
+	@NotEmpty(message = "Debe ingresar calle de destino.")
 	@Column(name="viacalledes", length=100)
 	private String ViaCalleDes;
 	

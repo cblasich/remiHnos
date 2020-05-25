@@ -5,10 +5,12 @@ body a {
   -moz-transition: 0.5s all;
   -ms-transition: 0.5s all;
 }
+
 html, body{
     font-size: 100%;
 	font-family: 'Roboto', sans-serif;
 }
+
 body{
 	background:#FFFFFF;
 }
@@ -26,6 +28,25 @@ body{
   width:100%;
 }
 
+/* #contPpal {
+	position: relative;	
+} */
+
+/* #contMapa { */
+/* 	position: absolute; */
+/* 	height: 300px; */
+/*   	width: 60%;	 */
+/*   	top: 50%; */
+/* 	left: 50%; */
+/* 	transform: translate(-50%, -50%); */
+/* 	z-index: 100; */
+/* } */
+
+.shadow-box-example {
+    height: 120px;
+    width: 100%;
+    background-color: #64b5f6;
+  }
 
 .titulo {
 	font-size: 1em;
@@ -75,6 +96,10 @@ body{
 	height:20em;
 }
 
+.altura-30 {
+	height:30em;
+}
+
 .displaynone {
     display: none;
 }
@@ -108,6 +133,11 @@ body{
 
 .alturatextbox {
      height:23px;
+}
+
+.quitaMargRL {
+  margin-right: +15px;
+  margin-left: +15px;
 }
 
 .separacion1 {
