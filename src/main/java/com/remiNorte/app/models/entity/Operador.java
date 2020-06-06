@@ -19,6 +19,7 @@ import javax.validation.constraints.NotEmpty;
 
 import com.remiNorte.app.validations.EmailDisponible;
 import com.remiNorte.app.validations.EmailNotEmpty;
+import com.remiNorte.app.validations.PasswordNotEmpty;
 
 
 
@@ -44,7 +45,8 @@ public class Operador implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "opeusuid", referencedColumnName = "usuid")
 	@EmailNotEmpty
-	@EmailDisponible	
+	@EmailDisponible
+	@PasswordNotEmpty
 	private Usuario usuario;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL,mappedBy="Operador")

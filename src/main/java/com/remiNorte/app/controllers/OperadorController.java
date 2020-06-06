@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.remiNorte.app.models.dao.IOperadorDao;
@@ -44,20 +45,37 @@ public class OperadorController {
 	
 	@RequestMapping(value="/formOperador", method=RequestMethod.GET) //fase inicial formulario
 	public String crear(Model model) {
+		
 		logger.info("GET operador");
+		
 		Operador operador = new Operador();
-		//Usuario usuario = new Usuario();
-		//logger.info("Passowrd:".concat(usuario.getPassword()));
+		
 		model.addAttribute("backPage","/listarOperadores");
 		model.addAttribute("titulo", "Nuevo Operador");
 		model.addAttribute("operador", operador);
-		//model.addAttribute("usuario", usuario);
 		
 		return "formOperador";
 	}
 	
 	@RequestMapping(value="/formOperador", method=RequestMethod.POST) //fase submit del formulario
-	public String guardar(@ModelAttribute @Valid Operador operador, BindingResult result, Model model) {
+	public String guardar(@ModelAttribute @Valid Operador operador, 
+							BindingResult result, 
+							Model model,
+							@RequestParam(defaultValue="") String passwordConf ) {
+				
+		//Valida password
+		Usuario usuario = new Usuario();
+		usuario  = operador.getUsuario();
+		String password = usuario.getPassword().trim();
+		
+		if (password == null || password == "") {
+			result.rejectValue("usuario.password", "usuario.password", "Debe ingresar una contraseña.");
+		} else {
+			if (!password.equals(passwordConf)) {
+				logger.info("Password 1: "+password+" password 2: "+passwordConf);
+				result.reject("usuario.password","Las contraseñas no coinciden.");
+			}
+		}
 		
 		if (result.hasErrors()) {
 			model.addAttribute("operador", operador);
@@ -66,11 +84,9 @@ public class OperadorController {
 			return "formOperador";
 		}
 		
-		Usuario usuario = new Usuario();
 		Rol rol = new Rol();
 		rol.setRolOperad();
 		
-		usuario = operador.getUsuario();
 		String bcryptPassword = passwordEncoder.encode(usuario.getPassword());
 		usuario.setPassword(bcryptPassword);		
 		usuario.setRol(rol);
