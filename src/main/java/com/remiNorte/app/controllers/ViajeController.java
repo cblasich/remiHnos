@@ -78,14 +78,22 @@ public class ViajeController {
 		
 	////forma de pago	
 		viaje.setViaForPag("E");
-		
+		viaje.setViaEstado("P");
 		model.addAttribute("titulo", "Pedido Remis");
+		model.addAttribute("backPage", "/inicio");
 		model.addAttribute("viaje", viaje);
 		return "formViaje";
 	}
 	
 	@PostMapping(value = "/formViaje")
-	public String guardar(@ModelAttribute Viaje viaje, Model model, RedirectAttributes flash) {
+	public String guardar(@ModelAttribute @Valid Viaje viaje, BindingResult result, Model model, RedirectAttributes flash) {
+		if(result.hasErrors()) {
+			model.addAttribute("titulo", "Pedido remis");
+			model.addAttribute("backPage", "/inicio");
+			model.addAttribute("viaje", viaje);
+			logger.info("errors in form" + result.toString());
+			return "formViaje";
+		} 
 		
 		flash.addFlashAttribute("success","Solicitud enviada. En breve, recibirá confirmación vía mensaje de texto al móvil. Gracias!");
 		viajeDao.save(viaje);
@@ -94,7 +102,6 @@ public class ViajeController {
 	
 	@GetMapping(value = "/formViajeRem/{id}")
 	public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model) {
-		
 		Viaje viaje = new Viaje();
 		if (id > 0) {
 			viaje = viajeDao.findById(id).get();
@@ -102,7 +109,6 @@ public class ViajeController {
 			return "redirect:/listarViajes";
 		}
 		logger.info("Viaje: ".concat(viaje.getViaId().toString()));
-		
 		model.put("viaje", viaje);
 		model.put("titulo", "Editar Viaje");
 		model.put("backPage", "/listarViajes");
@@ -112,7 +118,6 @@ public class ViajeController {
 	
 	@PostMapping(value = "/formViajeRem")
 	public String guardarEditar(@ModelAttribute("viaje") @Valid Viaje viaje, BindingResult result, Model model, RedirectAttributes flash) {
-		
 		if (result.hasErrors()) {
 			model.addAttribute("viaje", viaje);
 			model.addAttribute("titulo", "Editar Viaje");
@@ -120,7 +125,6 @@ public class ViajeController {
 			model.addAttribute("remises" , remisDao.findAll());
 			return "formViajeRem";
 		}
-		
 		viajeDao.save(viaje);
 		return "redirect:/listarViajes";
 	}
@@ -146,5 +150,4 @@ public class ViajeController {
 		model.addAttribute("titulo", "Solicitud exitosa");
 		return "infoViaSol";		
 	}  
-	
 }

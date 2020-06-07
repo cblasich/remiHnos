@@ -14,13 +14,9 @@ import javax.validation.Payload;
 @Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RemisCodigo {
-	
 	String message() default "El remisero ingresado no es válido.";
 	
 	Class<?>[] groups() default {};
 	
 	Class<? extends Payload>[] payload() default {};
-	
-	
-
 }

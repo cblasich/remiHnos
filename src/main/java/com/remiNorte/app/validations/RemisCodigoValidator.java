@@ -16,15 +16,19 @@ public class RemisCodigoValidator implements ConstraintValidator<RemisCodigo, Re
 	@Override
 	public boolean isValid(Remis remis, ConstraintValidatorContext context) {
 		
-		Remis remisVal = new Remis();
-		remisVal = null;
-		Long codigo = remis.getRemId();
-		if (codigo != null) {
-			remisVal = remisDao.findById(codigo).orElse(null);
-		}	
-		
-		if (remisVal == null) {
-			return false;
+		if (remis != null) {
+			Remis remisVal = new Remis();
+			remisVal = null;
+			Long codigo = remis.getRemId();
+			if (codigo != null) {
+				remisVal = remisDao.findById(codigo).orElse(null);
+			}	
+			
+			if (remisVal == null) {
+				return false;
+			} else {
+				return true;
+			}
 		} else {
 			return true;
 		}

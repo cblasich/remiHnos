@@ -28,9 +28,18 @@ body{
   width:100%;
 }
 
-/* #contPpal {
+@media (min-width: 768px) {
+  .superponerSM {
+    position: absolute;
+    left: 35%; 
+    top: 25px;
+    width: 50%;
+  }
+}
+
+ #contPpal {
 	position: relative;	
-} */
+} 
 
 /* #contMapa { */
 /* 	position: absolute; */
