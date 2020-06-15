@@ -12,23 +12,17 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th class="columna"></th>
 						<th class="columna">Id</th>
 						<th class="columna">Origen: Calle</th>
 						<th class="columna">Altura</th>
 						<th class="columna">Estado</th>
 						<th class="columna">Remisero</th>
 						<th class="text-center columna">Asignar móvil</th>
+						<th class="text-center columna">Cancelar pedido</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="viaje: ${viajes}">
-						<td class="text-center">
-							<a class="btn btn-xs"  th:href="@{/eliminarViaje/} + ${viaje.ViaId}" onclick="return confirm('Estás seguro de que quieres eliminar el pedido?');" data-toggle="tooltip" title="Cancelar Pedido" data-placement="bottom" >
-								<span style="color: Tomato;"><i class="fas fa-trash-alt"></i></span>
-							</a>
-						</td>
-						
 						<td th:text="${viaje.ViaId}"></td>
 						<td th:text="${viaje.ViaCalleOri}"></td>
 						<td th:text="${viaje.ViaNumOri}"></td>						
@@ -40,6 +34,11 @@
 						<td class="text-center">
 							<a class="btn btn-xs" th:href="@{/formViajeRem/} + ${viaje.ViaId}" data-toggle="tooltip" title="Asignar remisero" data-placement="bottom" >
 								<span>Asignar</span>
+							</a>
+						</td>
+						<td class="text-center">
+							<a class="btn btn-xs"  th:href="@{/eliminarViaje/} + ${viaje.ViaId}" onclick="return confirm('Estás seguro de que quieres eliminar el pedido?');" data-toggle="tooltip" title="Cancelar Pedido" data-placement="bottom" >
+								<span style="color: Tomato;"><i class="fas fa-trash-alt"></i></span>
 							</a>
 						</td>
 					</tr>
