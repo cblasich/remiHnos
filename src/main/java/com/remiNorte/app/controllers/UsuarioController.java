@@ -44,6 +44,7 @@ public class UsuarioController {
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		model.put("titulo", "Nuevo Usuario");
 		model.put("usuario", usuarioDTO);
+		model.put("backPage", "/inicio");
 		
 		return "formUsuario";
 	} 
@@ -66,22 +67,34 @@ public class UsuarioController {
 		
 		Usuario registrado = new Usuario();
 		model.addAttribute("titulo", "Nuevo Usuario");
-		//validacion de email
 		
-		if (cuentaDTO.getUsername().equals(null) || cuentaDTO.getUsername().equals("")) {
+		//validaciones
+		int error = 0;		
+		String pattern = null;
+		
+		String mail = cuentaDTO.getUsername();
+		if (mail.equals(null) || mail.equals("")) {
+			error = 1;
 			result.rejectValue("username", "username", "Debe ingresar un E-Mail.");
+		} else {
+			pattern = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
+			if (!mail.matches(pattern) ) {
+				error = 1;
+				result.rejectValue("username", "username", "El E-Mail ingresado no es válido.");
+			}
 		}
 		
 		String password = cuentaDTO.getPassword();
 		if (password.equals(null) || password.equals("")) {
+			error = 1;
 			result.rejectValue("password", "password", "Debe ingresar una contraseña.");
 		} else {
 			if (!password.equals(passwordConf)) {
+				error = 1;
 				result.reject("usuario.password","Las contraseñas no coinciden.");
 			}
 		}		
 		
-		int error = 0;
 		Pasajero pasajero = new Pasajero();
 		pasajero = cuentaDTO.getPasajero();
 		
@@ -95,13 +108,20 @@ public class UsuarioController {
 			result.rejectValue("pasajero.PasApellido", "pasajero.PasApellido", "Debe ingresar un apellido.");
 		}
 		
-		if (pasajero.getPasTelefono().equals(null) || pasajero.getPasTelefono().equals("") || pasajero.getPasTelefono() == "0") {
+		String telefono = pasajero.getPasTelefono();
+		if (telefono.equals(null) || telefono.equals("") || telefono == "0") {
 			error = 1;
 			result.rejectValue("pasajero.PasTelefono", "pasajero.PasTelefono", "Debe ingresar un teléfono.");
+		} else {
+			pattern = "^[0-9]+";
+			if (!telefono.matches(pattern)) {
+				error = 1;
+				result.rejectValue("pasajero.PasTelefono", "pasajero.PasTelefono", "Debe ingresar solo números.");
+			}
 		}
 		
-		if (!cuentaDTO.getUsername().equals(null) && !cuentaDTO.getUsername().equals("") 
-				&& !cuentaDTO.getPassword().equals(null) && !cuentaDTO.getPassword().equals("") && error == 0) {
+		
+		if (error == 0) {
 				
 				registrado = crearCuentaUsuario(cuentaDTO, result);
 				
@@ -116,6 +136,7 @@ public class UsuarioController {
 			}
 		
 		if (result.hasErrors()) {
+			model.addAttribute("backPage", "/inicio");
 			return new ModelAndView("formUsuario");
 		}
 		return new ModelAndView("inicio");
