@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
 	xmlns:sec="http://thymeleaf.org/extras/spring-security">
@@ -75,4 +76,82 @@
 </footer>
 
 </body>
+=======
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<title th:text="${titulo}"></title>
+	<head th:fragment="head">		
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />		
+		<link rel="stylesheet" th:href="@{/open-iconic/font/css/open-iconic-bootstrap.css}" />
+		<link rel="stylesheet" th:href="@{/css/estilos.css}" />
+		<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+		<link rel="stylesheet" th:href="@{/css/all.css}" />
+		<script type="text/javascript" th:src="@{/js/jquery-1.11.1.min.js} "></script>	
+<!-- 		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+		<script th:src="@{/js/popper.min.js}"></script>
+		<!-- HERE MAPS!! -->
+		<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+<body>
+	<header th:fragment="headerCli">
+		<nav class="navbar navbar-expand navbar-expand-sm navbar-expand-md navbar-dark fixed-top fondo-header">
+			<a class="navbar-brand" th:href="@{/inicio}"><i class="fas fa-home"></i></a>
+			<a class="navbar-brand" th:href="@{${backPage}}" style="color:white;"><span style="color: white;"><i class="fas fa-arrow-left"></i></span></a>
+			<a class="navbar-brand" th:href="@{#}" th:text="${titulo}"></a> 
+			<div class="dropdown show" sec:authorize="isAuthenticated()">
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    	<span sec:authentication="name"></span>
+			  	</a>
+			  	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+				    <form id="logoutForm" th:action="@{/logout}" method="post">
+				    	<button class="dropdown-item" onclick="document.getElementById('logoutForm')" type="submit">Cerrar sesi&oacute;n</button>
+				    	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+				    </form>
+				</div>
+			</div>
+		</nav>
+		<div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+		<div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+		<div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
+		<div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
+		<div class="alert alert-danger" th:if="${danger != null}" th:text="${danger}"></div>
+	</header>
+	<header th:fragment="headerOpe">
+		<nav class="navbar navbar-expand navbar-expand-sm navbar-expand-md navbar-dark fixed-top fondo-header">
+			<a class="navbar-brand" th:href="@{/inicio}"><i class="fas fa-home"></i></a>
+			<a class="navbar-brand" th:href="@{${backPage}}" style="color:white;"><span style="color: white;"><i class="fas fa-arrow-left"></i></span></a>
+			<a class="navbar-brand" th:href="@{#}" th:text="${titulo}"></a> 
+			<div class="dropdown show" sec:authorize="isAuthenticated()">
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    	<span sec:authentication="name"></span>
+			  	</a>
+			  	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+				    <form id="logoutForm" th:action="@{/logout}" method="post">
+				    	<button class="dropdown-item" onclick="document.getElementById('logoutForm')" type="submit">Cerrar sesi&oacute;n</button>
+				    	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+				    </form>
+				</div>
+			</div>
+		</nav>
+		<div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+		<div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+		<div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
+		<div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
+		<div class="alert alert-danger" th:if="${danger != null}" th:text="${danger}"></div>
+	</header>
+<div class="container"> </div>	
+<footer th:fragment="footer" class="page-footer font-small cyan darken-3 bg-secondary">
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</footer>
+
+</body>
+>>>>>>> branch 'master' of https://github.com/cblasich/remiHnos.git
 </html>
