@@ -39,18 +39,18 @@ public class Rol implements Serializable {
 	}
 	
 	public void setRolUser() {
-		this.RolId = (long) 1;
-		this.RolNombre = "ROLE_ADMIN";
+		this.RolId = (long) 3;
+		this.RolNombre = "ROLE_USER";
 	}
 	
-	public void setRolAdmin() {
+	public void setRolOperad() {
 		this.RolId = (long) 2;
 		this.RolNombre = "ROLE_OPERAD";
 	}
 	
-	public void setRolOperad() {
-		this.RolId = (long) 3;
-		this.RolNombre = "ROLE_USER";
+	public void setRolAdmin() {
+		this.RolId = (long) 1;
+		this.RolNombre = "ROLE_ADMIN";
 	}
 	
 	/**

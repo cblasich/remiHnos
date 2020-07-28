@@ -111,4 +111,16 @@ public class UsuarioServiceImpl implements IUsuarioService {
         user.setPassword(passwordEncoder.encode(password));
         usuarioDao.save(user);
     }
+
+	@Override
+	public Usuario editarUsuario(UsuarioDTO cuentaDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean validarMail(String username) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
