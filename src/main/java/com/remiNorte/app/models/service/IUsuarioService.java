@@ -19,4 +19,8 @@ public interface IUsuarioService {
 	Usuario registrarNuevoUsuario(UsuarioDTO cuentaDTO) throws UsuarioExisteException;
 
 	public Usuario findByUsername(String username);
+	
+	public void createPasswordResetTokenForUser(Usuario user, String token);
+
+	void changeUserPassword(Usuario user, String password);
 }
