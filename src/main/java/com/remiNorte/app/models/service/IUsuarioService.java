@@ -23,4 +23,8 @@ public interface IUsuarioService {
 	public void createPasswordResetTokenForUser(Usuario user, String token);
 
 	void changeUserPassword(Usuario user, String password);
+
+	public Usuario editarUsuario(UsuarioDTO cuentaDTO);
+	
+	public boolean validarMail(String username);
 }
