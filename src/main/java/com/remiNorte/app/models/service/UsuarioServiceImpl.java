@@ -82,12 +82,45 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		
 	}
 	
+////para registro usuario
+	@Transactional
+	@Override
+	public Usuario editarUsuario(UsuarioDTO cuentaDTO) {
+		
+		Usuario usuario = this.findOne(cuentaDTO.getUsuId());
+		Pasajero pasajero = usuario.getPasajero();
+		
+		usuario.setUsername(cuentaDTO.getUsername());
+		if(!(cuentaDTO.getPassword().isEmpty())) {
+			usuario.setPassword(passwordEncoder.encode(cuentaDTO.getPassword()));
+		}
+		pasajero.setPasNombre(cuentaDTO.getPasajero().getPasNombre()); 
+		pasajero.setPasApellido(cuentaDTO.getPasajero().getPasApellido());
+		pasajero.setPasTelefono(cuentaDTO.getPasajero().getPasTelefono());
+
+		//pasajero.setUsuario(usuario);
+		
+		//pasajero.getUsuario().setUsername(usuario.getUsername());
+		//usuario.setPasajero(pasajero);
+
+		return usuarioDao.save(usuario);	
+	}
+	
+	public boolean validarMail(String username) {   // DEVUELVE TRUE SI MAIL ES VALIDO PARA GRABAR.   FALSE SI MAIL YA ESTA EN USO
+		if(usuarioExiste(username)) {
+			return false;  //si usuario existe => mail no es valido
+		} else {
+			return true;   // si usuario NO existe => mail valido
+		}
+	}  
+	
 	private boolean usuarioExiste(String username) {
 		Usuario usuario = usuarioDao.findByUsername(username);
-		if (usuario!=null) {
+		if (usuario != null) {
 			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 	
 	@Override

@@ -10,7 +10,16 @@ public class UsuarioDTO {  //clase que transferira todos los datos del usuario
 	
 	@NotNull
 	private String password;
+	
+	private Long UsuId;
 
+	public Long getUsuId() {
+		return UsuId;
+	}
+	public void setUsuId(Long usuId) {
+		UsuId = usuId;
+	}
+	
 	private Pasajero pasajero;
 	private Operador operador;
 	private Rol rol;
