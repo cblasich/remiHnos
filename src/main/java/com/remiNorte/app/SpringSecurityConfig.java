@@ -22,7 +22,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		//"/" -> ruta raiz, /css/** -> todo lo que este dentro de css
-		http.authorizeRequests().antMatchers("/css/**","/js/**","/open-iconic/**","/webfonts/**","/formViaje","/error_403","/inicio","/","/formUsuario").permitAll()
+		http.authorizeRequests().antMatchers("/css/**","/js/**","/open-iconic/**","/webfonts/**","/formViaje","/error_403",
+				"/inicio","/","/formUsuario","/forgotPassword").permitAll()
 		.antMatchers("/formOperador","/formTarifa","/iniOperador", 
 				"/listarTarifas","/listarOperadores","/listarPasajeros","/listarRemises",
 				"/listarViajes","/formOperador","/formRemis","/formTarifa").hasAnyRole("ADMIN","OPERAD")
