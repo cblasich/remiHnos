@@ -112,15 +112,34 @@ public class UsuarioServiceImpl implements IUsuarioService {
         usuarioDao.save(user);
     }
 
+	@Transactional
 	@Override
 	public Usuario editarUsuario(UsuarioDTO cuentaDTO) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Usuario usuario = this.findOne(cuentaDTO.getUsuId());
+		Pasajero pasajero = usuario.getPasajero();
+		
+		usuario.setUsername(cuentaDTO.getUsername());
+		if(!(cuentaDTO.getPassword().isEmpty())) {
+			usuario.setPassword(passwordEncoder.encode(cuentaDTO.getPassword()));
+		}
+		pasajero.setPasNombre(cuentaDTO.getPasajero().getPasNombre()); 
+		pasajero.setPasApellido(cuentaDTO.getPasajero().getPasApellido());
+		pasajero.setPasTelefono(cuentaDTO.getPasajero().getPasTelefono());
+
+		//pasajero.setUsuario(usuario);
+		
+		//pasajero.getUsuario().setUsername(usuario.getUsername());
+		//usuario.setPasajero(pasajero);
+
+		return usuarioDao.save(usuario);	
 	}
 
-	@Override
-	public boolean validarMail(String username) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean validarMail(String username) {   // DEVUELVE TRUE SI MAIL ES VALIDO PARA GRABAR.   FALSE SI MAIL YA ESTA EN USO
+		if(usuarioExiste(username)) {
+			return false;  //si usuario existe => mail no es valido
+		} else {
+			return true;   // si usuario NO existe => mail valido
+		}
 	}
 }

@@ -1,12 +1,9 @@
 package com.remiNorte.app.controllers;
 
-import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,19 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.remiNorte.app.models.dao.IPasajeroDao;
-import com.remiNorte.app.models.entity.Pasajero;
-import com.remiNorte.app.models.entity.Rol;
 import com.remiNorte.app.models.entity.Usuario;
 import com.remiNorte.app.models.entity.UsuarioDTO;
 import com.remiNorte.app.models.service.IUsuarioService;
 import com.remiNorte.app.validations.UsuarioExisteException;
-
 
 @Controller
 @SessionAttributes("pasajero") 
@@ -39,9 +31,6 @@ public class PasajeroController {
 	
 	@Autowired 
 	private IPasajeroDao pasajeroDao;
-	
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
 	
 	private Logger logger = LoggerFactory.getLogger(OperadorController.class);
 	

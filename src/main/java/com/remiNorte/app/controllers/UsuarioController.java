@@ -6,10 +6,10 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.SimpleMailMessage;
@@ -18,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,23 +27,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.remiNorte.app.validations.UsuarioExisteException;
 import com.remiNorte.app.models.entity.UsuarioDTO;
-import com.remiNorte.app.security.ISecurityUserService;
-import com.remiNorte.app.dto.PasswordDto;
-import com.remiNorte.app.models.entity.GenericResponse;
+import com.remiNorte.app.models.dao.IPasajeroDao;
+import com.remiNorte.app.models.dao.IUsuarioDao;
 import com.remiNorte.app.models.entity.Pasajero;
 import com.remiNorte.app.models.entity.Usuario;
 import com.remiNorte.app.models.service.IUsuarioService;
+import com.remiNorte.app.security.ISecurityUserService;
+import com.remiNorte.app.dto.PasswordDto;
+import com.remiNorte.app.models.entity.GenericResponse;
 
 @Controller
 @SessionAttributes("usuario")
 public class UsuarioController {
 
+	//protected final Log logger = LogFactory.getLog(this.getClass());
+	
 	@Autowired 
 	private IUsuarioService usuarioService;
+	
+	@Autowired
+	private IUsuarioDao usuarioDao;
+	
+	@Autowired
+	private IPasajeroDao pasajeroDao;
 	
 	@Autowired
     private JavaMailSender mailSender;
@@ -67,13 +80,30 @@ public class UsuarioController {
 		return "listarUsuarios";		
 	}
 	
-	//comento para pasar metodos dulce carolina
 	@RequestMapping(value="/formUsuario")
 	public String crear(Map<String, Object> model) {   
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
-		model.put("titulo", "Nuevo Usuario");
+		
+		if (auth.getName() != "anonymousUser") {   // si usuario está logueado
+			model.put("titulo", "Editar datos personales");
+			model.put("lblContra", "Nueva contraseña");
+			logger.info("Hola usuario autenticado: "+auth.getName());			
+			Usuario usuario = usuarioDao.findByUsername(auth.getName());
+			Pasajero pasajero = pasajeroDao.findByUsuario(usuario);
+			logger.info("Pasajero:"+pasajero.getPasApellido()+" "+pasajero.getPasNombre());
+			logger.info("Id usuario:"+usuario.getUsuId().toString());
+			usuarioDTO.setUsuId(usuario.getUsuId());   // si está logueado llevo id usuario
+			usuarioDTO.setUsername(usuario.getUsername());
+			usuarioDTO.setPasajero(pasajero);   
+		} else {
+			usuarioDTO.setUsuId(null);   // si no está logueado id usuario es nulo
+			model.put("titulo", "Nuevo Usuario");
+			model.put("lblContra", "Contraseña");
+			logger.info("ID NULO");
+		}
 		model.put("usuario", usuarioDTO);
-		model.put("backPage", "/inicio");
 		
 		return "formUsuario";
 	} 
@@ -90,11 +120,15 @@ public class UsuarioController {
 	@RequestMapping(value="/formUsuario", method=RequestMethod.POST)
 	public ModelAndView registrarUsuario(
 			@ModelAttribute("usuario") @Valid UsuarioDTO cuentaDTO,
+			WebRequest request,
 			BindingResult result,
 			Model model,
+			RedirectAttributes flash,
+			Errors errors,
 			@RequestParam(defaultValue="") String passwordConf ) {
 		
 		Usuario registrado = new Usuario();
+		Usuario logueado = new Usuario();
 		model.addAttribute("titulo", "Nuevo Usuario");
 		
 		//validaciones
@@ -120,9 +154,10 @@ public class UsuarioController {
 		} else {
 			if (!password.equals(passwordConf)) {
 				error = 1;
+				model.addAttribute("lblContra", "Nueva contraseña");
 				result.reject("usuario.password","Las contraseñas no coinciden.");
 			}
-		}		
+		}	
 		
 		Pasajero pasajero = new Pasajero();
 		pasajero = cuentaDTO.getPasajero();
@@ -149,20 +184,45 @@ public class UsuarioController {
 			}
 		}
 		
-		
 		if (error == 0) {
-				
-				registrado = crearCuentaUsuario(cuentaDTO, result);
-				
+			if(cuentaDTO.getUsuId() == null) {     // CREANDO USUARIO NUEVO
+				//validacion de email 
+				registrado = crearCuentaUsuario(cuentaDTO, result);	
 				if(registrado == null) {
-					//model.addAttribute("danger", "Email ya registrado. Por favor, intente con otro nuevamente.");
-					result.rejectValue("username", "message.regError","Ya existe un usuario registrado con ese E-Mail. Por favor, intente con otro nuevamente.");
-					//return new ModelAndView("formUsuario");	
+					result.rejectValue("username", "message.regError","Ya existe un usuario registrado con ese Email. Por favor, intente con otro nuevamente.");
+					model.addAttribute("lblContra", "Contraseña");
+					return new ModelAndView("formUsuario");	
 				} else {
 					model.addAttribute("success","Usuario registrado con éxito.");
-					//return new ModelAndView("inicio");	
+					return new ModelAndView("inicio");
+				}
+			
+			} else {   // EDITANDO DATOS DE USUARIO LOGUEADO
+				
+				boolean mailValido;
+				logueado = usuarioService.findOne(cuentaDTO.getUsuId());  //en logueado tendria el "usuario original" (el que se quiere modificar)
+				
+				if(logueado.getUsername().trim().compareTo(cuentaDTO.getUsername().trim()) != 0) {  // si ingreso un mail diferente, validar que nuevo mail no exista
+					logger.info("SE MODIFICO MAIL");
+					logger.info("Logueado:"+logueado.getUsername());
+					logger.info("Nuevo:"+cuentaDTO.getUsername());
+					mailValido = validarMail(cuentaDTO, result);
+					if(mailValido) {
+						editarCuentaUsuario(cuentaDTO);	//cuentaDTO tiene datos nuevos. e ID del usuario a modificar	
+						model.addAttribute("success","Datos modificados con éxito.");
+						return new ModelAndView("inicio");
+					} else {
+						result.rejectValue("username", "message.regError","Ya existe un usuario registrado con ese Email. Por favor, intente con otro nuevamente.");
+						return new ModelAndView("formUsuario");	
+					}
+				} else {  //si el mail no se modificó, guardar cambios. contraseña solo guardar si NO es vacío
+					logger.info("MAIL ES EL MISMO");
+					editarCuentaUsuario(cuentaDTO);	//cuentaDTO tiene datos nuevos. e ID del usuario a modificar
+					model.addAttribute("success","Datos modificados con éxito.");
+					return new ModelAndView("inicio");
 				}
 			}
+		}
 		
 		if (result.hasErrors()) {
 			model.addAttribute("backPage", "/inicio");
@@ -170,6 +230,14 @@ public class UsuarioController {
 		}
 		return new ModelAndView("inicio");
 	}
+	 
+	private void editarCuentaUsuario(UsuarioDTO cuentaDTO) {
+		usuarioService.editarUsuario(cuentaDTO);
+	}
+	
+	private boolean validarMail(UsuarioDTO cuentaDTO, BindingResult result) {
+		 return usuarioService.validarMail(cuentaDTO.getUsername());
+	} 
 	
 	private Usuario crearCuentaUsuario(UsuarioDTO cuentaDTO, BindingResult result) {
 		
@@ -195,23 +263,6 @@ public class UsuarioController {
 		return "formUsuario";
 	}
 	
-	/*@RequestMapping(value="/formUsuario", method=RequestMethod.POST)
-	public String guardar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status) { //metodo que procesa el formulario
-		
-		if(result.hasErrors()) {
-			model.addAttribute("titulo", "Nuevo Registro");
-			return "formUsuario";
-		}
-		
-		usuarioService.save(usuario);
-		status.setComplete(); //elimina el objeto cliente de la sesión.
-		
-		//model.addAttribute("titulo", "Informacion del Usuario");
-		//model.addAttribute("usuario", usuario);
-		
-		return "redirect:listarUsuarios";
-	}*/
-	
 	@RequestMapping(value="/eliminarUsuario/{id}")
 	public String eliminar(@PathVariable(value="id") Long id) {
 		if (id > 0) {
@@ -219,6 +270,7 @@ public class UsuarioController {
 		}		
 		return "redirect:/listarUsuarios";
 	}
+ 
 	
 	@PostMapping("/user/resetPassword")
 	public GenericResponse resetPassword(HttpServletRequest request, 
