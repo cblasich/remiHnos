@@ -47,7 +47,7 @@
 			<div class="row fondo-color altura-3"> 
 				<div class="col-1 p-4"></div>
 			</div>
-			<div class="row form-group">
+			<div class="row form-group" sec:authorize="!isAuthenticated()">
 				<div class="col-1 col-sm-5"></div>
 				<div class="col-10 col-sm-2 text-center">
 					<a type="submit" class="btn btn-primary" th:href="@{/formUsuario}">Nueva cuenta</a>
