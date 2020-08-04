@@ -105,6 +105,7 @@ public class UsuarioController {
 		
 		Usuario registrado = new Usuario();
 		Usuario logueado = new Usuario();
+		//Usuario logueado = usuarioService.findOne(cuentaDTO.getUsuId());  //en logueado tendria el "usuario original" (el que se quiere modificar)
 		model.addAttribute("titulo", "Nuevo Usuario");
 		
 		//validaciones
@@ -123,17 +124,32 @@ public class UsuarioController {
 			}
 		}
 		
+		 
 		String password = cuentaDTO.getPassword();
 		if (password.equals(null) || password.equals("")) {
-			error = 1;
-			result.rejectValue("password", "password", "Debe ingresar una contraseña.");
-		} else {
+			if(cuentaDTO.getUsuId() == null) {  //si es usu nuevo
+				error = 1;
+				model.addAttribute("lblContra", "Contraseña");
+				result.rejectValue("password", "password", "Debe ingresar una contraseña.");
+			} 
 			if (!password.equals(passwordConf)) {
 				error = 1;
 				model.addAttribute("lblContra", "Nueva contraseña");
 				result.reject("usuario.password","Las contraseñas no coinciden.");
 			}
+		} else {
+			if (!password.equals(passwordConf)) {
+				error = 1;
+				if(cuentaDTO.getUsuId() == null) {  //si es usu nuevo
+					model.addAttribute("lblContra", "Contraseña");
+				} else {
+					model.addAttribute("lblContra", "Nueva contraseña");
+				}
+				result.reject("usuario.password","Las contraseñas no coinciden.");
+			}
 		}	
+		
+		
 		
 		Pasajero pasajero = new Pasajero();
 		pasajero = cuentaDTO.getPasajero();
@@ -170,6 +186,7 @@ public class UsuarioController {
 					return new ModelAndView("formUsuario");	
 				} else {
 					model.addAttribute("success","Usuario registrado con éxito.");
+					model.addAttribute("titulo", "Inicio");
 					return new ModelAndView("inicio");
 				}
 			
@@ -186,6 +203,7 @@ public class UsuarioController {
 					if(mailValido) {
 						editarCuentaUsuario(cuentaDTO);	//cuentaDTO tiene datos nuevos. e ID del usuario a modificar	
 						model.addAttribute("success","Datos modificados con éxito.");
+						model.addAttribute("titulo", "Inicio");
 						return new ModelAndView("inicio");
 					} else {
 						result.rejectValue("username", "message.regError","Ya existe un usuario registrado con ese Email. Por favor, intente con otro nuevamente.");
@@ -195,6 +213,7 @@ public class UsuarioController {
 					logger.info("MAIL ES EL MISMO");
 					editarCuentaUsuario(cuentaDTO);	//cuentaDTO tiene datos nuevos. e ID del usuario a modificar
 					model.addAttribute("success","Datos modificados con éxito.");
+					model.addAttribute("titulo", "Inicio");
 					return new ModelAndView("inicio");
 				}
 			}
@@ -204,6 +223,8 @@ public class UsuarioController {
 			model.addAttribute("backPage", "/inicio");
 			return new ModelAndView("formUsuario");
 		}
+		model.addAttribute("backPage", "/inicio");
+		model.addAttribute("titulo", "Inicio");
 		return new ModelAndView("inicio");
 	}
 	 
