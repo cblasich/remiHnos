@@ -34,7 +34,10 @@ public class Usuario implements Serializable {
 
 	@Column(name = "usuenabled")
 	private Boolean UsuEnabled; // debe setearse 1 por defecto
-
+	
+	@Column(name = "usurestok")
+	private String UsuResTok;
+	
 	//OTROS ATRIBUTOS
 	@OneToOne(mappedBy = "usuario",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Operador operador;
@@ -102,6 +105,14 @@ public class Usuario implements Serializable {
 
 	public void setRol(Rol rol) {
 		this.rol = rol;
+	}
+
+	public String getUsuResTok() {
+		return UsuResTok;
+	}
+
+	public void setUsuResTok(String usuResTok) {
+		UsuResTok = usuResTok;
 	}
 
 

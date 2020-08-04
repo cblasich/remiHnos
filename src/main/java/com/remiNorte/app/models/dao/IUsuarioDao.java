@@ -10,4 +10,5 @@ public interface IUsuarioDao extends CrudRepository<Usuario, Long>{
 	
 	public Usuario findByUsername(String username); //findby + nombre del campo
 	
+	public Usuario findByUsuResTok(String usurestok);
 }

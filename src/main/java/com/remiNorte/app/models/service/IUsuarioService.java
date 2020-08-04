@@ -23,4 +23,6 @@ public interface IUsuarioService {
 	public Usuario editarUsuario(UsuarioDTO cuentaDTO);
 	
 	public boolean validarMail(String username);
+
+	Usuario findByUsuResTok(String usurestok);
 }

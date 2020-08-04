@@ -128,4 +128,9 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		}
 	}
 
+	@Override
+	@Transactional
+	public Usuario findByUsuResTok(String usurestok) {
+		return usuarioDao.findByUsuResTok(usurestok);
+	}
 }
