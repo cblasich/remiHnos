@@ -7,10 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.remiNorte.app.validations.UsuarioExisteException;
-import com.remiNorte.app.models.dao.IPasswordResetTokenDao;
 import com.remiNorte.app.models.dao.IUsuarioDao;
 import com.remiNorte.app.models.entity.Pasajero;
-import com.remiNorte.app.models.entity.PasswordResetToken;
 import com.remiNorte.app.models.entity.Rol;
 import com.remiNorte.app.models.entity.Usuario;
 import com.remiNorte.app.models.entity.UsuarioDTO;
@@ -20,9 +18,6 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	
 	@Autowired
 	private IUsuarioDao usuarioDao;
-	
-	@Autowired
-	private IPasswordResetTokenDao passwordResetTokenDao;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -101,16 +96,6 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		return usuarioDao.findByUsername(username);
 	}
 	
-	public void createPasswordResetTokenForUser(Usuario user, String token) {
-	    PasswordResetToken myToken = new PasswordResetToken(token, user);
-	    passwordResetTokenDao.save(myToken);
-	}
-	
-	@Override
-    public void changeUserPassword(final Usuario user, final String password) {
-        user.setPassword(passwordEncoder.encode(password));
-        usuarioDao.save(user);
-    }
 
 	@Transactional
 	@Override
@@ -142,4 +127,5 @@ public class UsuarioServiceImpl implements IUsuarioService {
 			return true;   // si usuario NO existe => mail valido
 		}
 	}
+
 }
