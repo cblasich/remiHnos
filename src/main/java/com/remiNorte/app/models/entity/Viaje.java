@@ -29,7 +29,7 @@ public class Viaje implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="viaid")
-	private Long ViaId; 
+	private Long viaId; 
 	
 	@NotEmpty(message = "Debe ingresar calle de origen.")
 	@Column(name="viacalleori", length=100)
@@ -96,11 +96,11 @@ public class Viaje implements Serializable {
 	}
 	
 	public Long getViaId() {
-		return ViaId;
+		return viaId;
 	}
 
 	public void setViaId(Long viaId) {
-		ViaId = viaId;
+		this.viaId = viaId;
 	}
 
 	public String getViaCalleOri() {

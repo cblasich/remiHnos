@@ -26,7 +26,7 @@ public class InicioController {
 		
 		for (SimpleGrantedAuthority rol : authorities) {
 			logger.info("Role actual: ".concat(rol.toString()));
-			if (rol.toString().equalsIgnoreCase("ROLE_OPERAD")) {
+			if (rol.toString().equalsIgnoreCase("ROLE_OPERAD") || rol.toString().equalsIgnoreCase("ROLE_ADMIN")) {
 				return "redirect:iniOperador";
 			}
 		}

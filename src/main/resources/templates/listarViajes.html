@@ -8,6 +8,12 @@
 		<div class="container">
 			<p></p>
 			<p></p>
+			<button id="holis">Holis</button> 
+			<br><button id="ajax">Ajax</button> 
+			<!-- <p id="maxViaId" th:text="${maxViaId}"></p>  -->
+			<input id="maxViaId" type="text" th:value="${maxViaId}" />
+			<input id="localStorage" type="text" />
+			<input id="maxViaId2" type="text" th:value="${maxViaId2}" />
 			<div class="separacion1"></div>
 			<table class="table table-striped">
 				<thead>
@@ -15,6 +21,8 @@
 						<th class="columna">Id</th>
 						<th class="columna">Origen: Calle</th>
 						<th class="columna">Altura</th>
+						<th class="columna">Fecha solic.</th>
+						<th class="columna">Hora</th>
 						<th class="columna">Estado</th>
 						<th class="columna">Remisero</th>
 						<th class="text-center columna">Asignar móvil</th>
@@ -25,7 +33,9 @@
 					<tr th:each="viaje: ${viajes}">
 						<td th:text="${viaje.ViaId}"></td>
 						<td th:text="${viaje.ViaCalleOri}"></td>
-						<td th:text="${viaje.ViaNumOri}"></td>						
+						<td th:text="${viaje.ViaNumOri}"></td>				
+						<td th:text="${viaje.ViaFecSol}"></td>	
+						<td th:text="${viaje.ViaHorSol}"></td>	
 						<td th:if="${viaje.ViaEstado == 'P'}">Pendiente</td>
 						<td th:if="${viaje.ViaEstado == 'C'}">Confirmado</td>
 						<td th:if="${viaje.ViaEstado == 'F'}">Finalizado</td>
@@ -46,5 +56,6 @@
 			</table>
 		</div>
 	<footer th:replace="layout/layout :: footer"></footer>
+	<script type="text/javascript" th:src="@{/js/funNotifs.js} "></script>	
 	</body>
 </html>

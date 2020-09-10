@@ -141,7 +141,15 @@ public class ViajeController {
 	public String listarViajes(Model model) {
 		model.addAttribute("backPage", "/iniOperador");
 		model.addAttribute("titulo", "Listado de Viajes");
-		model.addAttribute("viajes" , viajeDao.findAll());
+		//model.addAttribute("viajes" , viajeDao.findAll());
+		model.addAttribute("viajes" , viajeDao.findAllByOrderByViaIdDesc());
+		model.addAttribute("maxViaId", viajeDao.maxViaId());
+		return "listarViajes";		
+	}  
+	
+	@RequestMapping(value="/getUltVia", method=RequestMethod.GET)
+	public String getUltVia(Model model) {
+		model.addAttribute("maxViaId2", viajeDao.maxViaId());
 		return "listarViajes";		
 	}  
 	
