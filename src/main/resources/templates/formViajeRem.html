@@ -159,13 +159,11 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Confirmar</button>
 		      </div>
 		    </div>
 		  </div>
-		</div>
- 	
-	<footer th:replace="layout/layout :: footer"></footer>
+		</div> 	
+	
 	<script>
  		$(document).ready(function() {
  		    $('#tabSelRem').on('click','a', function() {
@@ -187,5 +185,7 @@
 	 		    $("#tabSelRem").load(url);
 	 		};
 	</script>
+	
+	<footer th:replace="layout/layout :: footer"></footer>
 	</body>
 </html>

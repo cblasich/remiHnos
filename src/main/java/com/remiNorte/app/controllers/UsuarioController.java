@@ -65,6 +65,7 @@ public class UsuarioController {
 		if (auth.getName() != "anonymousUser") {   // si usuario está logueado
 			model.put("titulo", "Editar datos personales");
 			model.put("lblContra", "Nueva contraseña");
+			model.put("backPage", "/inicio");
 			logger.info("Hola usuario autenticado: "+auth.getName());			
 			Usuario usuario = usuarioDao.findByUsername(auth.getName());
 			Pasajero pasajero = pasajeroDao.findByUsuario(usuario);
