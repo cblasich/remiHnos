@@ -1,3 +1,45 @@
+.pagination{
+    display:table;
+    margin:0 auto;
+}
+
+.text {
+  font-size:20px;
+  font-family:helvetica;
+  font-weight:bold;
+  color:#71d90b;
+}
+.parpadea {
+  
+  animation-name: parpadeo;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-name:parpadeo;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-moz-keyframes parpadeo{  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes parpadeo {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+   100% { opacity: 1.0; }
+}
+
+@keyframes parpadeo {  
+  0% { opacity: 1.0; }
+   50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
 body a {
   transition: 0.5s all;
   -webkit-transition: 0.5s all;
@@ -40,16 +82,6 @@ body{
  #contPpal {
 	position: relative;	
 } 
-
-/* #contMapa { */
-/* 	position: absolute; */
-/* 	height: 300px; */
-/*   	width: 60%;	 */
-/*   	top: 50%; */
-/* 	left: 50%; */
-/* 	transform: translate(-50%, -50%); */
-/* 	z-index: 100; */
-/* } */
 
 .shadow-box-example {
     height: 120px;

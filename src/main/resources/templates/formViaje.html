@@ -25,7 +25,7 @@
 						<div class="col-10 col-sm-3">
 							<input id="OriCalle" type="text" th:field="*{ViaCalleOri}" class="form-control" placeholder="Calle" />
 							<small id="errOriCalle2" class="form-text text-danger" th:if="${#fields.hasErrors('ViaCalleOri')}" th:errors="*{ViaCalleOri}"></small>
-							<small id="errOriCalle" class="form-text text-danger d-none">Debe indicar calle del origen.</small>
+							<small id="errOriCalle" class="form-text text-danger d-none">Debe ingresar calle de origen.</small>
 						</div>
 					</div>	
 					<div class="form-group row">
@@ -33,7 +33,7 @@
 						<div class="col-10 col-sm-3">
 							<input id="OriNum" type="number" th:field="*{ViaNumOri}" class="form-control" placeholder="Altura" />
 							<small id="errOriNum2" class="form-text text-danger" th:if="${#fields.hasErrors('ViaNumOri')}" th:errors="*{ViaNumOri}"></small>
-							<small id="errOriNum" class="form-text text-danger d-none">Debe indicar altura del origen.</small>
+							<small id="errOriNum" class="form-text text-danger d-none">Debe ingresar altura del origen.</small>
 						</div>
 					</div>	
 				</div>
@@ -48,7 +48,7 @@
 						<div class="col-10 col-sm-3">
 							<input id="DesCalle" type="text" th:field="*{ViaCalleDes}" class="form-control" placeholder="Calle" />
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaCalleDes')}" th:errors="*{ViaCalleDes}"></small>
-							<small id="errDesCalle" class="form-text text-danger d-none">Debe indicar calle del destino. </small>
+							<small id="errDesCalle" class="form-text text-danger d-none">Debe ingresar calle de destino. </small>
 						</div>
 					</div>	
 					<div class="form-group row">
@@ -56,7 +56,7 @@
 						<div class="col-10 col-sm-3">
 							<input id="DesNum" type="number" th:field="*{ViaNumDes}" class="form-control" placeholder="Altura" />
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaNumDes')}" th:errors="*{ViaNumDes}"></small>
-							<small id="errDesNum" class="form-text text-danger d-none">Debe indicar altura del destino.</small>
+							<small id="errDesNum" class="form-text text-danger d-none">Debe ingresar altura del destino.</small>
 						</div>
 					</div>
 				</div>

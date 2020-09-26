@@ -8,6 +8,10 @@ import javax.validation.Valid;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -19,6 +23,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -31,6 +37,7 @@ import com.remiNorte.app.models.entity.Pasajero;
 import com.remiNorte.app.models.entity.Tarifa;
 import com.remiNorte.app.models.entity.Usuario;
 import com.remiNorte.app.models.entity.Viaje;
+import com.remiNorte.app.util.paginator.PageRender;
 
 @Controller 
 @SessionAttributes("viaje")
@@ -129,28 +136,35 @@ public class ViajeController {
 		return "redirect:/listarViajes";
 	}
 	
-	@RequestMapping(value="/eliminarViaje/{id}")
+	/*@RequestMapping(value="/eliminarViaje/{id}")
 	public String eliminar(@PathVariable(value="id") Long id) {
 		if (id > 0) {
 			viajeDao.deleteById(id);
 		}		
 		return "redirect:/listarViajes";
-	}
+	} */
 	
 	@RequestMapping(value="/listarViajes", method=RequestMethod.GET)
-	public String listarViajes(Model model) {
+	public String listarViajes(@RequestParam(name="page", defaultValue="0") int page, Model model) {
+		Pageable pageRequest = PageRequest.of(page, 20, Sort.by("viaId").descending());
+		Page<Viaje> viajes = viajeDao.findAll(pageRequest);
+		PageRender<Viaje> pageRender = new PageRender<Viaje>("/listarViajes", viajes);
+		
 		model.addAttribute("backPage", "/iniOperador");
 		model.addAttribute("titulo", "Listado de Viajes");
-		//model.addAttribute("viajes" , viajeDao.findAll());
-		model.addAttribute("viajes" , viajeDao.findAllByOrderByViaIdDesc());
-		model.addAttribute("maxViaId", viajeDao.maxViaId());
+		model.addAttribute("viajes", viajes);
+		model.addAttribute("page", pageRender);
+		model.addAttribute("maxViaIdInicial", viajeDao.maxViaId());
 		return "listarViajes";		
 	}  
 	
-	@RequestMapping(value="/getUltVia", method=RequestMethod.GET)
-	public String getUltVia(Model model) {
-		model.addAttribute("maxViaId2", viajeDao.maxViaId());
-		return "listarViajes";		
+	@RequestMapping(value="/getUltVia", method=RequestMethod.GET,produces = "application/json")
+	@ResponseBody
+	public Long getUltVia(Model model) {
+		
+		model.addAttribute("maxViaIdActual", viajeDao.maxViaId());
+		logger.info("Max viaje Id: ".concat(viajeDao.maxViaId().toString()));
+		return viajeDao.maxViaId();		
 	}  
 	
 	@RequestMapping(value="/infoViaSol")

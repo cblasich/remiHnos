@@ -35,7 +35,7 @@ public class Viaje implements Serializable {
 	@Column(name="viacalleori", length=100)
 	private String ViaCalleOri;
 	
-	@NotNull(message = "Debe ingresar altura de origen.")
+	@NotNull(message = "Debe ingresar altura del origen.")
 	@Column(name="vianumori")
 	private Integer ViaNumOri;
 	

@@ -8,12 +8,19 @@
 		<div class="container">
 			<p></p>
 			<p></p>
-			<button id="holis">Holis</button> 
-			<br><button id="ajax">Ajax</button> 
-			<!-- <p id="maxViaId" th:text="${maxViaId}"></p>  -->
-			<input id="maxViaId" type="text" th:value="${maxViaId}" />
-			<input id="localStorage" type="text" />
-			<input id="maxViaId2" type="text" th:value="${maxViaId2}" />
+			<input type="hidden" id="maxViaIdInicial" th:value="${maxViaIdInicial}" />
+			<input type="hidden" id="localStorage"  />
+			<input type="hidden" id="maxViaIdActual" th:value="${maxViaIdActual}" />
+			<div class="row">
+				<div class="col-1">
+					<a class="btn btn-alta btn-xs" data-toggle="tooltip" title="Actualizar página" data-placement="bottom"><i class="fas fa-sync-alt" onClick="window.location.reload();"></i></a>
+				</div>
+				<div class="col-5">
+					<span id="notifViaje" class="parpadea text d-none" onClick="window.location.reload();"><strong>Hay pedidos nuevos. Actualice para ver.</strong></span>
+				</div>
+				<div class="col-6"> </div>
+			</div>
+			<div class="separacion1"></div>
 			<div class="separacion1"></div>
 			<table class="table table-striped">
 				<thead>
@@ -26,7 +33,7 @@
 						<th class="columna">Estado</th>
 						<th class="columna">Remisero</th>
 						<th class="text-center columna">Asignar móvil</th>
-						<th class="text-center columna">Cancelar pedido</th>
+						<!-- <th class="text-center columna">Cancelar pedido</th>  -->
 					</tr>
 				</thead>
 				<tbody>
@@ -46,14 +53,15 @@
 								<span>Asignar</span>
 							</a>
 						</td>
-						<td class="text-center">
+						<!-- <td class="text-center">
 							<a class="btn btn-xs"  th:href="@{/eliminarViaje/} + ${viaje.ViaId}" onclick="return confirm('Estás seguro de que quieres eliminar el pedido?');" data-toggle="tooltip" title="Cancelar Pedido" data-placement="bottom" >
 								<span style="color: Tomato;"><i class="fas fa-trash-alt"></i></span>
 							</a>
-						</td>
+						</td>  -->
 					</tr>
 				</tbody>
 			</table>
+			<nav th:replace="paginator-nav :: paginator"></nav>
 		</div>
 	<footer th:replace="layout/layout :: footer"></footer>
 	<script type="text/javascript" th:src="@{/js/funNotifs.js} "></script>	
