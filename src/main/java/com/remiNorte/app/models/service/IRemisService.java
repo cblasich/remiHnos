@@ -17,5 +17,7 @@ public interface IRemisService {
 	public List<Remis> devRemiserosDisponibles();
 
 	public List<Remis> devRemisesPorNombre(String nombre);
+	
+	public Remis findByRemPatente(String patente);
 
 }

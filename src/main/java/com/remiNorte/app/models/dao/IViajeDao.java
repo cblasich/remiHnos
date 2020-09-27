@@ -24,4 +24,10 @@ public interface IViajeDao extends PagingAndSortingRepository<Viaje, Long> {  //
 	@Query(value = "SELECT max(viaId) FROM Viaje")
 	public Long maxViaId();
 	
+	@Query(value = "select count(remid) from viajes where remid = :remisId", nativeQuery = true)
+	public Long canRemVia(Long remisId);
+
+	@Query(value = "select count(opeid) from viajes where opeid = :operadorId", nativeQuery = true)
+	public Long canOpeVia(Long operadorId);
+	
 }

@@ -50,4 +50,10 @@ public class RemisServiceImpl implements IRemisService {
 	public List<Remis> devRemisesPorNombre(String nombre){
 		return (List<Remis>) remisDao.devRemisesPorNombre(nombre);
 	}
+
+	@Override
+	public Remis findByRemPatente(String patente) {
+		// TODO Auto-generated method stub
+		return remisDao.findByRemPatente(patente);
+	}
 }

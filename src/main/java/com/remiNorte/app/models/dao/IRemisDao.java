@@ -17,4 +17,6 @@ public interface IRemisDao extends CrudRepository<Remis, Long> {
 	@Query(value = "select * from remises  where remestado = 'S' and (remnomconductor like concat('%',:nombre,'%') or remapeconductor like  concat('%',:nombre,'%'))", 
 			nativeQuery = true)
 	public List<Remis> devRemisesPorNombre(String nombre);
+	
+	public Remis findByRemPatente(String patente);
 }

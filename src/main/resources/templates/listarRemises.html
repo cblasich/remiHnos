@@ -35,7 +35,9 @@
 						<td th:text="${remis.RemPatente}"></td>
 						<td th:text="${remis.RemModelo}"></td>
 						<td th:text="${remis.RemMarca}"></td>
-						<td th:text="${remis.RemEstado}"></td>
+						<td th:if="${remis.RemEstado == 'S'}">Disponible</td>
+						<td th:if="${remis.RemEstado == 'N'}">No disponible</td>
+						<td th:if="${remis.RemEstado == null}">No disponible</td>
 						<td th:text="${remis.RemNomConductor}"></td>
 						<td th:text="${remis.RemApeConductor}"></td>
 						<td class="text-center">
@@ -44,7 +46,7 @@
 							</a>
 						</td>
 						<td class="text-center">
-							<a class="btn btn-xs"  th:href="@{/eliminarRemis/} + ${remis.RemId}" onclick="return confirm('Estás seguro de que quieres eliminar el remis?');" data-toggle="tooltip" title="Eliminar Remis" data-placement="bottom" >
+							<a class="btn btn-xs"  th:href="@{/eliminarRemis/} + ${remis.RemId}" onclick="return confirm('Estás seguro de que quieres eliminar el remís?');" data-toggle="tooltip" title="Eliminar Remis" data-placement="bottom" >
 								<span style="color: Tomato;"><i class="fas fa-trash-alt"></i></span>
 							</a>
 						</td>
@@ -52,5 +54,6 @@
 				</tbody>
 			</table>
 		</div>
+	<footer th:replace="layout/layout :: footer"></footer>
 	</body>
 </html>

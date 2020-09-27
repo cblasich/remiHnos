@@ -11,8 +11,6 @@ import com.remiNorte.app.models.entity.Usuario;
 
 public class EmailNotEmptyValidator implements ConstraintValidator<EmailNotEmpty, Usuario> {
 	
-	private Logger logger = LoggerFactory.getLogger(InicioController.class);
-	
 	@Override
 	public boolean isValid(Usuario usuario, ConstraintValidatorContext context) {
 		

@@ -16,18 +16,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.remiNorte.app.models.dao.IOperadorDao;
 import com.remiNorte.app.models.entity.Operador;
 import com.remiNorte.app.models.entity.Rol;
 import com.remiNorte.app.models.entity.Usuario;
+import com.remiNorte.app.models.service.IOperadorService;
+import com.remiNorte.app.models.service.IViajeService;
 
 @Controller
 @SessionAttributes({"operador","usuario"}) 
 public class OperadorController {
 	
 	@Autowired
-	private IOperadorDao operadorDao;
+	private IOperadorService operadorService;
+	
+	@Autowired
+	private IViajeService viajeService;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -39,7 +44,7 @@ public class OperadorController {
 		
 		model.addAttribute("titulo", "Listado de Operadores");
 		model.addAttribute("backPage", "/iniOperador");
-		model.addAttribute("operadores" , operadorDao.findAll());
+		model.addAttribute("operadores" , operadorService.findAll());
 		return "listarOperadores";		
 	}
 	
@@ -93,14 +98,22 @@ public class OperadorController {
 		usuario.setUsuEnabled(true);
 		operador.setUsuario(usuario);
 			
-		operadorDao.save(operador);
+		operadorService.save(operador);
 		return "redirect:listarOperadores";
 	}
 	
 	@RequestMapping(value="/eliminarOperador/{id}")
-	public String eliminar(@PathVariable(value="id") Long id) {
+	public String eliminar(@PathVariable(value="id") Long id,
+							RedirectAttributes flash) {
 		if (id > 0) {
-			operadorDao.deleteById(id);
+			Long canOpeViajes = (long) 0;
+			canOpeViajes = viajeService.canOpeVia(id);
+			
+			if (canOpeViajes == 0) {
+				operadorService.delete(id);
+			} else {
+				flash.addFlashAttribute("error", "El operador no se puede eliminar porque tiene viajes asociados.");
+			}			
 		}		
 		return "redirect:/listarOperadores";
 	}

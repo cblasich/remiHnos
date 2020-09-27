@@ -155,14 +155,28 @@ public class UsuarioController {
 		Pasajero pasajero = new Pasajero();
 		pasajero = cuentaDTO.getPasajero();
 		
-		if (pasajero.getPasNombre().equals(null) || pasajero.getPasNombre().contentEquals("")) {
+		if (pasajero.getPasNombre().equals(null) || pasajero.getPasNombre().equals("")) {
 			error = 1;
 			result.rejectValue("pasajero.PasNombre", "pasajero.PasNombre", "Debe ingresar un nombre.");
+		} else {
+			String nombre = pasajero.getPasNombre().trim();
+			pattern = "^[a-zA-Z]+";
+			if (!nombre.matches(pattern)) {
+				error = 1;
+				result.rejectValue("pasajero.PasNombre", "pasajero.PasNombre", "Debe ingresar solo letras.");
+			}
 		}
 		
 		if (pasajero.getPasApellido().equals(null) || pasajero.getPasApellido().equals("")) {
 			error = 1;
 			result.rejectValue("pasajero.PasApellido", "pasajero.PasApellido", "Debe ingresar un apellido.");
+		} else {
+			String apellido = pasajero.getPasApellido().trim();
+			pattern = "^[a-zA-Z]+";
+			if (!apellido.matches(pattern)) {
+				error = 1;
+				result.rejectValue("pasajero.PasApellido", "pasajero.PasApellido", "Debe ingresar solo letras.");
+			}
 		}
 		
 		String telefono = pasajero.getPasTelefono();

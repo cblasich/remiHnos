@@ -32,7 +32,7 @@ public class Remis implements Serializable {
 	
 	@Column(name="rempatente", length=10, unique=true)
 	@NotEmpty(message = "Debe ingresar una patente.")
-	private String RemPatente;
+	private String remPatente;
 	
 	@Column(name="remmodelo", length=30)
 	@NotEmpty(message = "Debe ingresar un modelo.")
@@ -65,11 +65,11 @@ public class Remis implements Serializable {
 	}
 
 	public String getRemPatente() {
-		return RemPatente;
+		return remPatente;
 	}
 
 	public void setRemPatente(String remPatente) {
-		RemPatente = remPatente;
+		this.remPatente = remPatente;
 	}
 
 	public String getRemModelo() {

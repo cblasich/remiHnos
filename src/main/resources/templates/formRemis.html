@@ -20,8 +20,8 @@
 				<div class="form-group row">
 					<div class="col-1 d-sm-none"></div>
 					<div class="col-10 col-sm-3">
-						<input type="text" th:field="*{RemPatente}" class="form-control"/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('RemPatente')}" th:errors="*{RemPatente}"></small>
+						<input type="text" th:field="*{remPatente}" class="form-control"/>
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('remPatente')}" th:errors="*{remPatente}"></small>
 					</div>
 				</div>	
 				<div class="row">
@@ -45,7 +45,11 @@
 						<input type="text" th:field="*{RemMarca}" class="form-control"/>
 						<small class="form-text text-danger" th:if="${#fields.hasErrors('RemMarca')}" th:errors="*{RemMarca}"></small>
 					</div>
-				</div>	
+				</div>
+				<div class="form-check">
+				    <input type="checkbox" th:field="{RemEstado}" class="form-check-input" value="S">
+				    <label class="form-check-label">Disponible</label>
+			  	</div>
 			<!-- 	<div class="row">
 					<div class="col-1 d-sm-none"></div>
 					<label class="col-4 col-sm-1 col-form-label">Estado</label>
@@ -98,5 +102,6 @@
 				</div>
 			</form>
 		</div>
+	<footer th:replace="layout/layout :: footer"></footer>
 	</body>
 </html>

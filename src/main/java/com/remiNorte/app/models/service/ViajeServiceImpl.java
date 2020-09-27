@@ -18,4 +18,16 @@ public class ViajeServiceImpl implements IViajeService {
 		
 		return viajeDao.devCanTarViajes(tarifaId);
 	}
+
+	@Override
+	public Long canRemVia(Long remisId) {
+		// TODO Auto-generated method stub
+		return viajeDao.canRemVia(remisId);
+	}
+	
+	@Override
+	public Long canOpeVia(Long opeId) {
+		// TODO Auto-generated method stub
+		return viajeDao.canOpeVia(opeId);
+	}
 }
