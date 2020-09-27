@@ -38,7 +38,7 @@ public class RemisController {
 		return "listarRemises";		
 	}
 	
-	@RequestMapping(value="/formRemis")
+	@RequestMapping(value="/formRemis", method=RequestMethod.GET)
 	public String crear(Map<String, Object> model) {   
 		Remis remis = new Remis();
 		
@@ -71,7 +71,9 @@ public class RemisController {
 							SessionStatus status) { //metodo que procesa el formulario
 		
 		if(result.hasErrors()) {
-			model.addAttribute("titulo", "Nuevo Registro");
+			model.addAttribute("backPage", "/listarRemises");
+			model.addAttribute("titulo", "Nuevo Remis");
+			model.addAttribute("remis", remis);
 			return "formRemis";
 		}
 		
