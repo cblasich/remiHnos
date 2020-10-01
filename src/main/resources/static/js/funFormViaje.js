@@ -136,6 +136,7 @@ function ValidarOriDes() {
 	  	$("#OriCalle").val(null);
 	  	ok = 0;
 	  	$("#errOriCalle").removeClass("d-none");
+	  	$("#errOriCalle2").addClass("d-none");   
 	} else {
 		$("#errOriCalle").addClass("d-none");
 		$("#errOriCalle2").addClass("d-none");
@@ -144,6 +145,7 @@ function ValidarOriDes() {
 	  	$("#OriNum").val(null);
 	  	ok = 0;
 	  	$("#errOriNum").removeClass("d-none");
+	  	$("#errOriNum2").addClass("d-none");   
 	} else {
 		$("#errOriNum").addClass("d-none");
 		$("#errOriNum2").addClass("d-none");
