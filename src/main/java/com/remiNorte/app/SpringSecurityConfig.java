@@ -23,7 +23,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		//"/" -> ruta raiz, /css/** -> todo lo que este dentro de css
 		http.authorizeRequests().antMatchers("/css/**","/js/**","/open-iconic/**","/webfonts/**","/formViaje","/error_403",
-				"/inicio","/","/formUsuario","/forgotPassword","/resetPassword").permitAll()
+				"/inicio","/","/formUsuario","/forgotPassword","/resetPassword","/images/fondo_principal.jpg").permitAll()
 		.antMatchers("/formOperador","/formTarifa","/iniOperador", 
 				"/listarTarifas","/listarOperadores","/listarPasajeros","/listarRemises",
 				"/listarViajes","/formOperador","/formRemis","/formTarifa").hasAnyRole("ADMIN","OPERAD")

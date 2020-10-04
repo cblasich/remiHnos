@@ -82,6 +82,7 @@ html, body{
 
 body{
 	background:#FFFFFF;
+	background-image: url("../images/fondo_principal.jpg");
 }
 
 .btn-alta {
@@ -137,7 +138,7 @@ body{
 }
 
 .fondo-color {
-	background-color: #ECF657;
+/* 	background-color: #ECF657; */
 }
 
 .fondo-header {
