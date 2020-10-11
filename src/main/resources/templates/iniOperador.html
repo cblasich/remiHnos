@@ -3,12 +3,54 @@
 	<head th:replace="layout/layout :: head">
 		<meta charset="UTF-8" />
 	</head>
-		<body class="fondo-color">
-				<header th:replace="layout/layout :: headerOpe"></header>
-				<div class="container-fluid fondo-color" style="height: 33.3rem">
+		<body>
+		<div class="container-fluid">
+				
+			
+			<div class="row">
+					<div class="col-12">
+						<header th:replace="layout/layout :: headerOpe"></header>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-12 text-center">
+						<h1>Remises Norte</h1>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-12 text-center">
+						<form>
+							<div class="form-group">
+								<a type="submit" class="btn btn-primary btn-lg" th:href="@{/listarViajes}">Pedidos</a>
+							</div>
+							
+							<div class="form-group">
+								<a type="submit" class="btn btn-primary btn-lg" th:href="@{/listarRemises}">Remises</a>
+							</div>
+							
+							<div class="form-group">
+								<a type="submit" class="btn btn-primary btn-lg" th:href="@{/listarTarifas}">Tarifa</a>
+							</div>
+							
+							<div class="form-group">
+								<a type="submit" class="btn btn-primary btn-lg" th:href="@{/listarOperadores}">Operadores</a>
+							</div>
+							
+							<div class="form-group">
+								<a type="submit" class="btn btn-primary btn-lg" th:href="@{/listarPasajeros}">Pasajeros</a>
+							</div>
+						</form>
+					</div>
+				</div>
+		
+		<!-- <div class="container-fluid fondo-color" style="height: 33.3rem">
 			<div class="row fondo-color"> 
 				<div class="col-1 p-5"></div>
 			</div>
+			
+			
 			<div class="row">
 				<div class="col-1"></div>
 				<div class="col-10 pt-3 pb-2 titulo-logo"> 
@@ -63,6 +105,7 @@
 				</div>
 				<div class="col-1 col-sm-5"></div>
 			</div>
+		</div> -->
 		</div>
 		<footer th:replace="layout/layout :: footer"></footer>
 	</body>

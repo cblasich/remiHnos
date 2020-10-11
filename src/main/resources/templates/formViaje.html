@@ -3,7 +3,7 @@
 	<head th:replace="layout/layout :: head">
 		<meta charset="UTF-8" />
 	</head>
-	<body class="fondo-color">
+	<body>
 		<header th:replace="layout/layout :: headerCli"></header> 		 
 		<script type="text/javascript" th:src="@{/js/iniHereMap.js} "></script>	
 		<div class="container-fluid" id="contPpal"> 
@@ -60,6 +60,17 @@
 						</div>
 					</div>
 				</div>
+				<div class="row separacion1">
+					<div class="col-1 col-sm-1 col-form-label">&nbsp; </div>	
+				</div>	
+				<div id="contBtnPreEst" class="form-group row">
+					<div class="col-1 col-sm-1">&nbsp;</div>
+					<div id="btnVerPrecio" class="col-10 col-sm-3 text-center">
+						<button type="button" class="btn btn-primary" >Ver precio estimado</button>
+						<input type="hidden" />
+					</div>
+					<div class="col-1 ">&nbsp;</div>
+				</div>
 				<div id="contMapa" class="container-fluid d-none shadow p-3 mb-5 rounded"> 
 					<div id="rowMapa" class="row altura-30 quitaMargRL">
 						<div class="col-1 col-sm-1"></div>   
@@ -100,11 +111,11 @@
 						<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaTelefono')}" th:errors="*{ViaTelefono}"></small>
 					</div>
 				</div>
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-1 col-sm-1"></div>
 					<label class="col-4 col-sm-2 col-form-label">Forma de pago</label>
-				</div>
-				<div class="row">
+				</div> -->
+				<!-- <div class="row">
 					<div class="col-1 col-sm-1"></div>
 					<div class="col-11 pb-3">
 					<div class="col-11 pb-3">
@@ -112,20 +123,10 @@
 						<input type="radio" name="medioPago" value="T" th:field="*{ViaForPag}"> Tarjeta (vía Mercado Pago)<br>
 					</div>
 					</div>
-				</div>
+				</div> -->
 				<input type="hidden" id="bajban" th:value="${viaje.Tarifa.TarBajBan}"/>
 				<input type="hidden" id="pre100m" th:value="${viaje.Tarifa.TarImp100m}"/>
-				<div class="row separacion1">
-					<div class="col-1 col-sm-1 col-form-label">&nbsp; </div>	
-				</div>	
-				<div id="contBtnPreEst" class="form-group row">
-					<div class="col-1 col-sm-1">&nbsp;</div>
-					<div id="btnVerPrecio" class="col-10 col-sm-3 text-center">
-						<button type="button" class="btn btn-primary" >Ver precio estimado</button>
-						<input type="hidden" />
-					</div>
-					<div class="col-1 ">&nbsp;</div>
-				</div>
+				
 				<div class="form-group row">
 					<div class="col-1 col-sm-1">&nbsp;</div>
 					<div class="col-10 col-sm-3 text-center">
