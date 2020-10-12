@@ -24,7 +24,7 @@
 						<div class="col-1 d-sm-none"></div>
 						<div class="col-10 col-sm-3">
 							<label class="font-weight-bold">Origen </label>
-							<input type="text" th:field="*{ViaCalleOri}" class="form-control" placeholder="Calle" readonly required/>
+							<input type="text" th:field="*{ViaCalleOri}" class="form-control" placeholder="Calle" readonly/>
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaCalleOri')}" th:errors="*{ViaCalleOri}"></small>
 						</div>
 						<div class="col-1 d-sm-none"></div>
@@ -34,7 +34,7 @@
 					<div class="form-group">
 						<div class="col-1 d-sm-none"></div>
 						<div class="col-10 col-sm-3">
-							<input type="number" th:field="*{ViaNumOri}" class="form-control" placeholder="Altura" readonly required/>
+							<input type="number" th:field="*{ViaNumOri}" class="form-control" placeholder="Altura" readonly/>
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaNumOri')}" th:errors="*{ViaNumOri}"></small>
 						</div>
 					</div>
@@ -63,96 +63,74 @@
 							<input type="number" th:field="*{ViaTelefono}" class="form-control" readonly/>
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaTelefono')}" th:errors="*{ViaTelefono}"></small>
 						</div>
-					</div>					
-
+					</div>
+					
 					<div class="form-group">
-						<div class="col-1 col-sm-3"></div>
-						<div class="col-10 col-sm-2">
+						<div class="col-1 d-sm-none"></div>
+						<div class="col-10 col-sm-3">
 							<label class="font-weight-bold">Remisero</label>
-							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#seleccionRemis">
-						  		<span class="oi oi-magnifying-glass"></span>
-							</button>
-							<input class="form-control" id="RemId" type="number" th:field="*{Remis.RemId}">
-							
-							<small class="form-text text-danger" th:if="${#fields.hasErrors('Remis')}" th:errors="*{Remis}"></small>
+							<div class="row">
+								<div class="col-9">							
+									<input class="form-control" id="RemId" type="number" th:field="*{Remis.RemId}">							
+									<small class="form-text text-danger" th:if="${#fields.hasErrors('Remis')}" th:errors="*{Remis}"></small>
+								</div>
+								<div class="col-1">
+									<button type="button" class="btn btn-info" data-toggle="modal" data-target="#seleccionRemis">
+								  		<span class="oi oi-magnifying-glass"></span>
+									</button>
+								</div>
+							</div>
 						</div>
-						<!-- <div class="col-4 col-sm-2">
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#seleccionRemis">
-						  		<span class="oi oi-magnifying-glass"></span>
-							</button>						
-						</div> -->
 					</div>
-					
-<!-- 					<div class="row separacion1">
-						<div class="col-1 col-sm-1 col-form-label">&nbsp; </div>	
-					</div>	 -->
-					
-					<div class="form-group">
-						<div class="col-1 d-sm-none">&nbsp;</div>
-						<div class="col-10 col-sm-3 text-left">
-							<button type="submit" class="btn btn-primary">Confirmar</button>
-							<input type="hidden" th:field="*{ViaId}" />
-							
+						
+	<!-- 					<div class="row separacion1">
+							<div class="col-1 col-sm-1 col-form-label">&nbsp; </div>	
+						</div>	 -->
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none">&nbsp;</div>
+							<div class="col-10 col-sm-3 text-left">
+								<button type="submit" class="btn btn-primary">Confirmar</button>
+								<input type="hidden" th:field="*{ViaId}" />
+								
+							</div>
+							<div class="col-1 ">&nbsp;</div>
 						</div>
-						<div class="col-1 ">&nbsp;</div>
-					</div>
+					
 				</form>
 			</div>
 		</div>
-		
+
 		<!-- Modal -->
- 		<div class="modal fade ng-scope in" id="seleccionRemis" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h2 class="modal-title text-warning">Selección de remiseros disponibles</h2>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <p></p>
-		      <p></p>
-		    <form class="form-inline">
-		    	<label for="filRemNombre" class="col-sm-2 col-form-label">Nombre</label>
-      			<div class="form-group mx-sm-3 mb-2">
-				    <input type="text" class="form-control" id="filRemNombre" onkeyup="devRemiserosPorNombre()">
-			  	</div>
-		  	</form>
-		      <div class="modal-body" id="tabSelRem">
-		        <!-- <table class="table table-hover table-warning">
-				<thead>
-					<tr>
-						<th class="text-center columna"></th>
-						<th class="columna">Id</th>
-						<th class="columna">Patente</th>
-						<th class="columna">Modelo</th>
-						<th class="columna">Marca</th>
-						<th class="columna">Nombre Conductor</th>
-						<th class="columna">Apellido</th>						
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="remisSel: ${remises}">
-						<td class="text-center">
-							<a class="btn btn-xs selLinRem" th:id="${remisSel.RemId}" data-toggle="tooltip" data-placement="bottom" >
-								<span class="oi oi-check"></span>
-							</a>
-						</td>
-						<td th:text="${remisSel.RemId}"></td>
-						<td th:text="${remisSel.RemPatente}"></td>
-						<td th:text="${remisSel.RemModelo}"></td>
-						<td th:text="${remisSel.RemMarca}"></td>
-						<td th:text="${remisSel.RemNomConductor}"></td>
-						<td th:text="${remisSel.RemApeConductor}"></td>						
-					</tr>
-				</tbody>
-			</table> -->
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
-		  </div>
+		<div class="modal fade ng-scope in" id="seleccionRemis" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h2 class="modal-title text-warning">Selección de remiseros
+							disponibles</h2>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<p></p>
+					<p></p>
+					<form class="form-inline">
+						<label for="filRemNombre" class="col-sm-2 col-form-label">Nombre</label>
+						<div class="form-group mx-sm-3 mb-2">
+							<input type="text" class="form-control" id="filRemNombre"
+								onkeyup="devRemiserosPorNombre()">
+						</div>
+					</form>
+					<div class="modal-body" id="tabSelRem"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>	
 	
