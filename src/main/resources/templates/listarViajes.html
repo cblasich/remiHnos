@@ -13,7 +13,7 @@
 			<input type="hidden" id="maxViaIdActual" th:value="${maxViaIdActual}" />
 			<div class="row">
 				<div class="col-1">
-					<a class="btn btn-xs btn-primary" data-toggle="tooltip" title="Actualizar página" data-placement="bottom"><span class="oi oi-reload" onClick="window.location.reload();"></span></a>
+					<a class="btn btn-xs btn-info" data-toggle="tooltip" title="Actualizar página" data-placement="bottom"><span class="oi oi-reload" onClick="window.location.reload();"></span></a>
 				</div>
 				<div class="col-5">
 					<span id="notifViaje" class="parpadea text d-none" onClick="window.location.reload();"><strong>Hay pedidos nuevos. Actualice para ver.</strong></span>
@@ -49,7 +49,7 @@
 						<td th:if="${viaje.Remis != null}" th:text="${viaje.Remis.RemApeConductor} + ' ' + ${viaje.Remis.RemNomConductor}" ></td>
 						<td th:if="${viaje.Remis == null}"></td>
 						<td class="text-center">
-							<a class="btn btn-xs btn-primary" th:href="@{/formViajeRem/} + ${viaje.ViaId}" data-toggle="tooltip" title="Asignar remisero" data-placement="bottom" >
+							<a class="btn btn-xs btn-info" th:href="@{/formViajeRem/} + ${viaje.ViaId}" data-toggle="tooltip" title="Asignar remisero" data-placement="bottom" >
 								<span class="oi oi-account-login"></span>
 							</a>
 						</td>
