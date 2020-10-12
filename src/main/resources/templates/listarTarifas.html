@@ -3,57 +3,61 @@
 	<head th:replace="layout/layout :: head">
 		<meta charset="UTF-8" />
 	</head>
-<body class="fondo-color">
-	<header th:replace="layout/layout :: headerOpe"></header>
-	<div class="container">
-		<p></p>
-		<p></p>
-		
-		
-		<div class="row">
-			<div class="col-1">
-				<a class="btn btn-info btn-xs"  th:href="@{/formTarifa}" data-toggle="tooltip" title="Agregar Nueva Tarifa" data-placement="bottom"><span class="oi oi-plus"></span></a>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<header th:replace="layout/layout :: headerOpe"></header>
+				</div>
 			</div>
-			<div class="col-11"> </div>
-		</div>
-		<div class="separacion1"></div>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th class="columna">Id</th>
-					<th class="columna">Fecha vigencia desde</th>
-					<th class="columna">Fecha vigencia hasta</th>
-					<th class="columna">Bajada de bandera</th>
-					<th class="columna">Importe cada 100m</th>
-					<!-- <th class="text-center columna">Modificar</th> -->
-					<th class="text-center columna">Eliminar</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="tarifa: ${tarifas}">
-<!-- 					llama implicitamente a los get. Por eso es necesario tenerlos siempre definidos en la clase -->
-					<td th:text="${tarifa.TarId}"></td> 
-					<td th:text="${tarifa.TarFecVigDes}"></td>
-					<td th:text="${tarifa.TarFecVigHas}"></td>
-					<td th:text="${tarifa.TarBajBan}"></td>
-					<td th:text="${tarifa.TarImp100m}"></td>
-					<!-- <td class="text-center"><a class="btn btn-danger btn-xs"  th:href="@{/eliminarTarifa/} + ${tarifa.TarId}" onclick="return confirm('Estás seguro de que quieres eliminar la tarifa?');" th:text="eliminar"></a></td>
-					 -->
-					 <!-- <td class="text-center">
-							<a class="btn btn-xs"  th:href="@{/formTarifa/} + ${tarifa.TarId}"  data-toggle="tooltip" title="Modificar Tarifa" data-placement="bottom" >
-								<span style="color: blue;"><i class="fas fa-edit"></i></span>
+			<p></p>
+			<p></p>
+			
+			
+			<div class="row">
+				<div class="col-1">
+					<a class="btn btn-info btn-xs"  th:href="@{/formTarifa}" data-toggle="tooltip" title="Agregar Nueva Tarifa" data-placement="bottom"><span class="oi oi-plus"></span></a>
+				</div>
+				<div class="col-11"> </div>
+			</div>
+			<div class="separacion1"></div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th class="columna">Id</th>
+						<th class="columna">Fecha vigencia desde</th>
+						<th class="columna">Fecha vigencia hasta</th>
+						<th class="columna">Bajada de bandera</th>
+						<th class="columna">Importe cada 100m</th>
+						<!-- <th class="text-center columna">Modificar</th> -->
+						<th class="text-center columna">Eliminar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="tarifa: ${tarifas}">
+	<!-- 					llama implicitamente a los get. Por eso es necesario tenerlos siempre definidos en la clase -->
+						<td th:text="${tarifa.TarId}"></td> 
+						<td th:text="${tarifa.TarFecVigDes}"></td>
+						<td th:text="${tarifa.TarFecVigHas}"></td>
+						<td th:text="${tarifa.TarBajBan}"></td>
+						<td th:text="${tarifa.TarImp100m}"></td>
+						<!-- <td class="text-center"><a class="btn btn-danger btn-xs"  th:href="@{/eliminarTarifa/} + ${tarifa.TarId}" onclick="return confirm('Estás seguro de que quieres eliminar la tarifa?');" th:text="eliminar"></a></td>
+						 -->
+						 <!-- <td class="text-center">
+								<a class="btn btn-xs"  th:href="@{/formTarifa/} + ${tarifa.TarId}"  data-toggle="tooltip" title="Modificar Tarifa" data-placement="bottom" >
+									<span style="color: blue;"><i class="fas fa-edit"></i></span>
+								</a>
+						</td> -->
+						<td class="text-center">
+							<a class="btn btn-xs btn-danger"  th:href="@{/eliminarTarifa/} + ${tarifa.TarId}" onclick="return confirm('Estás seguro de que quieres eliminar la tarifa?');" data-toggle="tooltip" title="Eliminar Tarifa" data-placement="bottom" >
+								<span class="oi oi-trash"></span>
 							</a>
-					</td> -->
-					<td class="text-center">
-						<a class="btn btn-xs btn-danger"  th:href="@{/eliminarTarifa/} + ${tarifa.TarId}" onclick="return confirm('Estás seguro de que quieres eliminar la tarifa?');" data-toggle="tooltip" title="Eliminar Tarifa" data-placement="bottom" >
-							<span class="oi oi-trash"></span>
-						</a>
-					</td>
-				
-				</tr>
-			</tbody>
-		</table>
-	</div>	
+						</td>
+					
+					</tr>
+				</tbody>
+			</table>
+		</div>	
 	<footer th:replace="layout/layout :: footer"></footer>
-</body>
+	</body>
 </html>
