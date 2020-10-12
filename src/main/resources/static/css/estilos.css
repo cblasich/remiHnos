@@ -3,21 +3,21 @@
     margin:0 auto;
 }
 
-/* .btn-primary { */
-/*   color: #000000; */
-/*   background-color: #c6b40d; */
-/*   border-color: #c6b40d; */
-/*   padding-left:20px; */
-/*   padding-right:20px; */
-/*   padding-top: 8px; */
-/*   padding-bottom: 8px; */
-/*   font-size:12px; */
-/*   font-weight:bold; */
-/*   width:100%; */
-/*   outline:none; */
-/*   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */
-/*   transition:.3s;  */
-/* } */
+.btn-primary {
+  color: #000000;
+  /* background-color: #c6b40d;
+  border-color: #c6b40d; */
+  padding-left:20px;
+  padding-right:20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size:12px;
+  font-weight:bold;
+  width:100%;
+  outline:none;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition:.3s; 
+}
 /* .btn-primary:focus, */
 /* .btn-primary.focus { */
 /*   color: #ffffff; */
