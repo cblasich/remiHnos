@@ -24,7 +24,7 @@
 		<nav class="navbar navbar-expand navbar-light bg-primary">
 			<a class="navbar-brand" th:href="@{/inicio}"><span class="oi oi-home"></span></a>
 			<a class="navbar-brand" th:href="@{${backPage}}" ><span class="oi oi-arrow-thick-left"></span></a>
-			<a class="navbar-brand" th:href="@{#}" th:text="${titulo}"></a> 
+			<a class="navbar-brand font-weight-bold" th:href="@{#}" th:text="${titulo}"></a> 
 			<div class="dropdown show" sec:authorize="isAuthenticated()">
 				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    	<!-- <span sec:authentication="name"></span> -->
@@ -51,7 +51,7 @@
 		<nav class="navbar navbar-expand-sm navbar-light bg-primary">
 			<a class="navbar-brand" th:href="@{/inicio}"><span class="oi oi-home"></span></a>
 			<a class="navbar-brand" th:href="@{${backPage}}"><span class="oi oi-arrow-thick-left"></span></a>
-			<a class="navbar-brand" th:href="@{#}" th:text="${titulo}"></a> 
+			<a class="navbar-brand font-weight-bold" th:href="@{#}" th:text="${titulo}"></a> 
 			<div class="dropdown show" sec:authorize="isAuthenticated()">
 				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    	<!-- <span sec:authentication="name"></span> -->
