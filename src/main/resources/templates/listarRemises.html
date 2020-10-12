@@ -10,12 +10,12 @@
 			<p></p>
 			<div class="row">
 				<div class="col-1">
-					<a class="btn btn-alta btn-xs"  th:href="@{/formRemis}" data-toggle="tooltip" title="Agregar Nuevo Remis" data-placement="bottom"><i class="fas fa-plus"></i></a>
+					<a class="btn btn-xs btn-primary"  th:href="@{/formRemis}" data-toggle="tooltip" title="Agregar Nuevo Remis" data-placement="bottom"><span class="oi oi-plus"></span></a>
 				</div>
 				<div class="col-11"> </div>
 			</div>
 			<div class="separacion1"></div>
-			<table class="table table-striped">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th class="columna">Id</th>
@@ -41,13 +41,13 @@
 						<td th:text="${remis.RemNomConductor}"></td>
 						<td th:text="${remis.RemApeConductor}"></td>
 						<td class="text-center">
-							<a class="btn btn-xs"  th:href="@{/formRemis/} + ${remis.RemId}"  data-toggle="tooltip" title="Modificar Remis" data-placement="bottom" >    
-								<span style="color: blue;"><i class="fas fa-edit"></i></span>
+							<a class="btn btn-xs btn-secondary"  th:href="@{/formRemis/} + ${remis.RemId}"  data-toggle="tooltip" title="Modificar Remis" data-placement="bottom" >    
+								<span class="oi oi-pencil"></span>
 							</a>
 						</td>
 						<td class="text-center">
-							<a class="btn btn-xs"  th:href="@{/eliminarRemis/} + ${remis.RemId}" onclick="return confirm('Estás seguro de que quieres eliminar el remís?');" data-toggle="tooltip" title="Eliminar Remis" data-placement="bottom" >
-								<span style="color: Tomato;"><i class="fas fa-trash-alt"></i></span>
+							<a class="btn btn-xs btn-danger"  th:href="@{/eliminarRemis/} + ${remis.RemId}" onclick="return confirm('Estás seguro de que quieres eliminar el remís?');" data-toggle="tooltip" title="Eliminar Remis" data-placement="bottom" >
+								<span class="oi oi-trash"></span>
 							</a>
 						</td>
 					</tr>

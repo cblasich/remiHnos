@@ -85,8 +85,8 @@ body{
 	background-image: url("../images/fondo_principal.jpg");
 }
 
-.btn-alta {
-  color: #000000;
+/* .btn-alta {
+  color: #0080ff;
   background-color: #00bd30;
   border-color: #d07902;
   padding-left:20px;
@@ -96,7 +96,7 @@ body{
   font-size:12px;
   font-weight:bold;
   width:100%;
-}
+} */
 
 @media (min-width: 768px) {
   .superponerSM {

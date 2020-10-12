@@ -27,7 +27,8 @@
 			<a class="navbar-brand" th:href="@{#}" th:text="${titulo}"></a> 
 			<div class="dropdown show" sec:authorize="isAuthenticated()">
 				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    	<span sec:authentication="name"></span>
+			    	<!-- <span sec:authentication="name"></span> -->
+			    	<span>Cuenta</span>
 			  	</a>
 			  	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 			    	<a class="dropdown-item" th:href="@{/formUsuario}">Editar datos</a>
@@ -53,7 +54,8 @@
 			<a class="navbar-brand" th:href="@{#}" th:text="${titulo}"></a> 
 			<div class="dropdown show" sec:authorize="isAuthenticated()">
 				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    	<span sec:authentication="name"></span>
+			    	<!-- <span sec:authentication="name"></span> -->
+			    	<span>Cuenta</span>
 			  	</a>
 			  	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 				    <form id="logoutForm" th:action="@{/logout}" method="post">

@@ -13,7 +13,7 @@
 			<input type="hidden" id="maxViaIdActual" th:value="${maxViaIdActual}" />
 			<div class="row">
 				<div class="col-1">
-					<a class="btn btn-alta btn-xs" data-toggle="tooltip" title="Actualizar página" data-placement="bottom"><i class="fas fa-sync-alt" onClick="window.location.reload();"></i></a>
+					<a class="btn btn-xs btn-primary" data-toggle="tooltip" title="Actualizar página" data-placement="bottom"><span class="oi oi-reload" onClick="window.location.reload();"></span></a>
 				</div>
 				<div class="col-5">
 					<span id="notifViaje" class="parpadea text d-none" onClick="window.location.reload();"><strong>Hay pedidos nuevos. Actualice para ver.</strong></span>
@@ -22,7 +22,7 @@
 			</div>
 			<div class="separacion1"></div>
 			<div class="separacion1"></div>
-			<table class="table table-striped">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th class="columna">Id</th>
@@ -49,8 +49,8 @@
 						<td th:if="${viaje.Remis != null}" th:text="${viaje.Remis.RemApeConductor} + ' ' + ${viaje.Remis.RemNomConductor}" ></td>
 						<td th:if="${viaje.Remis == null}"></td>
 						<td class="text-center">
-							<a class="btn btn-xs" th:href="@{/formViajeRem/} + ${viaje.ViaId}" data-toggle="tooltip" title="Asignar remisero" data-placement="bottom" >
-								<span>Asignar</span>
+							<a class="btn btn-xs btn-primary" th:href="@{/formViajeRem/} + ${viaje.ViaId}" data-toggle="tooltip" title="Asignar remisero" data-placement="bottom" >
+								<span class="oi oi-account-login"></span>
 							</a>
 						</td>
 						<!-- <td class="text-center">

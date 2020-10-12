@@ -40,8 +40,10 @@ public class PasswordController {
 	
 	// Display forgotPassword page
 	@RequestMapping(value = "/forgotPassword", method = RequestMethod.GET)
-	public ModelAndView displayForgotPasswordPage() {
-		return new ModelAndView("forgotPassword");
+	public String displayForgotPasswordPage(Model model) {
+		model.addAttribute("titulo", "Reiniciar contraseñá");
+		model.addAttribute("backPage", "/login");
+		return "forgotPassword";
     }
     
     // Process form submission from forgotPassword page

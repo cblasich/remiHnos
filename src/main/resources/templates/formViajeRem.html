@@ -3,110 +3,101 @@
 	<head th:replace="layout/layout :: head">
 		<meta charset="UTF-8" />
 	</head>
-	<body class="fondo-color">
-		<header th:replace="layout/layout :: headerCli"></header> 		 
-		<div class="containerSinMargen">
-			<p></p>
-			<p></p>
-			<form th:action="@{/formViajeRem}" th:object="${viaje}" method="post">
-				<div class="row separacion4">
-					<div class="col-1 col-sm-1 col-form-label d-none">&nbsp; </div>	
-				</div>
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Origen </label>
-					<div class="col-sm-11 d-none"></div>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-3">
-						<input type="text" th:field="*{ViaCalleOri}" class="form-control" placeholder="Calle" readonly required/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaCalleOri')}" th:errors="*{ViaCalleOri}"></small>
-					</div>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-3">
-						<input type="number" th:field="*{ViaNumOri}" class="form-control" placeholder="Altura" readonly required/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaNumOri')}" th:errors="*{ViaNumOri}"></small>
-					</div>
-				</div>	
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Destino </label>
-					<div class="col-sm-11 d-none"></div>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-3">
-						<input type="text" th:field="*{ViaCalleDes}" class="form-control" placeholder="Calle" readonly />
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaCalleDes')}" th:errors="*{ViaCalleDes}"></small>
-					</div>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-3">
-						<input type="number" th:field="*{ViaNumDes}" class="form-control" placeholder="Altura" readonly />
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaNumDes')}" th:errors="*{ViaNumDes}"></small>
-					</div>
-				</div>
+	<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<header th:replace="layout/layout :: headerCli"></header>
+			</div>
+		</div> 
+		
+		<div class="row">
+			<div class="col-12">
 				
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Teléfono</label>
-				</div>
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-3">
-						<input type="number" th:field="*{ViaTelefono}" class="form-control" readonly/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaTelefono')}" th:errors="*{ViaTelefono}"></small>
-					</div>
-				</div>
+				<form th:action="@{/formViajeRem}" th:object="${viaje}" method="post">
 				
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Remisero</label>
-				</div>
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-2">
-						<input class="form-control" id="RemId" type="number" th:field="*{Remis.RemId}">
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('Remis')}" th:errors="*{Remis}"></small>
+					<div class="row separacion4">
+						<div class="col-1 col-sm-1 col-form-label d-none">&nbsp; </div>	
 					</div>
-					<div class="col-1 col-sm-1">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#seleccionRemis">
-					  		<span class="oi oi-magnifying-glass"></span>
-						</button>						
+					
+					<div class="form-group">
+						<div class="col-1 d-sm-none"></div>
+						<div class="col-10 col-sm-3">
+							<label>Origen </label>
+							<input type="text" th:field="*{ViaCalleOri}" class="form-control" placeholder="Calle" readonly required/>
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaCalleOri')}" th:errors="*{ViaCalleOri}"></small>
+						</div>
+						<div class="col-1 d-sm-none"></div>
+					</div>	
+					
+					
+					<div class="form-group">
+						<div class="col-1 d-sm-none"></div>
+						<div class="col-10 col-sm-3">
+							<input type="number" th:field="*{ViaNumOri}" class="form-control" placeholder="Altura" readonly required/>
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaNumOri')}" th:errors="*{ViaNumOri}"></small>
+						</div>
 					</div>
-				</div>
-				
-				<!-- Comentado hasta que se implemente Mercado Pago -->
-<!-- 				<div class="row"> -->
-<!-- 					<div class="col-1 d-sm-none"></div> -->
-<!-- 					<label class="col-4 col-sm-1 col-form-label">Forma de pago</label> -->
-<!-- 				</div> -->
-<!-- 				<div class="row"> -->
-<!-- 					<div class="col-1 d-sm-none"></div> -->
-<!-- 					<div class="col-11 pb-3"> -->
-<!-- 					<div class="col-11 pb-3"> -->
-<!-- 						<input type="radio" name="medioPago" value="E" th:field="*{ViaForPag}" required> Efectivo<br> -->
-<!-- 						<input type="radio" name="medioPago" value="T" th:field="*{ViaForPag}" required> Tarjeta (vía Mercado Pago)<br> -->
-<!-- 					</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-				<div class="row separacion1">
-					<div class="col-1 col-sm-1 col-form-label">&nbsp; </div>	
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none">&nbsp;</div>
-					<div class="col-10 col-sm-3 text-center">
-						<button type="submit" class="btn btn-primary">Confirmar</button>
-						<input type="hidden" th:field="*{ViaId}" />
 						
+					<div class="form-group">
+						<div class="col-1 d-sm-none"></div>
+						<div class="col-10 col-sm-3">
+							<label>Destino </label>
+							<input type="text" th:field="*{ViaCalleDes}" class="form-control" placeholder="Calle" readonly />
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaCalleDes')}" th:errors="*{ViaCalleDes}"></small>
+						</div>
+					</div>	
+					
+					<div class="form-group">
+						<div class="col-1 d-sm-none"></div>
+						<div class="col-10 col-sm-3">
+							<input type="number" th:field="*{ViaNumDes}" class="form-control" placeholder="Altura" readonly />
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaNumDes')}" th:errors="*{ViaNumDes}"></small>
+						</div>
 					</div>
-					<div class="col-1 ">&nbsp;</div>
-				</div>
-			</form>
+
+					<div class="form-group">
+						<div class="col-1 d-sm-none"></div>
+						<div class="col-10 col-sm-3">
+							<label>Teléfono </label>
+							<input type="number" th:field="*{ViaTelefono}" class="form-control" readonly/>
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaTelefono')}" th:errors="*{ViaTelefono}"></small>
+						</div>
+					</div>					
+
+					<div class="form-group">
+						<div class="col-1 col-sm-3"></div>
+						<div class="col-10 col-sm-2">
+							<label>Remisero</label>
+							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#seleccionRemis">
+						  		<span class="oi oi-magnifying-glass"></span>
+							</button>
+							<input class="form-control" id="RemId" type="number" th:field="*{Remis.RemId}">
+							
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('Remis')}" th:errors="*{Remis}"></small>
+						</div>
+						<!-- <div class="col-4 col-sm-2">
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#seleccionRemis">
+						  		<span class="oi oi-magnifying-glass"></span>
+							</button>						
+						</div> -->
+					</div>
+					
+<!-- 					<div class="row separacion1">
+						<div class="col-1 col-sm-1 col-form-label">&nbsp; </div>	
+					</div>	 -->
+					
+					<div class="form-group">
+						<div class="col-1 d-sm-none">&nbsp;</div>
+						<div class="col-10 col-sm-3 text-left">
+							<button type="submit" class="btn btn-primary">Confirmar</button>
+							<input type="hidden" th:field="*{ViaId}" />
+							
+						</div>
+						<div class="col-1 ">&nbsp;</div>
+					</div>
+				</form>
+			</div>
 		</div>
 		
 		<!-- Modal -->
@@ -162,7 +153,8 @@
 		      </div>
 		    </div>
 		  </div>
-		</div> 	
+		</div>
+	</div>	
 	
 	<script>
  		$(document).ready(function() {

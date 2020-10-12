@@ -63,14 +63,14 @@ public class UsuarioController {
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		
 		if (auth.getName() != "anonymousUser") {   // si usuario está logueado
-			model.put("titulo", "Editar datos personales");
+			model.put("titulo", "Editar datos");
 			model.put("lblContra", "Nueva contraseña");
 			model.put("backPage", "/inicio");
-			logger.info("Hola usuario autenticado: "+auth.getName());			
+			//logger.info("Hola usuario autenticado: "+auth.getName());			
 			Usuario usuario = usuarioDao.findByUsername(auth.getName());
 			Pasajero pasajero = pasajeroDao.findByUsuario(usuario);
-			logger.info("Pasajero:"+pasajero.getPasApellido()+" "+pasajero.getPasNombre());
-			logger.info("Id usuario:"+usuario.getUsuId().toString());
+			//logger.info("Pasajero:"+pasajero.getPasApellido()+" "+pasajero.getPasNombre());
+			//logger.info("Id usuario:"+usuario.getUsuId().toString());
 			usuarioDTO.setUsuId(usuario.getUsuId());   // si está logueado llevo id usuario
 			usuarioDTO.setUsername(usuario.getUsername());
 			usuarioDTO.setPasajero(pasajero);   
@@ -78,7 +78,8 @@ public class UsuarioController {
 			usuarioDTO.setUsuId(null);   // si no está logueado id usuario es nulo
 			model.put("titulo", "Nuevo Usuario");
 			model.put("lblContra", "Contraseña");
-			logger.info("ID NULO");
+			model.put("backPage", "/inicio");
+			//logger.info("ID NULO");
 		}
 		model.put("usuario", usuarioDTO);
 		
