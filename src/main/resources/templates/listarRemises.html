@@ -10,7 +10,7 @@
 			<p></p>
 			<div class="row">
 				<div class="col-1">
-					<a class="btn btn-xs btn-primary"  th:href="@{/formRemis}" data-toggle="tooltip" title="Agregar Nuevo Remis" data-placement="bottom"><span class="oi oi-plus"></span></a>
+					<a class="btn btn-xs btn-info"  th:href="@{/formRemis}" data-toggle="tooltip" title="Agregar Nuevo Remis" data-placement="bottom"><span class="oi oi-plus"></span></a>
 				</div>
 				<div class="col-11"> </div>
 			</div>
@@ -41,7 +41,7 @@
 						<td th:text="${remis.RemNomConductor}"></td>
 						<td th:text="${remis.RemApeConductor}"></td>
 						<td class="text-center">
-							<a class="btn btn-xs btn-secondary"  th:href="@{/formRemis/} + ${remis.RemId}"  data-toggle="tooltip" title="Modificar Remis" data-placement="bottom" >    
+							<a class="btn btn-xs btn-info"  th:href="@{/formRemis/} + ${remis.RemId}"  data-toggle="tooltip" title="Modificar Remis" data-placement="bottom" >    
 								<span class="oi oi-pencil"></span>
 							</a>
 						</td>
