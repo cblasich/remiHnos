@@ -93,7 +93,7 @@ const start = async () => {
 	bajban = $("#bajban").val();
 	preEst = Math.ceil(pre100m*dist100+parseFloat(bajban));
 	document.getElementById("monEst").value = preEst;
-	var cos = 'Costo estimado del viaje: $' + preEst + '.'; 
+	var cos = '$' + preEst + '.'; 
 	$("#lblMonEst").text(cos);
 }
 
@@ -105,10 +105,8 @@ $("#btnVerPrecio").click(function() {
 		direOri = oricalle.concat(' ',orinum,' , Formosa, Argentina');
 		direDes = descalle.concat(' ',desnum,' , Formosa, Argentina');
 		start();
-		ori1 = 'Origen: ';
-		ori2 = ori1.concat(oricalle,' ',orinum,'.');   
-		des1 = 'Destino: ';
-		des2 = des1.concat(descalle,' ',desnum,'.');
+		ori2 = oricalle + ' ' + orinum + '.';   
+		des2 = descalle + ' ' + desnum + '.';
 		$("#espacioSup").addClass("d-none d-sm-block");
 		$("#contOrigen").addClass("d-none d-sm-block");
 		$("#contDestino").addClass("d-none d-sm-block");
