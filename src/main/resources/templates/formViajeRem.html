@@ -23,7 +23,7 @@
 					<div class="form-group">
 						<div class="col-1 d-sm-none"></div>
 						<div class="col-10 col-sm-3">
-							<label>Origen </label>
+							<label class="font-weight-bold">Origen </label>
 							<input type="text" th:field="*{ViaCalleOri}" class="form-control" placeholder="Calle" readonly required/>
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaCalleOri')}" th:errors="*{ViaCalleOri}"></small>
 						</div>
@@ -42,7 +42,7 @@
 					<div class="form-group">
 						<div class="col-1 d-sm-none"></div>
 						<div class="col-10 col-sm-3">
-							<label>Destino </label>
+							<label class="font-weight-bold">Destino </label>
 							<input type="text" th:field="*{ViaCalleDes}" class="form-control" placeholder="Calle" readonly />
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaCalleDes')}" th:errors="*{ViaCalleDes}"></small>
 						</div>
@@ -59,7 +59,7 @@
 					<div class="form-group">
 						<div class="col-1 d-sm-none"></div>
 						<div class="col-10 col-sm-3">
-							<label>Teléfono </label>
+							<label class="font-weight-bold">Teléfono </label>
 							<input type="number" th:field="*{ViaTelefono}" class="form-control" readonly/>
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaTelefono')}" th:errors="*{ViaTelefono}"></small>
 						</div>
@@ -68,7 +68,7 @@
 					<div class="form-group">
 						<div class="col-1 col-sm-3"></div>
 						<div class="col-10 col-sm-2">
-							<label>Remisero</label>
+							<label class="font-weight-bold">Remisero</label>
 							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#seleccionRemis">
 						  		<span class="oi oi-magnifying-glass"></span>
 							</button>

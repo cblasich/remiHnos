@@ -46,7 +46,7 @@ $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 $brown:   #c6b40d !default;
 $dark-brown: rgb(143, 129, 3) !default;
-$light-brown: rgb(133, 125, 54) !default;
+$light-brown: rgb(231, 213, 53) !default;
 
 $colors: () !default;
 $colors: map-merge((
@@ -401,7 +401,7 @@ $input-padding-x-lg:                    $input-btn-padding-x-lg !default;
 $input-line-height-lg:                  $input-btn-line-height-lg !default;
 
 $input-bg:                              $white !default;//$brown !default;//
-$input-disabled-bg:                     $gray-200 !default;//$dark-brown !default;//
+$input-disabled-bg:                     $light-brown !default;//$gray-200 !default;//
 
 $input-color:                           $gray-700 !default;//$black !default;//
 $input-border-color:                    $gray-400 !default;//$brown !default;//
