@@ -15,24 +15,22 @@
 				</div> 
 				<div class="row">
 					<div class="col-12 text-center">
-						<h1>Remises Norte</h1>
+						<h1>Remises Norte Formosa</h1>
 					</div>
 				</div>
 				<div class="row">  
 					<div class="col-1 p-4"></div> 
 				</div> 
 				<div class="row">
-					<div class="col-5 text-center"></div>
-					<div class="col-2 text-center">
+					<div class="col-1 col-sm-5 text-center"></div>
+					<div class="text-center col-10 col-sm-2">
 						<form>
 							<div class="form-group">
 								<a type="submit" class="btn btn-primary btn-lg" th:href="@{/formViaje}">Pedir m&oacute;vil</a>
 							</div>
-							
 							<div class="form-group" sec:authorize="!isAuthenticated()">
 								<a type="submit" class="btn btn-primary btn-lg" th:href="@{/login}">Iniciar sesi&oacute;n</a>
 							</div>
-							
 							<div class="form-group" sec:authorize="!isAuthenticated()">
 								<a type="submit" class="btn btn-primary btn-lg" th:href="@{/formUsuario}">Nueva cuenta</a>
 							</div>
