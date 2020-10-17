@@ -20,24 +20,11 @@
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   transition:.3s; 
 }
-/* .btn-primary:focus, */
-/* .btn-primary.focus { */
-/*   color: #ffffff; */
-/*   background-color: #b17a07; */
-/*   border-color: #b17a07; */
-/* } */
-/* .btn-primary:hover { */
-/*   color: #ffffff; */
-/*   background-color: #b17a07; */
-/*   border-color: #b17a07; */
-/* } */
 
-/* .text { */
-/*   font-size:20px; */
-/*   font-family:helvetica; */
-/*   font-weight:bold; */
-/*   color:#800000; */
-/* } */
+.sombra {
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
 .parpadea {
   
   animation-name: parpadeo;
@@ -104,7 +91,7 @@ body{
   .superponerSM {
     position: absolute;
     left: 35%; 
-    top: 25px;
+    top: 100px;
     width: 50%;
   }
 }
@@ -183,6 +170,16 @@ body{
 .quitaMargRL {
   margin-right: +15px;
   margin-left: +15px;
+}
+
+.quitaMargNue {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.quitaPad {
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .separacion1 {

@@ -11,12 +11,10 @@
 				<header th:replace="layout/layout :: headerCli"></header> 	
 			</div>
 		</div>
-			<p></p>
-			<p></p>
 			
 			<form th:action="@{/formViaje}" th:object="${viaje}" method="post">
 				<div id="espacioSup" class="row separacion1">
-					<div class="col-1 col-sm-2 col-form-label d-none">&nbsp; </div>	
+					<div class="col-1 col-sm-2 col-form-label d-none"> </div>	
 				</div>
 				<div id="contOrigen">
 					<div class="row">
@@ -65,51 +63,65 @@
 					</div>
 				</div>
 				<div class="row separacion1">
-					<div class="col-1 col-sm-1 col-form-label">&nbsp; </div>	
+					<div class="col-1 col-sm-1 col-form-label"></div>	
 				</div>	
-				<div id="contBtnPreEst" class="form-group row">
-					<div class="col-1 col-sm-1">&nbsp;</div>
-					<div id="btnVerPrecio" class="col-10 col-sm-3 text-center">
-						<button type="button" class="btn btn-primary" >Ver precio estimado</button>
-						<input type="hidden" />
+				
+				
+				<!-- <div>
+					<div id="contBtnPreEst" class="form-group row">
+						<div class="col-1 col-sm-1">&nbsp;</div>
+						<div id="btnVerPrecio" class="col-10 col-sm-3">
+							<button type="button" class="btn btn-primary" ></button>
+							<input type="hidden" />
+						</div>
+						<div class="col-1 ">&nbsp;</div>
 					</div>
-					<div class="col-1 ">&nbsp;</div>
+				</div> -->
+				
+				<div class="form-group row">
+					<div class="col-1 col-sm-1"></div>
+					<div class="col-10 col-sm-3 text-center">
+						<button id="btnVerPrecio" type="button" class="btn btn-primary">Ver precio estimado</button>
+						<input type="hidden"/>
+					</div>
 				</div>
-				<div id="contMapa" class="container-fluid d-none shadow p-3 mb-5 rounded"> 
-					<div id="rowMapa" class="row altura-30 quitaMargRL">
-						<div class="col-1 col-sm-1"></div>   
-						<div id="mapContainer" class="col-10 col-sm-10 pb-4" > </div>
-						<div class="d-none col-sm-1"></div>
-		   	 		</div>  
+				
+				<div id="contInfoMapa" class="container-fluid d-none"> 
+					<div id="rowMapa" class="row altura-30 sombra quitaMargNue"> 
+						<div id="mapContainer" class="col-12 col-sm-10 quitaPad"> </div>
+		   	 		</div>  	
+		   	 		<div class="row separacion1">
+						<div class="col-1 col-sm-1 col-form-label"></div>	
+					</div>	
 		   	 		<div class="row">
 						<div class="col-1 col-sm-1"></div>
-						<label id="#" class="col-2 col-sm-1 font-weight-bold">Desde:</label>
+						<label id="#" class="col-2 col-sm-2 font-weight-bold">Desde:</label>
 						<label id="lblOrigen" class="col-8 col-sm-3"> </label>
-						<div class="col-sm-11 d-none"></div>
+						<div class="col-sm-7 d-none"></div>
 					</div>	
 					<div class="row">
 						<div class="col-1 col-sm-1"></div>
-						<label id="#" class="col-2 col-sm-1 font-weight-bold">Hasta:</label>
+						<label id="#" class="col-2 col-sm-2 font-weight-bold">Hasta:</label>
 						<label id="lblDestino" class="col-8 col-sm-3"> </label>
-						<div class="col-sm-11 d-none"></div>
+						<div class="col-sm-7 d-none"></div>
 					</div>	
 					<div class="row">
 						<div class="col-1 col-sm-1"></div>
-						<label id="#" class="col-2 col-sm-3 font-weight-bold"> Precio</label> 
-						<label id="#" class="col-3 col-sm-3 font-weight-bold">estimado:</label> 
-						<label id="lblMonEst" class="col-5 col-sm-3 text-left"> </label>
+						<label id="#" class="col-2 col-sm-2 font-weight-bold"> Precio</label> 
+						<label id="#" class="col-3 col-sm-3 font-weight-bold">estimado: </label> 
+						<label id="lblMonEst" class="col-4 col-sm-3 text-left"> </label>
 						<input id="monEst" type="hidden" class="d-none" th:field="*{ViaMonEst}"/> 
 					</div>	
-					<div class="row">
-						<div class="col-1 d-sm-none"></div>
-						<label class="col-7 col-sm-4"> </label>
-						<button type="button" id="btnModif" class="col-3 col-sm-4 btn btn-success">Modificar</button>
-						<div class=" d-none"></div>
+					<div class="row text-center ">
+						<div class="col">
+							<button type="button" id="btnModif" class=" btn btn-secondary">Modificar</button>
+						</div>
 					</div>	
+		   	 		
 				</div>
 				<div class="row">
 					<div class="col-1 col-sm-1"></div>
-					<label class="col-4 col-sm-1 col-form-label font-weight-bold">Teléfono</label>
+					<label class="col-10 col-sm-1 col-form-label font-weight-bold">Teléfono</label>
 				</div>
 				<div class="form-group row">
 					<div class="col-1 col-sm-1"></div>
@@ -118,30 +130,27 @@
 						<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaTelefono')}" th:errors="*{ViaTelefono}"></small>
 					</div>
 				</div>
-				<!-- <div class="row">
+				<div class="row">
 					<div class="col-1 col-sm-1"></div>
-					<label class="col-4 col-sm-2 col-form-label">Forma de pago</label>
-				</div> -->
-				<!-- <div class="row">
+					<label class="col-10 col-sm-1 col-form-label font-weight-bold">Forma de pago</label>
+				</div>
+				
+				<div class="form-group row">
 					<div class="col-1 col-sm-1"></div>
-					<div class="col-11 pb-3">
-					<div class="col-11 pb-3">
+					<div class="col-10 col-sm-3">
 						<input type="radio" name="medioPago" value="E" th:field="*{ViaForPag}"> Efectivo<br>
 						<input type="radio" name="medioPago" value="T" th:field="*{ViaForPag}"> Tarjeta (vía Mercado Pago)<br>
 					</div>
-					</div>
-				</div> -->
+				</div> 
 				<input type="hidden" id="bajban" th:value="${viaje.Tarifa.TarBajBan}"/>
 				<input type="hidden" id="pre100m" th:value="${viaje.Tarifa.TarImp100m}"/>
 				
 				<div class="form-group row">
-					<div class="col-1 col-sm-1">&nbsp;</div>
+					<div class="col-1 col-sm-1"></div>
 					<div class="col-10 col-sm-3 text-center">
 						<button type="submit" class="btn btn-primary">Confirmar</button>
 						<input type="hidden" th:field="*{ViaId}" />
-						
 					</div>
-					<div class="col-1 ">&nbsp;</div>
 				</div>
 			</form>
 		</div>

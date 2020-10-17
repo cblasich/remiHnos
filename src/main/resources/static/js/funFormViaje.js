@@ -1,12 +1,15 @@
 // Initialize the service
 var dire, ok, oricalle, orinum, descalle, desnum, direOri, direDes, pre100m, bajban, preEst;
-const geocoderService = platform.getGeocodingService();	
-const routerService = platform.getRoutingService();
+const geocoderService = platform.getGeocodingService();	  //platform.getSearchService();   CAMBIAR FUNCION POR LA COMENTADA. LA
+const routerService = platform.getRoutingService();    //H.service.RoutingService8
 const geocoder = query => {
 	return new Promise((resolve, reject) => {
 		geocoderService.geocode(
 			{
-				"searchtext": query
+				"searchtext": query,
+				"postalcode": '3600',
+				"city": 'Formosa',
+				"country": 'ARG'
 			},
 			success => {
 				resolve(success.Response.View[0].Result[0].Location.DisplayPosition);
@@ -20,7 +23,7 @@ const geocoder = query => {
 const calculateRoute = (start, finish) => {
 	return new Promise((resolve,reject) => {
 		const params = {
-			mode: "fastest;car;traffic:enabled",
+			mode: "fastest;car;traffic:disabled",
 			waypoint0: start.Latitude + "," + start.Longitude,
 			waypoint1: finish.Latitude + "," + finish.Longitude,
 			representation: "display",
@@ -113,8 +116,8 @@ $("#btnVerPrecio").click(function() {
 		$("#contBtnPreEst").addClass("d-none d-sm-block");  
 		$("#lblOrigen").text(ori2);
 		$("#lblDestino").text(des2);
-		$("#contMapa").removeClass("d-none");
-		$("#contMapa").addClass("superponerSM");
+		$("#contInfoMapa").removeClass("d-none");
+		$("#contInfoMapa").addClass("superponerSM");
 	} 
 });
 $("#btnModif").click(function() {
@@ -122,7 +125,7 @@ $("#btnModif").click(function() {
 	$("#contOrigen").removeClass("d-none d-sm-block");
 	$("#contDestino").removeClass("d-none d-sm-block");
 	$("#contBtnPreEst").removeClass("d-none");  
-	$("#contMapa").addClass("d-none");
+	$("#contInfoMapa").addClass("d-none");
 });
 function ValidarOriDes() {
 	oricalle = $.trim($("#OriCalle").val());
