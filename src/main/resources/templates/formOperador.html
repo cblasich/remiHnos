@@ -3,92 +3,78 @@
 	<head th:replace="layout/layout :: head">
 		<meta charset="UTF-8" />
 	</head>
-	<body class="fondo-color">
-		<header th:replace="layout/layout :: headerOpe"></header> 
-		<div class="container">	
-		<p></p>
-		<p></p>
-			<form th:action="@{/formOperador}" th:object="${operador}" method="post" onsubmit="return comparaPasswords()">
-				<div class="row separacion4">
-					<div class="col-1 col-sm-1 col-form-label d-none">&nbsp; </div>	
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<header th:replace="layout/layout :: headerOpe"></header>
 				</div>
-				
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Nombre </label>
-					<div class="col-sm-11 d-none"></div>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-4">
-						<input type="text" th:field="*{OpeNombre}" class="form-control" autocomplete="off"/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('OpeNombre')}" th:errors="*{OpeNombre}"></small>
-					</div>
-				</div>	
-				
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Apellido </label>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-4">
-						<input type="text" th:field="*{OpeApellido}" class="form-control" autocomplete="off"/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('OpeApellido')}" th:errors="*{OpeApellido}"></small>
-					</div>
-				</div>	
-				
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Email </label>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-4">
-						<input type="text" th:field="*{usuario.username}" class="form-control" autocomplete="off"/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></small>
-					</div>
-				</div>	
-				
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Contraseña </label>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-4">
-						<input type="password" th:field="*{usuario.password}" class="form-control" autocomplete="new-password" spellcheck="false"/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('usuario.password')}" th:errors="*{usuario.password}"></small>				
-					</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-11">
+					<form th:action="@{/formOperador}" th:object="${operador}" method="post" onsubmit="return comparaPasswords()">
+						<div class="row separacion4">
+							<div class="col-1 col-sm-1 col-form-label d-none">&nbsp; </div>	
+						</div>
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">Nombre </label>
+								<input type="text" th:field="*{OpeNombre}" class="form-control" autocomplete="off"/>
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('OpeNombre')}" th:errors="*{OpeNombre}"></small>
+							</div>
+						</div>	
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">Apellido </label>
+								<input type="text" th:field="*{OpeApellido}" class="form-control" autocomplete="off"/>
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('OpeApellido')}" th:errors="*{OpeApellido}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">Email </label>
+								<input type="text" th:field="*{usuario.username}" class="form-control" autocomplete="off"/>
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">Contraseña </label>
+								<input type="password" th:field="*{usuario.password}" class="form-control" autocomplete="new-password" spellcheck="false"/>
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('usuario.password')}" th:errors="*{usuario.password}"></small>				
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">Confirmar contraseña </label>
+								<input type="password" class="form-control" autocomplete="new-password" spellcheck="false" name="passwordConf"/>
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('global')}" th:errors="*{global}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3 text-center">
+								<button type="submit" class="btn btn-primary">Confirmar</button>
+								<input type="hidden" th:field="*{OpeId}" />
+							</div>
+							<div class="col-1"></div>
+						</div>				
+					</form>
 				</div>
-				
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Confirmar contraseña </label>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-4">
-						<input type="password" class="form-control" autocomplete="new-password" spellcheck="false" name="passwordConf"/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('global')}" th:errors="*{global}"></small>
-					</div>
-				</div>
-				
-				<div class="row separacion1">
-					<div class="col-1 col-sm-1 col-form-label">&nbsp; </div>	
-				</div>	
-				
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-4 text-center">
-						<button type="submit" class="btn btn-primary">Confirmar</button>
-						<input type="hidden" th:field="*{OpeId}" />
-					</div>
-					<div class="col-1"></div>
-				</div>
-				
-				
-			</form>
+			</div>
 		</div>
 	<footer th:replace="layout/layout :: footer"></footer>
 	</body>

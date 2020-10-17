@@ -3,103 +3,61 @@
 	<head th:replace="layout/layout :: head">
 		<meta charset="UTF-8" />
 	</head>
-	<body class="fondo-color">
-		<header th:replace="layout/layout :: headerOpe"></header> 	
-		<div class="container">
-			<p></p>
-			<p></p>
-			<form th:action="@{/formTarifa}" th:object="${tarifa}" method="post">
-				<div class="row separacion4">
-					<div class="col-1 col-sm-1 col-form-label d-none">&nbsp; </div>	
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<header th:replace="layout/layout :: headerOpe"></header>
 				</div>
-				<!-- <div class="form-group">
-					<label for="nombre">Fecha vigencia desde</label>
-					<input type="date" th:field="*{TarFecVigDes}" pattern="dd-MM-yyyy" class="form-control" id="fecvigdes">
-				</div>  -->
+			</div>
+
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-11">
+					<form th:action="@{/formTarifa}" th:object="${tarifa}" method="post">
 				
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-2 col-form-label">Fecha vigencia desde </label>
-					<div class="col-sm-11 d-none"></div>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-4">
-						<input type="date" th:field="*{TarFecVigDes}" pattern="dd-MM-yyyy" class="form-control" id="fecvigdes" readonly>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('TarFecVigDes')}" th:errors="*{TarFecVigDes}"></small>
-					</div>
+						<div class="row separacion4">
+							<div class="col-1 col-sm-1 col-form-label d-none">&nbsp; </div>	
+						</div>
+				
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">Fecha vigencia desde </label>
+								<input type="date" th:field="*{TarFecVigDes}" pattern="dd-MM-yyyy" class="form-control" id="fecvigdes" readonly>
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('TarFecVigDes')}" th:errors="*{TarFecVigDes}"></small>
+							</div>
+						</div>
+				
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">Bajada de bandera </label>
+								<input type="text" th:field="*{TarBajBan}" class="form-control" id="bajban">
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('TarBajBan')}" th:errors="*{TarBajBan}"></small>
+							</div>
+						</div>
+				
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">Importe cada 100 metros </label>
+								<input type="text" th:field="*{TarImp100m}" class="form-control" id="imp100m">
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('TarImp100m')}" th:errors="*{TarImp100m}"></small>
+							</div>
+						</div>
+				
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3 text-center">
+								<button type="submit" class="btn btn-primary">Confirmar</button>
+								<input type="hidden" th:field="*{TarId}" />
+							</div>
+							<div class="col-1"></div>
+						</div>			
+					</form>
 				</div>
-				
-				<!-- <div class="form-group">
-					<label for="apellido">Fecha vigencia hasta</label>
-					<input type="date" th:field="*{TarFecVigHas}" pattern="dd-MM-yyyy" class="form-control" id="fecvighas">
-				</div>  -->
-				
-				<!-- <div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-2 col-form-label">Fecha vigencia hasta </label>
-					<div class="col-sm-11 d-none"></div>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-4">
-						<input type="date" th:field="*{TarFecVigHas}" pattern="dd-MM-yyyy" class="form-control" id="fecvighas">
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('PasNombre')}" th:errors="*{PasNombre}"></small>
-					</div>
-				</div> -->
-				
-				<!--  <div class="form-group">
-					<label for="usuario">Bajada de bandera</label>
-					<input type="text" th:field="*{TarBajBan}" class="form-control" id="bajban">
-				</div>   -->
-				
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-2 col-form-label">Bajada de bandera </label>
-					<div class="col-sm-11 d-none"></div>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-4">
-						<input type="text" th:field="*{TarBajBan}" class="form-control" id="bajban">
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('TarBajBan')}" th:errors="*{TarBajBan}"></small>
-					</div>
-				</div>
-				
-				
-				<!-- <div class="form-group">
-					<label for="usuario">Importe cada 100m</label>
-					<input type="text" th:field="*{TarImp100m}" class="form-control" id="imp100m">
-				</div>  -->
-				
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-2 col-form-label">Importe cada 100m </label>
-					<div class="col-sm-11 d-none"></div>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-4">
-						<input type="text" th:field="*{TarImp100m}" class="form-control" id="imp100m">
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('TarImp100m')}" th:errors="*{TarImp100m}"></small>
-					</div>
-				</div>
-				
-				<div class="row separacion1">
-					<div class="col-1 col-sm-1 col-form-label">&nbsp; </div>	
-				</div>
-				
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-4 text-center">
-						<button type="submit" class="btn btn-primary">Confirmar</button>
-						<input type="hidden" th:field="*{TarId}" />
-					</div>
-					<div class="col-1"></div>
-				</div>
-			
-			
-			</form>
+			</div>			
 		</div>
 	<footer th:replace="layout/layout :: footer"></footer>
 	</body>
