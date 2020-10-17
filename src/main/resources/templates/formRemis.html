@@ -3,101 +3,101 @@
 	<head th:replace="layout/layout :: head">
 		<meta charset="UTF-8" />
 	</head>
-	<body class="fondo-color">
-		<header th:replace="layout/layout :: headerOpe"></header> 		 
-		<div class="containerSinMargen">
-			<p></p>
-			<p></p>
-			<form th:action="@{/formRemis}" th:object="${remis}" method="post">
-				<div class="row separacion4">
-					<div class="col-1 col-sm-1 col-form-label d-none">&nbsp; </div>	
-				</div>
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Patente </label>
-					<div class="col-sm-11 d-none"></div>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-3">
-						<input type="text" th:field="*{remPatente}" class="form-control"/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('remPatente')}" th:errors="*{remPatente}"></small>
-					</div>
-				</div>	
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Modelo </label>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-3">
-						<input type="text" th:field="*{RemModelo}" class="form-control"/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('RemModelo')}" th:errors="*{RemModelo}"></small>
-					</div>
-				</div>	
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Marca</label>
-				</div>
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-3">
-						<input type="text" th:field="*{RemMarca}" class="form-control"/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('RemMarca')}" th:errors="*{RemMarca}"></small>
-					</div>
-				</div>
-				
+	<body>		
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col-1 d-sm-none"></div>
-				<label class="col-6 col-sm-2 col-form-label"><strong>Estado</strong> </label>
-			</div>	
-			<div class="form-check">
-				<input class="form-check-input" type="radio" th:field="*{RemEstado}" name="estados" id="estado1" value="S" checked> 
-				<label class="form-check-label" for="estado2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Disponible </label>
+				<div class="col-12">
+					<header th:replace="layout/layout :: headerOpe"></header>
+				</div>
 			</div>
-			<div class="form-check">
-				<input class="form-check-input" type="radio" th:field="*{RemEstado}" name="estados" id="estado2" value="N"> 
-				<label class="form-check-label" for="estado2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No disponible </label>
-			</div>
-			<p></p>
 			
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-6 col-sm-2 col-form-label"><strong>DATOS DEL CONDUCTOR</strong> </label>
-				</div>	
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Nombre </label>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-11">
+					<form th:action="@{/formRemis}" th:object="${remis}" method="post">
+						<div class="row separacion4">
+							<div class="col-1 col-sm-1 col-form-label d-none">&nbsp; </div>	
+						</div>
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">Patente </label>
+								<input type="text" th:field="*{remPatente}" class="form-control"/>
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('remPatente')}" th:errors="*{remPatente}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">Modelo </label>
+								<input type="text" th:field="*{RemModelo}" class="form-control"/>
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('RemModelo')}" th:errors="*{RemModelo}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">Marca</label>
+								<input type="text" th:field="*{RemMarca}" class="form-control"/>
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('RemMarca')}" th:errors="*{RemMarca}"></small>
+							</div>
+						</div>
+					
+					<fieldset class="form-group">						
+						<div class="col-1 d-sm-none"></div>
+						<div class="col-10 col-sm-3">
+							<label class="font-weight-bold">Estado</label>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" th:field="*{RemEstado}" name="estados" id="estado1" value="S" checked> 
+								<label class="form-check-label" for="estado2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Disponible </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" th:field="*{RemEstado}" name="estados" id="estado2" value="N"> 
+								<label class="form-check-label" for="estado2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No disponible </label>
+							</div>
+						</div>
+					</fieldset>
+					
+					<p></p>
+					
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">DATOS DEL CONDUCTOR </label>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">Nombre </label>
+								<input type="text" th:field="*{RemNomConductor}" class="form-control"/>
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('RemNomConductor')}" th:errors="*{RemNomConductor}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-3">
+								<label class="font-weight-bold">Apellido </label>
+								<input type="text" th:field="*{RemApeConductor}" class="form-control"/>
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('RemApeConductor')}" th:errors="*{RemApeConductor}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none">&nbsp;</div>
+							<div class="col-10 col-sm-3 text-center">
+								<button type="submit" class="btn btn-primary">Confirmar</button>
+							</div>
+							<div class="col-1 ">&nbsp;</div>
+						</div>
+					</form>
 				</div>
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-3">
-						<input type="text" th:field="*{RemNomConductor}" class="form-control"/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('RemNomConductor')}" th:errors="*{RemNomConductor}"></small>
-					</div>
-				</div>	
-				<div class="row">
-					<div class="col-1 d-sm-none"></div>
-					<label class="col-4 col-sm-1 col-form-label">Apellido </label>
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none"></div>
-					<div class="col-10 col-sm-3">
-						<input type="text" th:field="*{RemApeConductor}" class="form-control"/>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('RemApeConductor')}" th:errors="*{RemApeConductor}"></small>
-					</div>
-				</div>	
-				<div class="row separacion1">
-					<div class="col-1 col-sm-1 col-form-label">&nbsp; </div>	
-				</div>	
-				<div class="form-group row">
-					<div class="col-1 d-sm-none">&nbsp;</div>
-					<div class="col-10 col-sm-3 text-center">
-						<button type="submit" class="btn btn-primary">Confirmar</button>
-					</div>
-					<div class="col-1 ">&nbsp;</div>
-				</div>
-			</form>
+			</div>
 		</div>
 	<footer th:replace="layout/layout :: footer"></footer>
 	</body>
