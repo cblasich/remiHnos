@@ -12,45 +12,40 @@
 				</div> 
 				
 				<div class="row">
-					<div class="col-1"></div>
-					<div class="col-11">
+					<div class="col-1 col-sm-1"></div>
+					<div class="col-10 pl-0 pr-0">
+						
 						<form th:action="@{/login}" method="post">
-							<div class="row separacion4">
-								<div class="col-1 col-sm-1 col-form-label">&nbsp; </div>	
-							</div>	
 							
 							<div class="form-group">
-								<div class="col-1 d-sm-none"></div>
-								<div class="col-10 col-sm-3">
-									<label class="font-weight-bold">E-mail </label>
+								<div class="col-12 col-sm-4">
+									<label class="font-weight-bold mt-5">E-mail </label>
 									<input type="text" name="username" id="username" class="form-control"placeholder="Dirección de correo" autofocus required/>
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<div class="col-1 d-sm-none"></div>
-								<div class="col-10 col-sm-3">
+								<div class="col-12 col-sm-4">
 									<label class="font-weight-bold">Contraseña </label>
 									<input type="password" name="password" id="password" class="form-control" placeholder="******" required/>
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<div class="col-1 d-sm-none"></div>
-								<div class="col-10 col-sm-3">
+								<div class="col-12 col-sm-4">
 									<a th:href="@{/forgotPassword}">Olvidé mi contraseña.</a>
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<div class="col-1 d-sm-none"></div>
-								<div class="col-10 col-sm-3 text-center">
+								<div class="col-12 col-sm-4 text-center">
 									<input type="submit" class="btn btn-lg btn-primary btn-block" value="Iniciar sesión"/>
 								</div>
 								<div class="col-1"></div>
 							</div>
 						</form>
 					</div>
+					<div class="col-1"></div>
 				</div>
 			</div>
 	</body>

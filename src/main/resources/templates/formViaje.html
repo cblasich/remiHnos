@@ -13,13 +13,11 @@
 		</div>
 			
 			<form th:action="@{/formViaje}" th:object="${viaje}" method="post">
-				<div id="espacioSup" class="row separacion1">
-					<div class="col-1 col-sm-2 col-form-label d-none"> </div>	
-				</div>
+				
 				<div id="contOrigen">
 					<div class="row">
 						<div class="col-1 col-sm-1"></div>
-						<label class="col-4 col-sm-1 col-form-label font-weight-bold">Origen </label>
+						<label class="col-4 col-sm-1 col-form-label font-weight-bold mt-3">Origen </label>
 						<div class="col-sm-11 d-none"></div>
 					</div>	
 					<div class="form-group row">
@@ -56,65 +54,52 @@
 					<div class="form-group row">
 						<div class="col-1 col-sm-1"></div>
 						<div class="col-10 col-sm-3">
-							<input id="DesNum" type="number" th:field="*{ViaNumDes}" class="form-control" placeholder="Altura" />
+							<input id="DesNum" type="number" th:field="*{ViaNumDes}" class="form-control mb-2" placeholder="Altura" />
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('ViaNumDes')}" th:errors="*{ViaNumDes}"></small>
 							<small id="errDesNum" class="form-text text-danger d-none">Debe ingresar altura del destino.</small>
 						</div>
 					</div>
 				</div>
-				<div class="row separacion1">
-					<div class="col-1 col-sm-1 col-form-label"></div>	
-				</div>	
 				
-				
-				<!-- <div>
-					<div id="contBtnPreEst" class="form-group row">
-						<div class="col-1 col-sm-1">&nbsp;</div>
-						<div id="btnVerPrecio" class="col-10 col-sm-3">
-							<button type="button" class="btn btn-primary" ></button>
-							<input type="hidden" />
+				<div id="contBtnPreEst">
+					<div class="form-group row">
+						<div class="col-1 col-sm-1"></div>
+						<div class="col-10 col-sm-3 text-center">
+							<button id="btnVerPrecio" type="button" class="btn btn-primary mt-1">Ver precio estimado</button>
+							<input type="hidden"/>
 						</div>
-						<div class="col-1 ">&nbsp;</div>
-					</div>
-				</div> -->
-				
-				<div class="form-group row">
-					<div class="col-1 col-sm-1"></div>
-					<div class="col-10 col-sm-3 text-center">
-						<button id="btnVerPrecio" type="button" class="btn btn-primary">Ver precio estimado</button>
-						<input type="hidden"/>
 					</div>
 				</div>
 				
 				<div id="contInfoMapa" class="container-fluid d-none"> 
-					<div id="rowMapa" class="row altura-30 sombra quitaMargNue"> 
-						<div id="mapContainer" class="col-12 col-sm-10 quitaPad"> </div>
+					<div id="rowMapa" class="row altura-30 sombra mt-2"> 
+						<div id="mapContainer" class="col-12 col-sm-12 quitaPad "> </div>
 		   	 		</div>  	
 		   	 		<div class="row separacion1">
 						<div class="col-1 col-sm-1 col-form-label"></div>	
 					</div>	
-		   	 		<div class="row">
+		   	 		<div class="row mb-1">
 						<div class="col-1 col-sm-1"></div>
-						<label id="#" class="col-2 col-sm-2 font-weight-bold">Desde:</label>
-						<label id="lblOrigen" class="col-8 col-sm-3"> </label>
-						<div class="col-sm-7 d-none"></div>
+						<div class="col-3 col-sm-1 font-weight-bold">Desde:</div>
+						<div id="lblOrigen" class="col-7 col-sm-4 pl-0 pl-sm-3"> </div>
+						<div class="col-1 col-sm-6"></div>
 					</div>	
-					<div class="row">
+					<div class="row mb-1">
 						<div class="col-1 col-sm-1"></div>
-						<label id="#" class="col-2 col-sm-2 font-weight-bold">Hasta:</label>
-						<label id="lblDestino" class="col-8 col-sm-3"> </label>
-						<div class="col-sm-7 d-none"></div>
+						<div class="col-3 col-sm-1 font-weight-bold">Hasta:</div>
+						<div id="lblDestino" class="col-7 col-sm-4 pl-0 pl-sm-3"> </div>
+						<div class="col-1 col-sm-6"></div>
 					</div>	
-					<div class="row">
+					<div class="row mb-2">
 						<div class="col-1 col-sm-1"></div>
-						<label id="#" class="col-2 col-sm-2 font-weight-bold"> Precio</label> 
-						<label id="#" class="col-3 col-sm-3 font-weight-bold">estimado: </label> 
-						<label id="lblMonEst" class="col-4 col-sm-3 text-left"> </label>
+						<div class="col-6 col-sm-3 font-weight-bold pr-0"> Precio estimado:</div> 
+						<div id="lblMonEst" class="col-3 col-sm-4 text-left pl-0 pl-sm-2"> </div>
+						<div class="col-2 col-sm-4"></div>
 						<input id="monEst" type="hidden" class="d-none" th:field="*{ViaMonEst}"/> 
 					</div>	
 					<div class="row text-center ">
 						<div class="col">
-							<button type="button" id="btnModif" class=" btn btn-secondary">Modificar</button>
+							<button type="button" id="btnModif" class=" btn btn-secondary mb-3">Modificar</button>
 						</div>
 					</div>	
 		   	 		

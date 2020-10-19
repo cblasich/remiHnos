@@ -12,27 +12,21 @@
 			</div>
 			
 			<div class="row">
-				<div class="col-1"></div>
-				<div class="col-11">
+				<div class="col-1 col-sm-1"></div>
+				<div class="col-10 pl-0 pr-0">
 					
 					<form th:action="@{/formUsuario}" th:object="${usuario}" method="post">
 						
-						<div class="row separacion4">
-							<div class="col-1 col-sm-1 col-form-label d-none">&nbsp; </div>	
-						</div>	
-						
 						<div class="form-group">
-							<div class="col-1 col-sm-1"></div>
-							<div class="col-10 col-sm-3">
-								<label class="font-weight-bold">Email </label>
+							<div class="col-12 col-sm-4">
+								<label class="font-weight-bold mt-sm-4 mt-3">Email </label>
 								<input type="text" th:field="*{username}" class="form-control" autocomplete="off"/>
 								<small class="form-text text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<div class="col-1 col-sm-1"></div>
-							<div class="col-10 col-sm-3">
+							<div class="col-12 col-sm-4">
 								<label class="font-weight-bold"  th:text="${lblContra}"> </label>
 								<input type="password" th:field="*{password}" class="form-control" autocomplete="new-password" spellcheck="false">
 								<small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
@@ -40,8 +34,7 @@
 						</div>
 						
 						<div class="form-group">
-							<div class="col-1 col-sm-1"></div>
-							<div class="col-10 col-sm-3">
+							<div class="col-12 col-sm-4">
 								<label class="font-weight-bold">Confirmar contraseña </label>
 								<input type="password" class="form-control" autocomplete="new-password" spellcheck="false" name="passwordConf"/>
 								<small class="form-text text-danger" th:if="${#fields.hasErrors('global')}" th:errors="*{global}"></small>
@@ -49,8 +42,7 @@
 						</div>						
 						
 						<div class="form-group">
-							<div class="col-1 col-sm-1"></div>
-							<div class="col-10 col-sm-3">
+							<div class="col-12 col-sm-4">
 								<label class="font-weight-bold">Nombre </label>
 								<input type="text" th:field="*{pasajero.PasNombre}" class="form-control" autocomplete="off"/>
 								<small class="form-text text-danger" th:if="${#fields.hasErrors('pasajero.PasNombre')}" th:errors="*{pasajero.PasNombre}"></small>
@@ -58,8 +50,7 @@
 						</div>	
 						
 						<div class="form-group">
-							<div class="col-1 col-sm-1"></div>
-							<div class="col-10 col-sm-3">
+							<div class="col-12 col-sm-4">
 								<label class= "font-weight-bold">Apellido </label>
 								<input type="text" th:field="*{pasajero.PasApellido}" class="form-control" autocomplete="off"/>
 								<small class="form-text text-danger" th:if="${#fields.hasErrors('pasajero.PasApellido')}" th:errors="*{pasajero.PasApellido}"></small>
@@ -67,24 +58,23 @@
 						</div>	
 						
 						<div class="form-group">
-							<div class="col-1 col-sm-1"></div>
-							<div class="col-10 col-sm-3">
+							<div class="col-12 col-sm-4">
 								<label class="font-weight-bold">Nro. de Celular </label>
-								<input type="text" th:field="*{pasajero.PasTelefono}" class="form-control" autocomplete="off"/>
+								<input type="text" th:field="*{pasajero.PasTelefono}" class="form-control mb-sm-4 mb-4 " autocomplete="off"/>
 								<small class="form-text text-danger" th:if="${#fields.hasErrors('pasajero.PasTelefono')}" th:errors="*{pasajero.PasTelefono}"></small>
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<div class="col-1 col-sm-1"></div>
-							<div class="col-10 col-sm-3 text-center">
-								<button type="submit" class="btn btn-primary">Confirmar</button>
+							<div class="col-12 col-sm-4 text-center">
+								<button type="submit" class="btn btn-primary mt-1">Confirmar</button>
 							</div>
 							<div class="col-1"></div>
 						</div>
 						
 					</form>
 				</div>
+				<div class="col-1"></div>
 			</div>
 		</div>
 	<footer th:replace="layout/layout :: footer"></footer>
