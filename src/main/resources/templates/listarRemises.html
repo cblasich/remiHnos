@@ -3,7 +3,7 @@
 	<head th:replace="layout/layout :: head">
 		<meta charset="UTF-8" />
 	</head>
-	<body class="fondo-color">
+	<body>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
@@ -57,6 +57,7 @@
 					</tr>
 				</tbody>
 			</table>
+			<nav th:replace="paginator-nav :: paginator"></nav>
 		</div>
 	<footer th:replace="layout/layout :: footer"></footer>
 	</body>

@@ -28,7 +28,7 @@ public class Remis implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="remid")
-	private Long RemId;
+	private Long remId;
 	
 	@Column(name="rempatente", length=10, unique=true)
 	@NotEmpty(message = "Debe ingresar una patente.")
@@ -61,7 +61,7 @@ public class Remis implements Serializable {
 	} 
 	
 	public Long getRemId() {
-		return RemId;
+		return remId;
 	}
 
 	public String getRemPatente() {
@@ -125,7 +125,7 @@ public class Remis implements Serializable {
 	}
 
 	public void setRemId(Long remId) {
-		RemId = remId;
+		this.remId = remId;
 	}
 	
 	

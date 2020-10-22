@@ -4,6 +4,10 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,14 +16,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.remiNorte.app.models.dao.IPasajeroDao;
+import com.remiNorte.app.models.entity.Pasajero;
 import com.remiNorte.app.models.entity.Usuario;
 import com.remiNorte.app.models.entity.UsuarioDTO;
 import com.remiNorte.app.models.service.IUsuarioService;
+import com.remiNorte.app.util.paginator.PageRender;
 import com.remiNorte.app.validations.UsuarioExisteException;
 
 @Controller
@@ -35,52 +42,17 @@ public class PasajeroController {
 	private Logger logger = LoggerFactory.getLogger(OperadorController.class);
 	
 	@RequestMapping(value="/listarPasajeros", method=RequestMethod.GET)
-	public String listarPasajeros(Model model) {
+	public String listarPasajeros(@RequestParam(name="page", defaultValue="0") int page, Model model) {
+		Pageable pageRequest = PageRequest.of(page, 20, Sort.by("pasId").descending());
+		Page<Pasajero> pasajeros = pasajeroDao.findAll(pageRequest);
+		PageRender<Pasajero> pageRender = new PageRender<Pasajero>("/listarPasajeros", pasajeros);
 		
-		model.addAttribute("titulo", "Listado de Pasajeros");
 		model.addAttribute("backPage", "/iniOperador");
-		model.addAttribute("pasajeros" , pasajeroDao.findAll());
+		model.addAttribute("titulo", "Listado de Pasajeros");
+		model.addAttribute("pasajeros" , pasajeros);
+		model.addAttribute("page", pageRender);
 		return "listarPasajeros";		
 	}
-	
-	// FUNCIONA 26/04   -- SE COMENTA PARA PRUEBAS
-	/*@RequestMapping(value="/formPasajero")
-	public String crear(Model model) {   
-		logger.info("GET pasajero");
-		Pasajero pasajero = new Pasajero(); 
-		model.addAttribute("titulo", "Nuevo Registro");
-		model.addAttribute("pasajero", pasajero);
-		model.addAttribute("backPage","/inicio");
-		
-		return "formPasajero";
-	}
-	
-	@RequestMapping(value="/formPasajero", method=RequestMethod.POST)
-	public String guardar(@Valid Pasajero pasajero, BindingResult result, Model model, SessionStatus status) { //metodo que procesa el formulario
-			Usuario usuario = new Usuario();
-			Rol rol = new Rol();
-			rol.setRolOperad();
-			
-			usuario = pasajero.getUsuario();
-			String bcryptPassword = passwordEncoder.encode(usuario.getPassword());
-			usuario.setPassword(bcryptPassword);		
-			usuario.setRol(rol);
-			usuario.setUsuEnabled(true);
-			pasajero.setUsuario(usuario);
-			
-			if(result.hasErrors()) {
-				model.addAttribute("titulo", "Nuevo Registro");
-				return "formPasajero";
-			}
-			
-			pasajeroDao.save(pasajero);
-			status.setComplete(); //elimina el objeto cliente de la sesión.
-			
-			model.addAttribute("titulo", "Datos personales");
-			model.addAttribute("pasajero", pasajero);
-			return "redirect:listarPasajeros";
-		
-	}*/
 	
 	@RequestMapping(value="/formPasajero")
 	public String crear(Model model) {   

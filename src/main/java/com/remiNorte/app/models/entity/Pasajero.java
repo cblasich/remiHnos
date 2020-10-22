@@ -29,7 +29,7 @@ public class Pasajero implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="pasid")
-	private Long PasId;
+	private Long pasId;
 	
 	@Column(name="pasnombre", length=40)
 	private String PasNombre;
@@ -94,7 +94,7 @@ public class Pasajero implements Serializable {
 	}
 
 	public Long getPasId() {
-		return PasId;
+		return pasId;
 	}
 	
 	public Usuario getUsuario() {

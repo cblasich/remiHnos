@@ -26,7 +26,7 @@ public class Tarifa {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="tarid")
-	private Long TarId;
+	private Long tarId;
 	
 	@Column(name="tarfecvigdes")
 	@Temporal(TemporalType.DATE)
@@ -88,7 +88,7 @@ public class Tarifa {
 	}
 
 	public Long getTarId() {
-		return TarId;
+		return tarId;
 	}
 	
 	public List<Viaje> getViajes() {
