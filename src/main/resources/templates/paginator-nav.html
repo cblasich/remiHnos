@@ -6,11 +6,11 @@
 
 		<ul class="pagination justify-content-center">
 			
-			<li th:if="${page.first}" class="page-item disabled">
+			<li th:if="${page.first}" class="page-item disabled ">
 		    	<a class="page-link">Primera</a>
 		    </li>
 			<li th:if="${not page.first}" class="page-item">
-		    	<a class="page-link" th:href="@{${page.url}(page=0)}">Primera</a>
+		    	<a class="page-link font-weight-bold" th:href="@{${page.url}(page=0)}">Primera</a>
 		    </li>
 		    
 			<!-- <li class="page-item">
@@ -23,7 +23,7 @@
 				<a class="page-link">Anterior</a>
 			</li>
 			<li th:if="${page.hasPrevious}" class="page-item">
-				<a class="page-link" th:href="@{${page.url}(page=${page.paginaActual-2})}">Anterior</a>
+				<a class="page-link font-weight-bold" th:href="@{${page.url}(page=${page.paginaActual-2})}">Anterior</a>
 			</li>
 			
 			<!-- <li class="page-item">
@@ -35,7 +35,7 @@
 				<a class="page-link" th:text="${item.numero}"></a>
 			</li>
 			<li th:each="item : ${page.paginas}" th:if="${not item.actual}" class="page-item">
-				<a class="page-link" th:href="@{${page.url}(page=${item.numero-1})}" th:text="${item.numero}"></a>
+				<a class="page-link font-weight-bold" th:href="@{${page.url}(page=${item.numero-1})}" th:text="${item.numero}"></a>
 			</li>
 			
 			<!-- <li class="page-item" th:each="item : ${page.paginas}">
@@ -47,7 +47,7 @@
 				<a class="page-link">Siguiente</a>
 			</li>
 			<li th:if="${page.hasNext}" class="page-item">
-				<a class="page-link" th:href="@{${page.url}(page=${page.paginaActual})}">Siguiente</a>
+				<a class="page-link font-weight-bold" th:href="@{${page.url}(page=${page.paginaActual})}">Siguiente</a>
 			</li>
 			
 			<!-- <li class="page-item">
@@ -59,7 +59,7 @@
 				<a class="page-link">&Uacute;ltima</a>
 			</li>
 			<li th:if="${not page.last}" class="page-item">
-				<a class="page-link" th:href="@{${page.url}(page=${page.totalPaginas-1})}">&Uacute;ltima</a>
+				<a class="page-link font-weight-bold" th:href="@{${page.url}(page=${page.totalPaginas-1})}">&Uacute;ltima</a>
 			</li>
 			
 			<!-- <li class="page-item">
