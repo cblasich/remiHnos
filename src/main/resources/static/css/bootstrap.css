@@ -3260,12 +3260,12 @@ tbody.collapse.show {
   margin-left: -1px;
   line-height: 1.25;
   color: #ffc107;
-  background-color: #fff;
+  background-color: #c6b40d;
   border: 1px solid #dee2e6; }
   .page-link:hover {
     color: #edb100;
     text-decoration: none;
-    background-color: #e9ecef;
+    background-color: #e83e8c;
     border-color: #dee2e6; }
   .page-link:focus {
     z-index: 2;
