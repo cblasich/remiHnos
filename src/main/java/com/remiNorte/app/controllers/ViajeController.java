@@ -136,14 +136,6 @@ public class ViajeController {
 		return "redirect:/listarViajes";
 	}
 	
-	/*@RequestMapping(value="/eliminarViaje/{id}")
-	public String eliminar(@PathVariable(value="id") Long id) {
-		if (id > 0) {
-			viajeDao.deleteById(id);
-		}		
-		return "redirect:/listarViajes";
-	} */
-	
 	@RequestMapping(value="/listarViajes", method=RequestMethod.GET)
 	public String listarViajes(@RequestParam(name="page", defaultValue="0") int page, Model model) {
 		Pageable pageRequest = PageRequest.of(page, 20, Sort.by("viaId").descending());
