@@ -19,4 +19,6 @@ public interface ITarifaService {
 
 	public Tarifa devTarAnt(Long tarId);  
 	
+	public Long devCanTarifas();
+	
 }

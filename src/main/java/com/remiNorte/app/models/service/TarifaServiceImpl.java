@@ -51,4 +51,10 @@ public class TarifaServiceImpl implements ITarifaService {
 	public Tarifa devTarAnt(Long tarId) {
 		return tarifaDao.devTarAnt(tarId);
 	}
+	
+	@Override
+	@Transactional
+	public Long devCanTarifas() {
+		return tarifaDao.count();
+	}
 }

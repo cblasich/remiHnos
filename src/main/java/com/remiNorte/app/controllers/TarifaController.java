@@ -111,28 +111,34 @@ public class TarifaController {
 	public String eliminar(@PathVariable(value="id") Long id, RedirectAttributes flash) {
 		if (id > 0) {
 			
-			Long cantTarViajes = (long) 0;
-			cantTarViajes = viajeService.devCanTarViajes(id);
-			
-			if (cantTarViajes == 0) {
-				//valido que sea el vigente
-				Tarifa tarifa = tarifaService.findOne(id);
-				if (tarifa.getTarFecVigHas() == null) { //es tarifa vigente
+			Long cantTarifas = (long) 0;  //cantidad de tarifas guardadas
+			cantTarifas = tarifaService.devCanTarifas();
+			if (cantTarifas > 1) { 
+			//HACER ESTO SOLO SI NO ES LA UNICA TARIFA REGISTRADA
+				Long cantTarViajes = (long) 0;
+				cantTarViajes = viajeService.devCanTarViajes(id);
+				
+				if (cantTarViajes == 0) {
+					//valido que sea el vigente
+					Tarifa tarifa = tarifaService.findOne(id);
+					if (tarifa.getTarFecVigHas() == null) { //es tarifa vigente
+						
+						//busco tarifa anterior y la dejo vigente
+						Tarifa tarifaAnt = tarifaService.devTarAnt(id);
+						if (tarifaAnt != null) {
+							tarifaAnt.setTarFecVigHas(null);
+							tarifaService.save(tarifaAnt); 
+						}					
+					}
 					
-					//busco tarifa anterior y la dejo vigente
-					Tarifa tarifaAnt = tarifaService.devTarAnt(id);
-					if (tarifaAnt != null) {
-						tarifaAnt.setTarFecVigHas(null);
-						tarifaService.save(tarifaAnt); 
-					}					
+					tarifaService.delete(id);
+				} else {
+					
+					flash.addFlashAttribute("error", "La tarifa no se puede eliminar porque tiene viajes relacionados.");		
 				}
-				
-				tarifaService.delete(id);
 			} else {
-				
-				flash.addFlashAttribute("error", "La tarifa no se puede eliminar porque tiene viajes relacionados.");		
+				flash.addFlashAttribute("error", "La tarifa no se puede eliminar porque es la única.");
 			}
-				
 		}
 		return "redirect:/listarTarifas";
 	}
