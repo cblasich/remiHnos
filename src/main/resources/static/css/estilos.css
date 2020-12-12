@@ -65,7 +65,10 @@ body a {
 /* } */
 body {
   /* 	background:#FFFFFF; */
-  background-image: url("../images/fondo_principal_min.jpg"); }
+  background-image: url("../images/fondo_principal.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #b9a80e; }
 
 /* .btn-alta {
   color: #0080ff;
