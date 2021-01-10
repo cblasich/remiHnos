@@ -69,8 +69,6 @@ public class UsuarioController {
 			//logger.info("Hola usuario autenticado: "+auth.getName());			
 			Usuario usuario = usuarioDao.findByUsername(auth.getName());
 			Pasajero pasajero = pasajeroDao.findByUsuario(usuario);
-			//logger.info("Pasajero:"+pasajero.getPasApellido()+" "+pasajero.getPasNombre());
-			//logger.info("Id usuario:"+usuario.getUsuId().toString());
 			usuarioDTO.setUsuId(usuario.getUsuId());   // si está logueado llevo id usuario
 			usuarioDTO.setUsername(usuario.getUsername());
 			usuarioDTO.setPasajero(pasajero);   
@@ -86,14 +84,6 @@ public class UsuarioController {
 		return "formUsuario";
 	} 
 	
-	/*@RequestMapping(value="/formUsuario", method=RequestMethod.GET)
-	public String showRegistrationForm(WebRequest request, Model model) {
-		
-		UsuarioDTO usuarioDTO = new UsuarioDTO();
-		model.addAttribute("usuario", usuarioDTO);
-		
-		return "formUsuario";
-	}*/
 	
 	@RequestMapping(value="/formUsuario", method=RequestMethod.POST)
 	public ModelAndView registrarUsuario(
@@ -114,7 +104,7 @@ public class UsuarioController {
 		int error = 0;		
 		String pattern = null;
 		
-		String mail = cuentaDTO.getUsername();
+		String mail = cuentaDTO.getUsername().trim();
 		if (mail.equals(null) || mail.equals("")) {
 			error = 1;
 			result.rejectValue("username", "username", "Debe ingresar un E-Mail.");
@@ -151,8 +141,6 @@ public class UsuarioController {
 			}
 		}	
 		
-		
-		
 		Pasajero pasajero = new Pasajero();
 		pasajero = cuentaDTO.getPasajero();
 		
@@ -161,7 +149,7 @@ public class UsuarioController {
 			result.rejectValue("pasajero.PasNombre", "pasajero.PasNombre", "Debe ingresar un nombre.");
 		} else {
 			String nombre = pasajero.getPasNombre().trim();
-			pattern = "^[a-zA-Z]+";
+			pattern = "^[a-zA-Z\\s]+";
 			if (!nombre.matches(pattern)) {
 				error = 1;
 				result.rejectValue("pasajero.PasNombre", "pasajero.PasNombre", "Debe ingresar solo letras.");
@@ -173,7 +161,7 @@ public class UsuarioController {
 			result.rejectValue("pasajero.PasApellido", "pasajero.PasApellido", "Debe ingresar un apellido.");
 		} else {
 			String apellido = pasajero.getPasApellido().trim();
-			pattern = "^[a-zA-Z]+";
+			pattern = "^[a-zA-Z\\s]+";
 			if (!apellido.matches(pattern)) {
 				error = 1;
 				result.rejectValue("pasajero.PasApellido", "pasajero.PasApellido", "Debe ingresar solo letras.");
@@ -193,6 +181,13 @@ public class UsuarioController {
 		}
 		
 		if (error == 0) {
+			
+			//quita blancos
+			pasajero.setPasApellido(pasajero.getPasApellido().trim());
+			pasajero.setPasNombre(pasajero.getPasNombre().trim());
+			cuentaDTO.setPasajero(pasajero);			
+			cuentaDTO.setUsername(cuentaDTO.getUsername().trim());
+			
 			if(cuentaDTO.getUsuId() == null) {     // CREANDO USUARIO NUEVO
 				//validacion de email 
 				registrado = crearCuentaUsuario(cuentaDTO, result);	
@@ -284,19 +279,4 @@ public class UsuarioController {
 		return "redirect:/listarUsuarios";
 	}
 
-	
-	/*
-	 * public String validatePasswordResetToken(String token) { final
-	 * PasswordResetToken passToken = passwordTokenRepository.findByToken(token);
-	 * 
-	 * return !isTokenFound(passToken) ? "invalidToken" : isTokenExpired(passToken)
-	 * ? "expired" : null; }
-	 * 
-	 * private boolean isTokenFound(PasswordResetToken passToken) { return passToken
-	 * != null; }
-	 * 
-	 * private boolean isTokenExpired(PasswordResetToken passToken) { final Calendar
-	 * cal = Calendar.getInstance(); return
-	 * passToken.getExpiryDate().before(cal.getTime()); }
-	 */
 }

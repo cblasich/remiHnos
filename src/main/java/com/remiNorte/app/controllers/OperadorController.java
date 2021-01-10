@@ -71,8 +71,19 @@ public class OperadorController {
 		//Valida password
 		Usuario usuario = new Usuario();
 		usuario  = operador.getUsuario();
-		String password = usuario.getPassword().trim();
 		
+		String pattern = null;		
+		String mail = usuario.getUsername().trim();
+		if (mail.equals(null) || mail.equals("")) {
+			result.rejectValue("usuario.username", "usuario.username", "Debe ingresar un E-Mail.");
+		} else {
+			pattern = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
+			if (!mail.matches(pattern) ) {
+				result.rejectValue("usuario.username", "usuario.username", "El E-Mail ingresado no es válido.");
+			}
+		}
+		
+		String password = usuario.getPassword();		
 		if (password == null || password == "") {
 			result.rejectValue("usuario.password", "usuario.password", "Debe ingresar una contraseña.");
 		} else {
@@ -88,6 +99,11 @@ public class OperadorController {
 			model.addAttribute("backPage", "/listarOperadores");
 			return "formOperador";
 		}
+		
+		//quita blancos
+//		operador.setOpeNombre(operador.getOpeNombre().trim());
+//		operador.setOpeApellido(operador.getOpeApellido().trim());
+//		usuario.setUsername(usuario.getUsername().trim());
 		
 		Rol rol = new Rol();
 		rol.setRolOperad();

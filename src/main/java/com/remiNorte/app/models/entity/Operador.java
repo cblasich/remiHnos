@@ -95,5 +95,9 @@ public class Operador implements Serializable {
 	public void addViaje(Viaje viaje) { 
 		Viajes.add(viaje);
 	}
+	
+	public String getUsername() {
+		return usuario.getUsername();
+	}
 
 }
