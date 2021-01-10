@@ -1,5 +1,7 @@
 package com.remiNorte.app.controllers;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Map;
 import java.util.UUID;
 
@@ -51,7 +53,7 @@ public class PasswordController {
 	public String processForgotPasswordForm(Model model,											
 											@RequestParam("email") String userEmail,
 											HttpServletRequest request, 
-											RedirectAttributes flash) {
+											RedirectAttributes flash) throws UnknownHostException {
 		
 		if (userEmail == null || userEmail == "") {
 			flash.addFlashAttribute("errorMail","Debe ingresar un E-Mail.");
@@ -72,8 +74,12 @@ public class PasswordController {
 	
 				// Save token to database
 				userService.save(user);
+				
+				InetAddress ip = InetAddress.getLocalHost();
+				String hostname = ip.getHostName();
 	
-				String appUrl = request.getScheme() + "://" + request.getHeader("Host");// + ":" + request.getLocalPort();
+				String appUrl = request.getScheme() + "://" + hostname;// + ":" + request.getLocalPort();
+				
 				logger.info(appUrl);
 				
 				// Email message
