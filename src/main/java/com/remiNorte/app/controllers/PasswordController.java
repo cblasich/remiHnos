@@ -73,7 +73,7 @@ public class PasswordController {
 				// Save token to database
 				userService.save(user);
 	
-				String appUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getLocalPort();
+				String appUrl = request.getScheme() + "://" + request.getHeader("Host");// + ":" + request.getLocalPort();
 				logger.info(appUrl);
 				
 				// Email message
