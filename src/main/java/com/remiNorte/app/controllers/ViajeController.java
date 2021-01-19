@@ -132,6 +132,7 @@ public class ViajeController {
 			model.addAttribute("remises" , remisDao.findAll());
 			return "formViajeRem";
 		}
+		viaje.setViaEstado("C");
 		viajeDao.save(viaje);
 		return "redirect:/listarViajes";
 	}
