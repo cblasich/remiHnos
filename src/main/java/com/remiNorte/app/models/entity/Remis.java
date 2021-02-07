@@ -56,6 +56,9 @@ public class Remis implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL,mappedBy="Remis")
 	private List<Viaje> Viajes;
 	
+	@Column(name = "remnromov")
+	private Long remNroMov; //numero de movil
+	
 	public Remis() {
 		Viajes = new ArrayList<Viaje>();
 	} 
@@ -126,6 +129,14 @@ public class Remis implements Serializable {
 
 	public void setRemId(Long remId) {
 		this.remId = remId;
+	}
+
+	public Long getRemNroMov() {
+		return remNroMov;
+	}
+
+	public void setRemNroMov(Long remNroMov) {
+		this.remNroMov = remNroMov;
 	}
 	
 	

@@ -17,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,9 +35,11 @@ import com.remiNorte.app.models.dao.ITarifaDao;
 import com.remiNorte.app.models.dao.IUsuarioDao;
 import com.remiNorte.app.models.dao.IViajeDao;
 import com.remiNorte.app.models.entity.Pasajero;
+import com.remiNorte.app.models.entity.Remis;
 import com.remiNorte.app.models.entity.Tarifa;
 import com.remiNorte.app.models.entity.Usuario;
 import com.remiNorte.app.models.entity.Viaje;
+import com.remiNorte.app.models.service.IRemisService;
 import com.remiNorte.app.util.paginator.PageRender;
 
 @Controller 
@@ -59,6 +62,9 @@ public class ViajeController {
 	
 	@Autowired 
 	private IRemisDao remisDao;
+	
+	@Autowired 
+	private IRemisService remisService;
 	
 	@GetMapping(value =  "/formViaje")
 	public String crear(Model model) {
@@ -124,7 +130,27 @@ public class ViajeController {
 	}
 	
 	@PostMapping(value = "/formViajeRem")
-	public String guardarEditar(@ModelAttribute("viaje") @Valid Viaje viaje, BindingResult result, Model model, RedirectAttributes flash) {
+	public String guardarEditar(@ModelAttribute("viaje") @Valid Viaje viaje, 
+								BindingResult result, 
+								Model model, 
+								RedirectAttributes flash,
+								Errors errors,
+								@RequestParam(defaultValue="") Long numeroMovil) {
+	
+		
+		if (numeroMovil == null || numeroMovil <= 0) {
+			result.reject("global","Debe ingresar un número de móvil.");
+		} else {
+			Remis remis = null;
+			remis = remisService.findByRemNroMov(numeroMovil);
+			
+			if (remis == null) {
+				result.reject("global","El número de móvil ingresado no es válido.");
+			} else {
+				viaje.setRemis(remis);
+			}
+		}
+		
 		if (result.hasErrors()) {
 			model.addAttribute("viaje", viaje);
 			model.addAttribute("titulo", "Editar Viaje");
@@ -132,6 +158,7 @@ public class ViajeController {
 			model.addAttribute("remises" , remisDao.findAll());
 			return "formViajeRem";
 		}
+		
 		viaje.setViaEstado("C");
 		viajeDao.save(viaje);
 		return "redirect:/listarViajes";

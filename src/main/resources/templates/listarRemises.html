@@ -23,11 +23,12 @@
 				<thead>
 					<tr>
 						<th class="columna">Id</th>
+						<th class="columna">Número de móvil</th>
 						<th class="columna">Patente</th>
 						<th class="columna">Modelo</th>
 						<th class="columna">Marca</th>
 						<th class="columna">Estado</th>
-						<th class="columna">Nombre Conductor</th>
+						<th class="columna">Nombre</th>
 						<th class="columna">Apellido</th>
 						<th class="text-center columna">Modificar</th>
 						<th class="text-center columna">Eliminar</th>
@@ -36,6 +37,7 @@
 				<tbody>
 					<tr th:each="remis: ${remises}">
 						<td th:text="${remis.RemId}"></td> <!-- llama implicitamente a los get. Por eso es necesario tenerlos siempre definidos en la clase -->
+						<td th:text="${remis.remNroMov}"></td>
 						<td th:text="${remis.RemPatente}"></td>
 						<td th:text="${remis.RemModelo}"></td>
 						<td th:text="${remis.RemMarca}"></td>

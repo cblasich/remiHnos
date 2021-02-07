@@ -24,5 +24,7 @@ public interface IRemisService {
 	public List<Remis> devRemisesPorNombre(String nombre);
 	
 	public Remis findByRemPatente(String patente);
+	
+	public Remis findByRemNroMov(Long nromov);
 
 }

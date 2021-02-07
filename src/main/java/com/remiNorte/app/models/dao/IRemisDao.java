@@ -23,4 +23,6 @@ public interface IRemisDao extends PagingAndSortingRepository<Remis, Long> {
 	public Remis findByRemPatente(String patente);
 	
 	public Page<Remis> findAll(Pageable pageable);
+	
+	public Remis findByRemNroMov(Long nromov);
 }

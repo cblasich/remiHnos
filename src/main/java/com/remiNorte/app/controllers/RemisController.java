@@ -86,26 +86,34 @@ public class RemisController {
 							Model model, 
 							SessionStatus status) { //metodo que procesa el formulario
 		
-		if(result.hasErrors()) {
-			model.addAttribute("backPage", "/listarRemises");
-			model.addAttribute("titulo", "Nuevo Remis");
-			model.addAttribute("remis", remis);
-			return "formRemis";
-		}
-		
+		Boolean error = false;		
 		Remis remisAux = null;
 		remisAux = remisService.findByRemPatente(remis.getRemPatente().trim());
 		
 		if (remisAux == null || remisAux.getRemId() == remis.getRemId()) {
-			remisService.save(remis);
-			status.setComplete(); //elimina el objeto cliente de la sesión.			
+				error = true;	
 		} else {
 			result.rejectValue("remPatente","remPatente","Patente ya registrada en otro remís.");
 		}
 		
+		remisAux = null;
+		remisAux = remisService.findByRemNroMov(remis.getRemNroMov());
+		
+		if (remisAux == null || remisAux.getRemId() == remis.getRemId()) {
+			error = true;	
+		} else {
+			result.rejectValue("remNroMov","remNroMov","Número de móvil ya registrado en otro remís.");
+		}
+		
+		
+		if (error = false) {
+			remisService.save(remis);
+			status.setComplete(); //elimina el objeto cliente de la sesión.	
+		}
+		
 		if (result.hasErrors()) {
 			model.addAttribute("remis", remis);
-			model.addAttribute("titulo", "Modificar Remís");
+			model.addAttribute("titulo", "Nuevo Remís");
 			model.addAttribute("backPage", "/listarRemises");
 			return "formRemis";
 		}

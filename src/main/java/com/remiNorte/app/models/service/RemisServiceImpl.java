@@ -64,4 +64,10 @@ public class RemisServiceImpl implements IRemisService {
 		// TODO Auto-generated method stub
 		return remisDao.findByRemPatente(patente);
 	}
+
+	@Override
+	public Remis findByRemNroMov(Long nromov) {
+		// TODO Auto-generated method stub
+		return remisDao.findByRemNroMov(nromov);
+	}
 }

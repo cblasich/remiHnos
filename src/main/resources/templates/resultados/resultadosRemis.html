@@ -11,27 +11,28 @@
 			<thead>
 				<tr>
 					<th class="text-center columna"></th>
-					<th class="columna">Id</th>
+					<th class="columna">Móvil</th>
 					<th class="columna">Patente</th>
 					<th class="columna">Modelo</th>
 					<th class="columna">Marca</th>
-					<th class="columna">Nombre Conductor</th>
-					<th class="columna">Apellido</th>						
+					<th class="columna">Nombre</th>
+<!-- 					<th class="columna">Apellido</th>						 -->
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="remisSel: ${remises}">
 					<td class="text-center">
-						<a class="btn btn-xs selLinRem" th:id="${remisSel.RemId}" data-toggle="tooltip" data-placement="bottom" >
+						<a class="btn btn-xs selLinRem" th:id="${remisSel.remNroMov}" data-toggle="tooltip" data-placement="bottom" >
 							<span class="oi oi-check"></span>
 						</a>
 					</td>
-					<td th:text="${remisSel.RemId}"></td>
+					<td th:text="${remisSel.remNroMov}"></td>
 					<td th:text="${remisSel.RemPatente}"></td>
 					<td th:text="${remisSel.RemModelo}"></td>
 					<td th:text="${remisSel.RemMarca}"></td>
-					<td th:text="${remisSel.RemNomConductor}"></td>
-					<td th:text="${remisSel.RemApeConductor}"></td>						
+					<td th:text="${remisSel.RemApeConductor} + ' ' + ${remisSel.RemNomConductor}" ></td>
+<!-- 					<td th:text="${remisSel.RemNomConductor}"></td> -->
+<!-- 					<td th:text="${remisSel.RemApeConductor}"></td>						 -->
 				</tr>
 			</tbody>
 		</table>

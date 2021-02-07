@@ -75,7 +75,7 @@ public class Viaje implements Serializable {
 	@JoinColumn(name="pasid")
 	private Pasajero Pasajero;
 	
-	@RemisCodigo
+	//@RemisCodigo
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY) 
 	@JoinColumn(name="remid")
 	private Remis Remis;

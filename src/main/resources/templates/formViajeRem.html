@@ -69,11 +69,11 @@
 					<div class="form-group">
 						<div class="col-1 d-sm-none"></div>
 						<div class="col-10 col-sm-3">
-							<label class="font-weight-bold">Remisero</label>
+							<label class="font-weight-bold">Nro. de móvil de remisero</label>
 							<div class="row">
 								<div class="col-9">							
-									<input class="form-control" id="RemId" type="number" th:field="*{Remis.RemId}">							
-									<small class="form-text text-danger" th:if="${#fields.hasErrors('Remis')}" th:errors="*{Remis}"></small>
+									<input class="form-control" type="number" id="numeroMovil" name="numeroMovil">							
+									<small class="form-text text-danger" th:if="${#fields.hasErrors('global')}" th:errors="*{global}"></small>
 								</div>
 								<div class="col-1">
 									<button type="button" class="btn btn-info" data-toggle="modal" data-target="#seleccionRemis">
@@ -141,7 +141,7 @@
 	<script>
  		$(document).ready(function() {
  		    $('#tabSelRem').on('click','a', function() {
- 		    	document.getElementById("RemId").value = $(this).prop('id');
+ 		    	document.getElementById("numeroMovil").value = $(this).prop('id');
  		    	$('#seleccionRemis').modal('hide');
  		    });
  		    
