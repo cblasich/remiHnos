@@ -27,8 +27,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/error_403").permitAll()
 		.antMatchers("/formOperador","/formTarifa","/iniOperador", 
 				"/listarTarifas","/listarOperadores","/listarPasajeros","/listarRemises",
-				"/listarViajes","/formOperador","/formRemis","/formTarifa").hasAnyRole("ADMIN","OPERAD")
-		//.antMatchers("/iniOperador").hasAnyRole("OPERAD")
+				"/formViajeRem","/formOperador","/formRemis","/formTarifa").hasAnyRole("ADMIN")
+		.antMatchers("/listarViajes","/formViajeRem").hasAnyRole("OPERAD","ADMIN")
 		.anyRequest().authenticated()
 		.and()
 			.formLogin().loginPage("/login")
