@@ -72,7 +72,7 @@
 							<label class="font-weight-bold">Nro. de móvil de remisero</label>
 							<div class="row">
 								<div class="col-9">							
-									<input class="form-control" type="number" id="numeroMovil" name="numeroMovil">							
+									<input class="form-control" type="number" id="numeroMovil" name="numeroMovil" th:value="${numeroMovil}">							
 									<small class="form-text text-danger" th:if="${#fields.hasErrors('global')}" th:errors="*{global}"></small>
 								</div>
 								<div class="col-1">

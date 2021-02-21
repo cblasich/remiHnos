@@ -121,11 +121,20 @@ public class ViajeController {
 		} else {
 			return "redirect:/listarViajes";
 		}
+		
+		Remis remis = null;
+		remis = viaje.getRemis();
+		Long numeroMovil = null;
+		
+		if (remis != null) {
+			numeroMovil = remis.getRemNroMov();
+		}
+		
 		logger.info("Viaje: ".concat(viaje.getViaId().toString()));
 		model.put("viaje", viaje);
 		model.put("titulo", "Editar Viaje");
-		model.put("backPage", "/listarViajes");
-		//model.put("numeroMovil",)
+		model.put("backPage", "/listarViajes");	
+		model.put("numeroMovil",numeroMovil);
 		model.put("remises" , remisDao.devRemisesDisponibles());
 		return "formViajeRem";
 	}

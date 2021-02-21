@@ -30,7 +30,7 @@
 				<div class="col-12">
 					<table class="table table-hover">
 						<thead>
-							<tr>
+							<tr class="table-primary">
 								<th class="columna">Id</th>
 								<th class="columna">Origen: Calle</th>
 								<th class="columna">Altura</th>
@@ -43,7 +43,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="viaje: ${viajes}">
+							<tr class="table-primary" th:each="viaje: ${viajes}">
 								<td th:text="${viaje.ViaId}"></td>
 								<td th:text="${viaje.ViaCalleOri}"></td>
 								<td th:text="${viaje.ViaNumOri}"></td>				
