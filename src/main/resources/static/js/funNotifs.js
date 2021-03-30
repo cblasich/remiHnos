@@ -43,33 +43,6 @@ const comparaIds = maxViaje => {
 	});
 };
 
-/* ESTO FUNCIONA
-function getMaxViaIdActual() {
-	// Trae ultimo Id generado de viaje.   
-    $.ajax({  
-        type : 'GET',  
-        url : "/getUltVia",  
-        success: function(data){
-            //alert(data);
-            $('#maxViaIdActual').val(data);
-            maxViaIdActual = $.trim($("#maxViaIdActual").val());
-            console.log('1. calculo idActual')
-        }
-    });
-    //alert('comparo ids');
-    comparaIds();
-}
-
-function comparaIds() {
-	console.log('2. comparaIds.   MaxViaIdActual es: '+maxViaIdActual);
-	if(maxViaIdInicial < maxViaIdActual) {
-		console.log('3.a. Hay nuevo viaje. Y maxViaIdInicial es '+maxViaIdInicial +' y maxViaIdActual es ' +maxViaIdActual);
-		notify();
-	} else {
-		console.log('3.b. Son iguales y el actual es ' +maxViaIdInicial);
-	}
-} */
-
 function notify() {
 	// Verificar que el navegador soporta notificaciones
 	if(!("Notification" in window)) {  

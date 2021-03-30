@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layout/layout :: head">
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<header th:replace="layout/layout :: headerOpe"></header>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-11">
+					<form th:action="@{/formEmpresa}" th:object="${empresa}" method="post">
+				
+						<div class="row separacion4">
+							<div class="col-1 col-sm-1 col-form-label d-none">&nbsp; </div>	
+						</div>
+				
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-2">
+								<label class="font-weight-bold">Horario desde </label>
+								<div class="input-group">
+									<input type="number" th:field="*{empHrsDesde}" class="form-control" id="hrsdesde" maxlength=2>
+									<label class="font-weight-bold m-sm-1"> : </label>
+									<input type="number" th:field="*{empMinDesde}" class="form-control" id="mindesde" maxlength=2>
+								</div>
+								<div class="input-group">
+									<small class="form-text text-danger col-sm-6" th:if="${#fields.hasErrors('empHrsDesde')}" th:errors="*{empHrsDesde}"></small>
+									<label class="font-weight-bold m-sm-1">  </label>
+									<small class="form-text text-danger col-sm-6" th:if="${#fields.hasErrors('empMinDesde')}" th:errors="*{empMinDesde}"></small>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-2">
+								<label class="font-weight-bold">Horario hasta </label>
+								<div class="input-group">
+									<input type="number" th:field="*{empHrsHasta}" class="form-control" id="hrshasta" maxlength=2>
+									<label class="font-weight-bold m-sm-1"> : </label>
+									<input type="number" th:field="*{empMinHasta}" class="form-control" id="minhasta" maxlength=2>
+								</div>
+								<div class="input-group">
+									<small class="form-text text-danger col-sm-6" th:if="${#fields.hasErrors('empHrsHasta')}" th:errors="*{empHrsHasta}"></small>
+									<label class="font-weight-bold m-sm-1">  </label>
+									<small class="form-text text-danger col-sm-6" th:if="${#fields.hasErrors('empMinHasta')}" th:errors="*{empMinHasta}"></small>
+								</div>
+							</div>
+						</div>
+				
+						<div class="form-group">
+							<div class="col-1 d-sm-none"></div>
+							<div class="col-10 col-sm-2 text-center">
+								<button type="submit" class="btn btn-primary">Confirmar</button>
+								<input type="hidden" th:field="*{empId}" />  
+							</div>
+							<div class="col-1"></div>
+						</div>			
+					</form>
+				</div>
+			</div>			
+		</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+	</body>
+</html>
